@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import { response } from 'express';
 
@@ -9,11 +9,11 @@ import { response } from 'express';
   templateUrl: './grafico-ingresos.component.html',
   styleUrl: './grafico-ingresos.component.css'
 })
-export class GraficoIngresosComponent implements OnInit{
+export class GraficoIngresosComponent implements OnInit {
 
-  @Input() valores!:number[];
-
+  @Input() valores!: number[];
   public chart?: Chart;
+
 
   ngOnInit(): void {
     const data = {
@@ -38,24 +38,27 @@ export class GraficoIngresosComponent implements OnInit{
       }]
     };
 
-    const options= {
-      responsive:true,
+    const options = {
+      responsive: true,
       maintainAspectRatio: false,
-      layout:{
-        padding:5
+      layout: {
+        padding: 5
       },
-      plugins:{
-        legend:{
+      plugins: {
+        legend: {
           position: 'right' as const
         }
       }
     };
 
-    this.chart = new Chart("chart",{
-      type:'doughnut' as ChartType,
+
+    this.chart = new Chart("chart", {
+      type: 'doughnut' as ChartType,
       data: data,
-      options:options
+      options: options
     });
+
   }
+
 
 }
