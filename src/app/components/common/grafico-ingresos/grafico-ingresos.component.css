@@ -1,0 +1,12 @@
+.graphic-container{
+  background-color: aquamarine;
+  position: relative;
+  width: 290px; /*Minimo 290px*/
+  height: 130px; /*Minimo 130*/
+}
+
+canvas{
+  background-color: blanchedalmond;
+  width: 100% !important;
+  height: 100% !important; 
+}
