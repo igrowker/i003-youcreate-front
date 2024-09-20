@@ -1,8 +1,8 @@
 .graphic-container{
   background-color: aquamarine;
   position: relative;
-  width: 290px; /*Minimo 290px*/
-  height: 130px; /*Minimo 130*/
+  width: 100%; /*Minimo 290px*/
+  height: 99%; /*Minimo 130*/
 }
 
 canvas{
