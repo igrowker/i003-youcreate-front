@@ -3,18 +3,20 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './home/pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DashboardComponent } from './home/layout/dashboard/dashboard.component';
+import { CollaboratorPaymentsComponent } from './home/layout/collaborator-payments/collaborator-payments.component';
 
 export const routes: Routes = [
 
   { path:'landing', component:LandingComponent },
-  
-  { path:'home', component:HomeComponent, 
+  { path:'pagos', component:CollaboratorPaymentsComponent },
+
+  { path:'home', component:HomeComponent,
     children:[
       { path:'', redirectTo:'dashboard', pathMatch:'full' },
       { path:'dashboard', component:DashboardComponent }
-    ] 
+    ]
   },
-  
+
   { path:'**', component:NotFoundComponent }
 
 ];

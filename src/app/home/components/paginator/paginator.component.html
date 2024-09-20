@@ -1,0 +1,13 @@
+<div class="paginator">
+  <span class="control-pages">
+    <div class="current-page">{{ currentPage }}</div>
+    <div class="total-page"> de {{ totalPages }} páginas</div>
+  </span>
+
+  <button class="button-left" (click)="prevPage()" [disabled]="currentPage === 1">
+    <img class="icon" src="icons/chevron_left.svg" alt="icon">
+  </button>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    <img class="icon" src="icons/chevron_right.svg" alt="icon">
+  </button>
+</div>

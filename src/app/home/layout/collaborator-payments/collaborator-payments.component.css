@@ -1,0 +1,140 @@
+.container {
+  background-color: #d9d9d9;
+  padding: 15px 40px;
+  border-radius: 5px;
+}
+
+button {
+  border: none;
+  background-color: #393f50;
+  color: white;
+  min-width: 110px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4c5469;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: left;
+  background-color: white;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+th, td {
+  padding: 7px 20px;
+  border-bottom: 2px solid #dddddd;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.td-button {
+  text-align: center;
+}
+
+.btn-detail {
+  background-color: #9c9c9c;
+}
+
+.icon {
+  width: 17px;
+  color: #ffffff;
+  align-items: center;
+}
+
+.title {
+  background-color: white;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 7px;
+  width: 120px;
+  text-align: center;
+}
+
+.buttons-header {
+  background-color: white;
+  height: 52px;
+  border-bottom: 2px solid #dddddd;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 7px 7px 0 0;
+  padding-right: 50px;
+}
+
+.buttons-header button {
+  font-size: 13px;
+}
+
+.buttons-header button:nth-child(1){
+  margin-right: 15px;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header-titles {
+  height: 52px;
+}
+
+.body button{
+  font-size: 14px;
+}
+
+.state-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.payable {
+  background-color: #ffec5c;
+}
+
+.expired {
+  background-color: #ff0c0c;
+}
+
+.paid {
+  background-color: #6cfc48;
+}
+
+.td-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/*******************************/
+
+.payment-history {
+  margin-top: 30px;
+}
+
+.history-table {
+  background-color: white;
+  border-radius: 7px 7px 0 0;
+}
+
+.td-history{
+  padding: 15px 20px;
+}
+
+
