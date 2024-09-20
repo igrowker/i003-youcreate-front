@@ -1,0 +1,61 @@
+<div class="rester-container">
+    <form [formGroup]="registerForm">
+        <h2> Crear una cuenta </h2>
+
+        <!-- CAMPO PARA NOMBRE -->
+        <div>
+            <label for="firstName">Nombre</label>
+            <input type="text", id="firstName", formControlName="firstName" />
+            <div *ngIf="registerForm.get('firstName')?.invalid && 
+                registerForm.get('firstName')?.invalid && 
+                registerForm.get('firstName')?.touched">
+                Nombre es requerido
+            </div>
+        </div>
+        <!--CAMPO PARA APELLIDO-->
+        <div>
+            <label for="secondname">Apellido</label>
+            <input type="text" id="lastName" formControlName="secondName" />
+            <div *ngIf="registerForm.get('secondName')?.invalid &&
+                registerForm.get('lastName')?.invalid &&
+                registerForm.get('secondName')?.touched">
+                Apellido es requerido
+            </div>
+        </div>
+        <!--CAMPO PARA PAIS-->
+        <div>
+            <label for="country">Pais:</label>
+            <select id="country" formControlName="country">
+                <option value="" disabled>País</option>
+                <option *ngFor="let country of countries"[value]="country.code">
+                    {{ country.name }}
+                </option>
+            </select>
+            <div *ngIf="registerForm.get('country')?.invalid &&
+                registerForm.get('country')?.invalid &&
+                registerForm.get('country')?.touched">
+                País es requerido
+            </div>
+        </div>
+        <!--CAMPO PARA CÓDIGO DE ÁREA-->
+        <label for="areaCode">Código de área</label>
+        <select id="areaCode" formControlName="areaCode">
+            <option value="" disabled>Código</option>
+            <option *ngFor="let country of countries"[value]="country.areaCode">
+                {{ country.areaCode }}
+            </option>
+        </select>
+        <!--CAMPO PARA NUMERO DE TELEFONO-->
+        <div>
+            <label for="phoneNumber">Teléfono</label>
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+            <div *ngIf="registerForm.get('phoneNumber')?.invalid &&
+                registerForm.get('phoneNumber')?.touched">
+                Ingresa un numero valido
+            </div>
+        </div>
+
+        <!--BOTÓN DE ENVIO-->
+        <button type="submit" [disabled]="registerForm.invalid">Continuar</button>
+    </form>
+</div>
