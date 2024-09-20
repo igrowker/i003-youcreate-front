@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router';
-
-import { RegisterComponent } from '../app/register/register.component'
+import { Routes } from '@angular/router';
+import { LandingComponent } from './pages/landing/landing.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
-    { path: '/register', component: RegisterComponent },
+
+  { path:'landing', component:LandingComponent },
+  { path:'dashboard', component:DashboardComponent },
+  { path:'**', component:NotFoundComponent }
+
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-})
-
