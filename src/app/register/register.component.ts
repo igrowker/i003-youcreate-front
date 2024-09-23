@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { CountryService } from '../services/country.service';
+
 
 
 @Component({
@@ -17,26 +18,24 @@ export class RegisterComponent implements OnInit{
 
   constructor(private fb: FormBuilder, private countryService: CountryService){
     this.registerForm = this.fb.group({
-      firstnName: ['', [Validators.required]],
-      lasName: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       country: ['', [Validators.required]],
       areaCode: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
+      youtubeUsername: ['', [Validators.required]],
+      twitchUsername: ['', [Validators.required]],
       youtube: [''],
-      twich: [''],
+      twitch: [''],
     });
   }
 
   ngOnInit() {
-    this.countryService.getCountries().subscribe(data => {
-      this.countries = data.map((country: any)=> ({
-        name: country.name.common,
-        code: country.cca2,
-        areaCode: country.idd.root + (country.idd.suffixes.length > 0 ? country.add.suffixes[0]: '')
-      }))
+    this.countryService.getCountries().subscribe((data: any[]) => {
+      this.countries = data
     })
   }
 

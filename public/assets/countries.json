@@ -1,0 +1,53 @@
+[
+    {
+        "name": "Argentina",
+        "code": "AR",
+        "areaCode": "+54"
+    },
+    {
+        "name": "Bolivia",
+        "code": "BO",
+        "areaCode": "+591"
+    },
+    {
+        "name": "Chile",
+        "code": "CL",
+        "areaCode": "+56"
+    },
+    {
+        "name": "Colombia",
+        "code": "CO",
+        "areaCode": "+57"
+    },
+    {
+        "name": "Ecuador",
+        "code": "EC",
+        "areaCode": "+593"
+    },
+    {
+        "name": "España",
+        "code": "ES",
+        "areaCode": "+34"
+    },
+    {
+        "name": "México",
+        "code": "MX",
+        "areaCode": "+52"
+    },
+    {
+        "name": "Panamá",
+        "code": "PA",
+        "areaCode": "+507"
+    },
+    {
+        "name": "Puerto Rico",
+        "code": "PR",
+        "areaCode": "+1-787"
+    },
+    {
+        "name": "Venezuela",
+        "code": "VE",
+        "areaCode": "+58"
+    }
+
+]

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CountryService {
-  private countriesUrl = 'https://restcountries.com/v3.1/all';
-
-  constructor(private http: HttpClient) {}
+  private countriesUrl = "assets/countries.json"
+  
+  constructor(private http: HttpClient) { }
 
   getCountries(): Observable<any>{
     return this.http.get<any>(this.countriesUrl)
