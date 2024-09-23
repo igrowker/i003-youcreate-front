@@ -1,3 +1,25 @@
-.active{
-  
+nav{
+  background-color: var(--rosa-secundario-900);
 }
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: var(--base-white);
+  width: 200px;
+  margin: 10px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+
+.active{
+  background-color: var(--rosa-secundario-200);
+  color: var(--rosa-secundario-1000);
+}
+
+

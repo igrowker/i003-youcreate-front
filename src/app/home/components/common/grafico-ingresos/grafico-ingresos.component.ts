@@ -28,11 +28,11 @@ export class GraficoIngresosComponent implements OnInit {
         label: 'Ingreso',
         data: this.valores,
         backgroundColor: [
-          'rgb(196, 48, 43)',
-          'rgb(100, 65, 165)',
-          'rgb(91, 91, 91)',
-          'rgb(57, 63, 80)',
-          'rgb(58, 58, 58)',
+          '#B79CFF',
+          '#FBDEFF',
+          '#EF7BFF',
+          '#00B3CB',
+          '#005561',
         ],
         hoverOffset: 4
       }]
