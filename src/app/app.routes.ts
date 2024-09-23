@@ -6,7 +6,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 export const routes: Routes = [
 
   { path:'', component:LandingComponent },
-  { path:'dashboard',  loadChildren: () => import('./home/home.routes').then( c => c.HOME_ROUTES  )},
+  { path:'home',  loadChildren: () => import('./home/home.routes').then( c => c.HOME_ROUTES  )},
   { path:'**', component:NotFoundComponent }
 
 ];
