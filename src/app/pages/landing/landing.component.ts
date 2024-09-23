@@ -1,12 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css'
+  styleUrls: ['./landing.component.css']
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit, OnDestroy {
+  images: string[] = [
+    'assets/banner01.png',
+    'assets/banner02.png',
+    'assets/banner03.png'
+  ];
+  currentSlide = 0;
+  autoSlideInterval: any;
 
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      this.startAutoSlide();
+    }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.autoSlideInterval);
+  }
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 3000); 
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.images.length;
+  }
+
+  goToSlide(index: number) {
+    this.currentSlide = index;
+    clearInterval(this.autoSlideInterval); 
+    this.startAutoSlide(); 
+  }
 }
