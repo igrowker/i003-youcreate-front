@@ -1,4 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root{
+  --base-white: #fafafa;
+  --neutrals-100:#e3e3e3;
+  --neutrals-200:#cccbcb;
+  --neutrals-300:#b5b3b3;
+  --neutrals-400:#9f9c9c;
+  --neutrals-500:#898384;
+  --neutrals-600:#726c6c;
+  --neutrals-700:#5a5555;
+  --neutrals-800:#433e3f;
+  --neutrals-900:#2b2829;
+  --neutrals-1000:#151314;
+  --base-black: #0a0a0b;
+
+  --azul-primario: #37e7ff;
+  --azul-primario-100: #D7FAFF;
+  --azul-primario-200: #AFF5FF;
+  --azul-primario-300: #87F1FF;
+  --azul-primario-400: #5FECFF;
+  --azul-primario-500: #13E3FF;
+  --azul-primario-600: #00D2EF;
+  --azul-primario-700: #00B3CB;
+  --azul-primario-800: #0094A8;
+  --azul-primario-900: #007484;
+  --azul-primario-1000: #005561;
+
+  --rosa-secundario: #EF7BFF;
+  --rosa-secundario-100: #FBDEFF;
+  --rosa-secundario-200: #F7BDFF;
+  --rosa-secundario-300: #F39CFF;
+  --rosa-secundario-400: #EA54FF;
+  --rosa-secundario-500: #E62DFF;
+  --rosa-secundario-600: #E106FF;
+  --rosa-secundario-700: #C300DD;
+  --rosa-secundario-800: #A000B6;
+  --rosa-secundario-900: #7E008F;
+  --rosa-secundario-1000: #5B0068;
+
+  --success: #A4F4E7;
+  --success-100: #A4F4E7;
+  --success-200: #15B097;
+  --success-300: #0B7B69;
+
+  --warning: #F4C790;
+  --warning-100: #F4C790;
+  --warning-200: #EDA145;
+  --warning-300: #CC7914;
+
+  --error: #e4626f;
+  --error-100:#e4626f;
+  --error-200: #c03744;
+  --error-300: #8c1823;
+
+  --violeta-secundario: #b79cff;
+  --violeta-secundario-100:#e7deff;
+  --violeta-secundario-200:#cfdbff;
+  --violeta-secundario-300:#9b75ff;
+  --violeta-secundario-400:#7f4fff;
+  --violeta-secundario-500:#6328ff;
+  --violeta-secundario-600:#4702ff;
+  --violeta-secundario-700:#3c00da;
+  --violeta-secundario-800:#3100b4;
+  --violeta-secundario-900:#26008d;
+  --violeta-secundario-1000:#1c0067;
+
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

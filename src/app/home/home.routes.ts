@@ -7,9 +7,11 @@ export const HOME_ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children:[
-      {path: 'home', component: DashboardComponent },
-      {path: 'payments', component: CollaboratorPaymentsComponent },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', loadComponent: () => import('./layout/dashboard/dashboard.component').then(c => c.DashboardComponent) },
+      { path: 'payments', loadComponent: () => import('./layout/collaborator-payments/collaborator-payments.component').then(c => c.CollaboratorPaymentsComponent) }
+
     ]
   }
 ]
