@@ -1,13 +1,17 @@
 nav{
   background-color: var(--rosa-secundario-900);
-  height: 100vh;
-  width: 13vw;
-
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  padding-right: 5px;
+  & img{
+    margin: auto;
+    padding: 5px;  
+    height: 92px;
+    width: 94px;
+    object-fit: cover;
+  }
 }
 
 ul{
@@ -15,7 +19,7 @@ ul{
   height: 100%;
   width: 100%;
   padding: 0;
-  padding-top: 150px;
+  padding-top: 100px;
 
   display: flex;
   flex-direction: column;
@@ -29,6 +33,7 @@ li{
   padding: 0;
   margin: 0;
 }
+
 
 .bottom{
   display: flex;

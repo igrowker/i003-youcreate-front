@@ -1,4 +1,18 @@
-.top {
-  background-color: var(--rosa-secundario-900);
-  height: 60px;
+main{
+  height: 100%;
 }
+
+.top-bar{
+  min-height: 10%;
+  background-color: var(--rosa-secundario-900);
+}
+
+.content{
+  min-height: 90%;
+}
+app-navbar{
+  background-color: bisque;
+  width: 13vw;
+  padding: 0;
+}
+
