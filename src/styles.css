@@ -65,8 +65,16 @@
   --violeta-secundario-900:#26008d;
   --violeta-secundario-1000:#1c0067;
 
+  --main-font: "Poppins", system-ui; 
+  --secondary-font: "Lato", system-ui;
+  --tertiary-font: "Inter", system-ui;
+
+
+
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;   font-family: "Poppins", system-ui;  box-sizing: border-box;  }
+
+
 
