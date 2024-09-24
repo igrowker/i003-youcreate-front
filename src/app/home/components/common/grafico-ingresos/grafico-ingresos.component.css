@@ -1,5 +1,10 @@
-.graphic-container{
+.contenedor{
   background-color: var(--base-white);
+
+}
+
+
+.graphic-container{
   position: relative;
   width: 100%; /*Minimo 290px*/
   max-height: 265px; /*Minimo 130*/

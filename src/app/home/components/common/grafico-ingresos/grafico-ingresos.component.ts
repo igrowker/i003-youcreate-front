@@ -1,11 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
-import { response } from 'express';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-grafico-ingresos',
   standalone: true,
-  imports: [],
+  imports: [ MatButtonToggleModule ],
   templateUrl: './grafico-ingresos.component.html',
   styleUrl: './grafico-ingresos.component.css'
 })
