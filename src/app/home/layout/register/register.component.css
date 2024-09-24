@@ -1,0 +1,168 @@
+
+.register-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.step-indicator {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 80px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-login button {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-login button:hover {
+    background-color: #ddd;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    outline: none;
+    border-color: #5b9bd5;
+    box-shadow: 0px 0px 5px rgba(91, 155, 213, 0.5);
+}
+input[type="number"]{
+    width: 50%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.phone-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.area-code{
+    flex: 1;
+}
+.phone-number{
+    flex: 3;
+}
+
+.area-code select, .phone-number input {
+    width: 100%
+}
+
+button[type="submit"] {
+    background-color: #8A2BE2;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #6a1bb9;
+}
+
+button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Estilos adicionales para el área de plataformas */
+.content-creation p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.platform-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.platform-checkbox input[type="text"] {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.platform-checkbox label {
+    font-size: 14px;
+}

@@ -1,0 +1,116 @@
+<div class="register-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="step-indicator">Paso 1 de 2</div>
+        
+        <!-- Logotipo -->
+        <div class="logo-container">
+            <img src="../../../../assets/logoHeader.png" alt="Logo" />
+        </div>
+
+        <!-- Botones de redes sociales para registrarse -->
+        <div class="social-login">
+            <button class="google-btn">Iniciar con Google</button>
+            <button class="apple-btn">Iniciar con Apple</button>
+        </div>
+
+        <h2>Crear una cuenta</h2>
+
+        <!-- CAMPO PARA NOMBRE -->
+        <div>
+            <label for="firstName">Nombre</label>
+            <input type="text" id="firstName" formControlName="firstName" placeholder="Nombre"/>
+            <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+                Nombre es requerido
+            </div>
+        </div>
+
+        <!--CAMPO PARA APELLIDO-->
+        <div>
+            <label for="lastName">Apellido</label>
+            <input type="text" id="lastName" formControlName="lastName" placeholder="Apellido"/>
+            <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+                Apellido es requerido
+            </div>
+        </div>
+
+        <!-- CAMPO PARA PAIS -->        
+            <div>
+                <label for="country">País</label>
+                <select id="country" formControlName="country">
+                    <option value="" disabled></option>
+                    <option *ngFor="let country of countries" [value]="country.code">
+                        {{ country.name }}
+                    </option>
+                </select>
+                <div *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
+                    País es requerido
+                </div>
+            </div>       
+        
+        <!-- CAMPO PARA CÓDIGO DE ÁREA Y TELÉFONO -->
+        <div class="phone-container" >
+            <div class="area-code">
+                <label for="areaCode">Código</label>
+                <select id="areaCode" formControlName="areaCode">
+                    <option value="" disabled></option>
+                    <option *ngFor="let country of countries" [value]="country.areaCode">
+                        {{ country.areaCode }}
+                    </option>
+                </select>
+            </div>
+            <div class="phone-number">
+                <label for="phoneNumber">Teléfono</label>
+                <input type="number" id="phoneNumber" formControlName="phoneNumber" placeholder="Número de teléfono"/>
+                <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+                    Número de teléfono es requerido
+                </div>
+            </div>
+        </div>
+
+
+        <!-- CAMPO PARA EMAIL -->
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="Correo electrónico"/>
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                Email es requerido
+            </div>
+        </div>
+
+        <!-- CAMPOS PARA CONTRASEÑA Y CONFIRMAR CONTRASEÑA -->
+        <div>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" formControlName="password" placeholder="Contraseña"/>
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                Contraseña es requerida
+            </div>
+        </div>
+
+        <div>
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmar contraseña"/>
+            <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                Las contraseñas deben coincidir
+            </div>
+        </div>
+
+        <!-- SECCIÓN PARA CREAR CONTENIDO -->
+        <div class="content-creation">
+            <p>¿Dónde estás creando contenido?</p>
+            <div class="platform-checkbox">
+                <input type="checkbox" id="youtube" formControlName="youtube" />
+                <label for="youtube">Youtube</label>
+                <input type="text" id="youtube-username" formControlName="youtubeUsername" placeholder="@tu_usuario"/>
+            </div>
+
+            <div class="platform-checkbox">
+                <input type="checkbox" id="twitch" formControlName="twitch" />
+                <label for="twitch">Twitch</label>
+                <input type="text" id="twitch-username" formControlName="twitchUsername" placeholder="@tu_usuario"/>
+            </div>
+        </div>
+
+        <!-- BOTÓN DE ENVÍO -->
+        <button type="submit" [disabled]="registerForm.invalid">Continuar</button>
+    </form>
+</div>
