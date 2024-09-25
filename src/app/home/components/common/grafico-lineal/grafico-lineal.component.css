@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   /*Minimo 290px*/
-  height: 99%;
+  max-height: 265px;
   /*Minimo 130*/
 }
 

@@ -21,6 +21,11 @@ main{
 .content{
   min-height: 90%;
   width: auto;
+  background-color: #d9d9d9;
+}
+
+.outlet{
+  
 }
 
 app-navbar{
