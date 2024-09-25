@@ -7,6 +7,8 @@ export const routes: Routes = [
 
   { path:'', component:LandingComponent },
   { path:'home',  loadChildren: () => import('./home/home.routes').then( c => c.HOME_ROUTES  )},
-  { path:'**', component:NotFoundComponent }
+  { path:'auth',  loadChildren: () => import('./auth/auth.routes').then( c => c.AUTH_ROUTES  )},
+  { path: '**', component: NotFoundComponent }
+
 
 ];
