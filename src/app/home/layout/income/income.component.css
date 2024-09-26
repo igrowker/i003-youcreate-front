@@ -117,3 +117,15 @@ th, td {
   border-bottom: 2px solid #dddddd;
 }
 
+/*************************Grafico*****************************/
+.graphic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.graph-title {
+  font-size: 20px;
+  font-weight: bold;
+}

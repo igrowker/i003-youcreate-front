@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Income } from '../../../core/models/income.interface';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { PaginatorService } from '../../../services/paginator.service';
+import { DoughnutChartComponent } from '../../components/doughnut-chart/doughnut-chart.component';
+
 
 @Component({
   selector: 'app-income',
   standalone: true,
-  imports: [ PaginatorComponent ],
+  imports: [ PaginatorComponent, DoughnutChartComponent ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
 })
