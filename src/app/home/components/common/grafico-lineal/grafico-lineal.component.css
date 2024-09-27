@@ -1,12 +1,13 @@
-.graphic-container{
-  background-color: aquamarine;
+.graphic-container {
+  background-color: var(--base-white);
   position: relative;
-  width: 100%; /*Minimo 290px*/
-  height: 99%; /*Minimo 130*/
+  width: 100%;
+  /*Minimo 290px*/
+  max-height: 265px;
+  /*Minimo 130*/
 }
 
-canvas{
-  background-color: blanchedalmond;
+canvas {
   width: 100% !important;
-  height: 100% !important; 
+  height: 100% !important;
 }
