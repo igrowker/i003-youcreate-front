@@ -1,0 +1,19 @@
+
+
+
+.contenedor{
+  background-color: var(--base-white);
+
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.selector{
+  width: 100px;
+}
