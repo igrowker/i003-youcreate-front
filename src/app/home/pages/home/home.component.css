@@ -1,0 +1,41 @@
+main{
+  height: 100%;
+}
+
+.top-bar{
+  min-height: 10%;
+  background-color: var(--rosa-secundario-900);
+}
+
+.row{
+  width: auto;
+  padding: 0;
+  margin: 0; 
+}
+
+.col{
+  background-color: #d9d9d9;
+  margin: 60px;
+}
+
+.content{
+  min-height: 90%;
+  width: auto;
+  background-color: #d9d9d9;
+}
+
+.outlet{
+  
+}
+
+app-navbar{
+  background-color: bisque;
+  width: 13vw;
+  padding: 0;
+}
+
+/* .outlet{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+} */

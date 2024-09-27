@@ -1,11 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
-import { response } from 'express';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-grafico-ingresos',
   standalone: true,
-  imports: [],
+  imports: [ MatButtonToggleModule ],
   templateUrl: './grafico-ingresos.component.html',
   styleUrl: './grafico-ingresos.component.css'
 })
@@ -28,11 +28,11 @@ export class GraficoIngresosComponent implements OnInit {
         label: 'Ingreso',
         data: this.valores,
         backgroundColor: [
-          'rgb(196, 48, 43)',
-          'rgb(100, 65, 165)',
-          'rgb(91, 91, 91)',
-          'rgb(57, 63, 80)',
-          'rgb(58, 58, 58)',
+          '#B79CFF',
+          '#FBDEFF',
+          '#EF7BFF',
+          '#00B3CB',
+          '#005561',
         ],
         hoverOffset: 4
       }]
