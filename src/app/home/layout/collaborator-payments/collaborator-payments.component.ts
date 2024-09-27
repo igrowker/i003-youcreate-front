@@ -3,6 +3,8 @@ import { Collaboration, State } from '../../../core/models/collaborator-payments
 import { PaginatorService } from '../../../services/paginator.service';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { CommonModule } from '@angular/common';
+import {ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-collaborator-payments',
@@ -52,6 +54,8 @@ export class CollaboratorPaymentsComponent {
     },
   ];
 
+ 
+
   collaboratorsHistorie: Collaboration[] = [
     {
       date: '05/09/2024',
@@ -94,7 +98,7 @@ export class CollaboratorPaymentsComponent {
   currentPage: number = 1;
   rawsPerPage: number = 3;
 
-  constructor( private paginatorService: PaginatorService) {}
+  constructor( private paginatorService: PaginatorService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
 
@@ -123,5 +127,23 @@ export class CollaboratorPaymentsComponent {
       default:
         return '';
     }
+
+
+
+  } 
+
+  openDialog(collaborator: Collaboration): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: collaborator.state !== 'Pagado' ? 'Confirmar Pago' : 'Detalle del Pago',
+        message: collaborator.state !== 'Pagado' ? '¿Deseas confirmar el pago?' : 'Detalles del pago realizado.'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     // console.log('El diálogo fue cerrado');
+      //console.log(result);
+    });
   }
+  
+
 }
