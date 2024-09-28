@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, HostListener, ElementRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'btn-dropdown',
@@ -16,6 +16,7 @@ export class BtnDropdownComponent implements OnInit{
   @Input({required: true}) options:string[] = [];
   @Input({required: true}) label!:string;
   @Input() type:string = 'normal';
+  @Output() selectedValue = new EventEmitter<string>();
 
 
   constructor( private elementRef: ElementRef ) {}
@@ -29,6 +30,7 @@ export class BtnDropdownComponent implements OnInit{
   }
 
   selectOption(option: string) {
+    this.selectedValue.emit(option);
     this.selectedOption = option;
     this.isOpen = false;
   }

@@ -9,9 +9,7 @@
 
 .dashboard-top {
   display: flex;
-  justify-content: center;
-  gap: 100px;
-  margin-bottom: 20px;
+  gap: 128px;
 }
 
 .rectangle {
@@ -119,3 +117,8 @@ th, td {
 }
 
 
+/*******************Graphic Bar**************************/
+.graphicBar-container {
+  background-color: #FFFFFF;
+  width: 959px;
+}
