@@ -20,6 +20,7 @@
 li {
   padding: 10px;
   cursor: pointer;
+  font-size: 14px;
 
 }
 
@@ -37,7 +38,7 @@ li:hover {
   background-color: #FFFFFF;
   border: 1px solid #989696;
   border-radius: 5px;
-  min-width: 100px;
+  min-width: 112px;
 }
 
 .btn-base:hover {
