@@ -129,3 +129,23 @@ th, td {
   font-size: 20px;
   font-weight: bold;
 }
+
+/*************************Botones*****************************/
+.btn-base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #989696;
+  background-color: #FFFFFF;
+  border: 1px solid #989696;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+.btn-base:hover {
+  background-color: #f1f1f1;
+}
+
+

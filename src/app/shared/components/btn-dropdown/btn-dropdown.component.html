@@ -1,0 +1,19 @@
+<div class="dropdown">
+  <button class="btn-base" (click)="toggleDropdown()">
+    <span class="btn-name">{{ selectedOption | titlecase}}</span>
+    <img
+      class="btn-icon"
+      src="../../../../assets/icons/Polygon_1.png"
+      alt="icon_polygon"
+    >
+  </button>
+  @if (isOpen) {
+    <ul class="dropdown-menu">
+      @for (option of options; track $index) {
+        <li (click)="selectOption(option)">
+          {{ option | titlecase}}
+        </li>
+      }
+    </ul>
+  }
+</div>

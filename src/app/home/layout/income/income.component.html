@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody class="body">
-            @for (income of incomeData; track income) {
+            @for (income of paginatedData; track income) {
               <tr>
                 <td>{{ income.name }}</td>
                 <td>{{ income.date }}</td>
@@ -47,8 +47,15 @@
                   <span>{{ currency }} </span>
                   <span>{{ income.monto }} </span>
                 </td>
-                <td></td>
-                <td></td>
+                <td>
+                  <btn-dropdown
+                    [options]="categoryOptions"
+                    buttonName="categoria"
+                  />
+                </td>
+                <td>
+                  <button class="btn-base">Descripción</button>
+                </td>
               </tr>
             }
           </tbody>
@@ -58,3 +65,6 @@
   </div>
 
 </div>
+
+
+
