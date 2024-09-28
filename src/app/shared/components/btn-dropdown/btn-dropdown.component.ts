@@ -4,7 +4,7 @@ import { Component, HostListener, ElementRef, Input, OnInit } from '@angular/cor
 @Component({
   selector: 'btn-dropdown',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule,  ],
   templateUrl: './btn-dropdown.component.html',
   styleUrl: './btn-dropdown.component.css'
 })
@@ -14,13 +14,14 @@ export class BtnDropdownComponent implements OnInit{
   selectedOption: string = '';
 
   @Input({required: true}) options:string[] = [];
-  @Input({required: true}) buttonName!: string;
+  @Input({required: true}) label!:string;
+  @Input() type:string = 'normal';
 
 
   constructor( private elementRef: ElementRef ) {}
 
   ngOnInit(): void {
-    this.selectedOption = this.buttonName;
+    this.selectedOption = this.label;
   }
 
   toggleDropdown() {
@@ -40,4 +41,16 @@ export class BtnDropdownComponent implements OnInit{
     }
 
   };
+
+  getClassType(type: string) {
+    switch(type) {
+      case 'filter':
+        return 'filter-btn';
+      case 'months':
+        return 'btn-months';
+      default:
+        return 'btn-base';
+    }
+
+  }
 }

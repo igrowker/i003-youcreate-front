@@ -1,6 +1,14 @@
 <div class="dropdown">
-  <button class="btn-base" (click)="toggleDropdown()">
+  <button [ngClass]="getClassType(type)" (click)="toggleDropdown()">
+    @if (type === 'filter') {
+      <img
+        class="icon-filter"
+        src="../../../../assets/icons/filter.png"
+        alt="icon"
+      >
+    }
     <span class="btn-name">{{ selectedOption | titlecase}}</span>
+
     <img
       class="btn-icon"
       src="../../../../assets/icons/Polygon_1.png"

@@ -15,15 +15,17 @@
 
   <div>
     <div class="buttons-filter">
-      <span class="label-filter">Septiembre</span>
-      <button class="filter-btn">
-        <img
-          class="icon-filter"
-          src="../../../../assets/icons/filter.png"
-          alt="icon"
-        >
-        <span>Filtrar datos</span>
-      </button>
+      <btn-dropdown
+        [options]="months"
+        [label]="getCurrentMonth()"
+        type="months"
+      />
+
+       <btn-dropdown
+          [options]="filterType"
+          type="filter"
+          label="filtrar datos"
+        />
     </div>
 
     <div class="table-container">
@@ -49,7 +51,7 @@
                 <td>
                   <btn-dropdown
                     [options]="categoryOptions"
-                    buttonName="categoria"
+                    label="categoria"
                   />
                 </td>
                 <td class="td-description">

@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   background-color: #D9D9D9;
+  font-family: 'Poppins';
 }
 
 .dashboard-top {
@@ -56,42 +57,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 0 15px;
-  margin-bottom: 6px;
+  padding: 20px 0;
 }
-
-.filter-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FFFFFF;
-  border: 1px solid #53545C;
-  border-radius: 4px;
-  padding: 8px;
-  font-size: 11px;
-  color: #727272;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-  min-width: 111px;
-}
-
-.filter-btn:hover{
-  background-color: #f5f4f4;
-}
-
-.icon-filter {
-  width: 16px;
-  margin-right: 6px;
-}
-
-.label-filter {
-  background-color: #FFFFFF;
-  color: #000000;
-  border-radius: 4px;
-  padding: 8px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
 
 /*************************Table******************************/
 

@@ -12,7 +12,7 @@ import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/bt
   imports: [
     PaginatorComponent,
     DoughnutChartComponent,
-    BtnDropdownComponent
+    BtnDropdownComponent,
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -99,7 +99,14 @@ export class IncomeComponent {
     },
   ];
 
-  categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3',]
+  categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
+
+  filterType:string[] = ['Filtrar por mes', 'Filtrar por año'];
+
+  months = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
 
   currency:string = 'ARS';
 
@@ -114,6 +121,15 @@ export class IncomeComponent {
 
   onPageChange(page: number) {
     this.currentPage = page;
+  }
+
+  getCurrentMonth():string {
+
+    const currentDate = new Date();
+    const currentMonth = this.months[currentDate.getMonth()];
+
+    return currentMonth;
+
   }
 
 }
