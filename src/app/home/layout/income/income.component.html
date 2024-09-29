@@ -78,7 +78,12 @@
       </div>
     } @else {
       <div class="graphicBar-container">
-        sssssss
+        <bar-graphic
+          [labels]="months"
+          title="Historial De Ingresos"
+          [data]="dataGraficoPrueba"
+          [barStyles]="barStyles"
+        />
       </div>
     }
 

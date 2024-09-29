@@ -121,4 +121,6 @@ th, td {
 .graphicBar-container {
   background-color: #FFFFFF;
   width: 959px;
+  padding: 35px 50px;
+  border-radius: 10px;
 }

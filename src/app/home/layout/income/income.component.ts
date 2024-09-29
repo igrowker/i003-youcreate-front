@@ -4,6 +4,7 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { PaginatorService } from '../../../services/paginator.service';
 import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/btn-dropdown.component';
 import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
+import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/s
   imports: [
     PaginatorComponent,
     BtnDropdownComponent,
-    SwapGraphicsComponent
+    SwapGraphicsComponent,
+    BarGraphicComponent
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -109,6 +111,23 @@ export class IncomeComponent implements OnInit{
     'Julio', 'Agosto', 'Septiembre',
     'Octubre', 'Noviembre', 'Diciembre'
   ];
+
+  dataGraficoPrueba = [65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12];
+
+  barStyles = [
+    '#37e7ff',
+    '#D7FAFF',
+    '#AFF5FF',
+    '#87F1FF',
+    '#5FECFF',
+    '#13E3FF',
+    '#00D2EF',
+    '#00B3CB',
+    '#0094A8',
+    '#007484',
+    '#005561',
+    '#053F47'
+  ]
 
   years:string[] = [];
 
