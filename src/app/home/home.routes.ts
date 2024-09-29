@@ -14,7 +14,8 @@ export const HOME_ROUTES: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadComponent: () => import('./layout/dashboard/dashboard.component').then(c => c.DashboardComponent) },
       { path: 'payments', loadComponent: () => import('./layout/collaborator-payments/collaborator-payments.component').then(c => c.CollaboratorPaymentsComponent) },
-      { path: 'tax-obligations', loadComponent: () => import('./layout/tax-obligations-component/tax-obligations-component.component').then(c => c.TaxObligationsComponentComponent) }
+      { path: 'tax-obligations', loadComponent: () => import('./layout/tax-obligations-component/tax-obligations-component.component').then(c => c.TaxObligationsComponentComponent) },
+      { path: 'income', loadComponent: () => import('./layout/income/income.component').then(c => c.IncomeComponent) },
 
 
     ]
