@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+
+import { MatDialog } from '@angular/material/dialog'; 
+
 
 
 
@@ -17,7 +21,7 @@ interface TaxObligation {
 @Component({
   selector: 'app-tax-obligations-component',
   standalone: true,
-  imports: [ CommonModule, FormsModule, PaginatorComponent],
+  imports: [ CommonModule, FormsModule, PaginatorComponent, ConfirmDialogComponent],
   templateUrl: './tax-obligations-component.component.html',
   styleUrl: './tax-obligations-component.component.css',
  
@@ -58,6 +62,9 @@ export class TaxObligationsComponentComponent  {
 
   currentPage: number = 1;
   rowsPerPage: number = 5;
+
+  constructor(private dialog: MatDialog) {} 
+
   get paginatedObligations(): TaxObligation[] {
     const start = (this.currentPage - 1) * this.rowsPerPage;
     return this.obligations.slice(start, start + this.rowsPerPage);
@@ -89,4 +96,20 @@ export class TaxObligationsComponentComponent  {
       return 'red';
     }
   }
+  openDialog(obligation: TaxObligation): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: obligation.paymentStatus !== 'paid' ? 'Confirmar Pago' : 'Detalle del Pago',
+        message: obligation.paymentStatus !== 'paid' ? '¿Deseas confirmar el pago?' : 'Detalles del pago realizado.'
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Manejar la lógica después de que el diálogo se cierra, si es necesario
+        console.log('Pago confirmado para:', obligation);
+      }
+    });
+  }
+
 }
