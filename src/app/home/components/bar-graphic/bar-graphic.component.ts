@@ -27,20 +27,20 @@ export class BarGraphicComponent implements OnInit{
         datasets: [{
           label: this.title,
           data: this.data,
-          backgroundColor: this.barStyles
-        }],
-        datalabels: {
-          color: '#ffffff', // Cambia el color de las etiquetas
-          font: {
-            family: 'Arial', // Cambia el tipo de letra de las etiquetas
-            size: 14         // Cambia el tamaño de la fuente
+          backgroundColor: this.barStyles,
+          categoryPercentage: 1.0,
+          datalabels: {
+            color: (context: any) => {
+              const index = context.dataIndex;
+              return this.getContrastingColor(this.barStyles[index]);
+            },
+            font: {
+              family: 'Poppins',
+              size: 12,
+            },
+            formatter: ( value: number ) => this.formatPercentage(value),
           },
-          formatter: (value: number, context: any) => {
-            const total = context.chart.data.datasets[0].data.reduce((acc: number, val: number) => acc + val, 0);
-            const percentage = ((value / total) * 100).toFixed(2) + '%';
-            return percentage;
-          }
-        }
+        }],
     };
 
     this.chart = new Chart("chart", {
@@ -78,17 +78,41 @@ export class BarGraphicComponent implements OnInit{
             }
           },
           datalabels: {
-            display: true
+            display: true,
+            anchor: 'start',
+            align: 'end',
+            offset: -2,
+            font: {
+              weight: 'bolder'
+            }
           }
-
         },
-
       },
       plugins: [ChartDataLabels]
     })
+  };
 
+  private getContrastingColor(color: string):string {
 
+    const hexToRgb = (hex: string) => {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    };
 
+      const rgb = hexToRgb(color);
+      const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 255000;
 
+      return brightness > 0.5 ? '#000000' : '#FFFFFF';
+    }
+
+    private formatPercentage(value: number ):string {
+      const total = this.data.reduce((acc: number, val: number) => acc + val, 0);
+      const percentage = ((value / total) * 100).toFixed(2) + '%';
+      return percentage;
+    }
   }
-}
+
+
+

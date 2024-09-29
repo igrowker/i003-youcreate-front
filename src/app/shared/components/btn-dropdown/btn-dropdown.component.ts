@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ElementRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Type } from '../../../core/models/btn-dropdown.interface';
 
 @Component({
   selector: 'btn-dropdown',
@@ -15,7 +16,7 @@ export class BtnDropdownComponent implements OnInit{
 
   @Input({required: true}) options:string[] = [];
   @Input({required: true}) label!:string;
-  @Input() type:string = 'normal';
+  @Input() type:Type = 'normal';
   @Output() selectedValue = new EventEmitter<string>();
 
 
@@ -44,11 +45,11 @@ export class BtnDropdownComponent implements OnInit{
 
   };
 
-  getClassType(type: string) {
+  getClassType(type: Type) {
     switch(type) {
       case 'filter':
         return 'filter-btn';
-      case 'months':
+      case 'borderless':
         return 'btn-months';
       default:
         return 'btn-base';
