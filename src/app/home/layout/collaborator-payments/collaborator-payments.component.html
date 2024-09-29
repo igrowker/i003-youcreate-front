@@ -43,7 +43,7 @@
               </td>
               <td class="td-button">
                 @if (collaborator.state !== 'Pagado' ) {
-                  <button>Pagar</button>
+                  <button (click)="openDialog(collaborator)">Pagar</button>
                 }
                 @else {
                   <button class="btn-detail">Ver detalle</button>

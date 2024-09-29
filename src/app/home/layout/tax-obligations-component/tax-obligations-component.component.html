@@ -24,7 +24,7 @@
           <span class="status-dot" [ngClass]="getStatusClass(obligation.paymentStatus)"></span>
         </div>
         <div class="fiscal-item">
-          <button class="pay-btn">PAGAR</button>
+          <button class="pay-btn"  (click)="openDialog(obligation)">PAGAR</button>
         </div>
       </div>
       <div *ngIf="obligations.length === 0" class="no-obligations">
