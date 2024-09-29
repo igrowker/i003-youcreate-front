@@ -17,6 +17,8 @@ export class PaginatorComponent {
   @Input() currentPage:number = 1;
 
   @Output() pageChange = new EventEmitter<number>();
+  
+  @Output() currentPageChange = new EventEmitter<number>();
 
   get totalPages(): number {
     return Math.ceil(this.dataList.length / this.rowsPerPage);
