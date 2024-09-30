@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2267635167216034640" datatype="html">
+        <source>Acceder</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3854215443743812691" datatype="html">
+        <source>Registrarse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3846632564109054983" datatype="html">
+        <source>¿Cómo funciona?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4631724203505517632" datatype="html">
+        <source>Regístrate y asegura tus finanzas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9056128021819487363" datatype="html">
+        <source>Con YouCreate, gestionar tus finanzas es más sencillo que nunca. Regístrate y conecta todas tus fuentes de ingresos en un solo lugar. La seguridad de tus datos está garantizada con nuestras medidas de protección y encriptación.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4103148040777373105" datatype="html">
+        <source>Controla tus ingresos, gastos e impuestos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7773290112134889069" datatype="html">
+        <source>Monitorea tus ingresos, controla tus gastos y paga impuestos de manera personalizada. YouCreate está diseñada específicamente para influencers que buscan tener un control total sobre sus finanzas.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4723728630628591961" datatype="html">
+        <source>Mantente al día con notificaciones automáticas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6699324957405613477" datatype="html">
+        <source>Con YouCreate, nunca perderás de vista las fechas importantes. Recibe alertas automáticas sobre tus pagos e impuestos para que puedas concentrarte en lo que mejor haces.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8334158752535031045" datatype="html">
+        <source>¿Por qué elegir YouCreate?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6268507945347604981" datatype="html">
+        <source>Diseñado para influenciadores</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7465715474354046064" datatype="html">
+        <source>Entendemos las necesidades financieras únicas de los creadores de contenido. YouCreate ha sido desarrollada para ofrecerte herramientas que se adaptan a tu estilo de vida y la dinámica de tus ingresos.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1368079929977357934" datatype="html">
+        <source>Todo en un solo lugar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9024520024194914413" datatype="html">
+        <source>Ya no necesitas múltiples plataformas para gestionar tus finanzas. Con YouCreate, tienes acceso a el seguimiento de tus ingresos, la gestión de impuestos y puedes realizar pagos desde la plataforma.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="636426817541686391" datatype="html">
+        <source>Inteligente e intuitivo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8168151070865917282" datatype="html">
+        <source>La tecnología debe simplificar, no complicar. Por eso, YouCreate combina una interfaz intuitiva con tecnología avanzada, brindándote una experiencia fácil, para que te enfoques en lo que realmente importa: crear.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4561288271722482170" datatype="html">
+        <source>© YouCreate copyright 2024</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/landing/landing.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7883492519040929763" datatype="html">
+        <source>¡Oops! Página no encontrada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2274940244648782827" datatype="html">
+        <source>Página no encontrada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8943526280338329108" datatype="html">
+        <source> Parece que esta página decidió tomar un descanso de desarrollo 😅 <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> No te preocupes, vuelve al <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;error_link&quot;  routerLink=&quot;/&quot;&gt;"/>Inicio<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.component.html</context>
+          <context context-type="linenumber">11,15</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

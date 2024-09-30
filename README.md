@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+Angular Internationalization: 
+
+
+https://angular.dev/guide/i18n
+
+ng add @angular/localize
+extracted archives:
+ng extract-i18n --output-path src/locale/messages
+ng extract-i18n --output-path src/locale/messages --out-file en-US.xlf

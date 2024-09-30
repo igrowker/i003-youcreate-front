@@ -74,7 +74,7 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0;   font-family: "Poppins", system-ui;  box-sizing: border-box;  }
+body { margin: 0;   font-family: "Poppins", system-ui;  box-sizing: border-box;   overflow-x: hidden; }
 
 
 
