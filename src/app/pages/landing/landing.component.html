@@ -1,90 +1,75 @@
-
 <div class="landing_container">
     <header class="header_landing">
       
         <img class="header_img" src="../../../assets/logoHeader.png" alt="Logo" >
         <div class="header_buttons">
         <button class="login_button">Acceder</button>
-        <button class="register_button" (click)="goToRegister()" >Registrarse</button>
+        <button class="register_button" (click)="goToRegister()">Registrarse</button>
         </div>
     
     </header>
 
-      
-      <div class="carousel-container">
-        <div class="carousel-slide"  *ngFor="let image of images; let i = index" [class.active]="i === currentSlide">
-          <img  class="banner_img" [src]="image" alt="Slide {{ i + 1 }}">
-        </div>
-            
-        <div class="dots_container">
+  <div class="carousel-container">
+      <div class="carousel-slide" *ngFor="let image of images; let i = index" [class.active]="i === currentSlide">
+          <img class="banner_img" [src]="image" alt="Slide {{ i + 1 }}">
+      </div>
+      <div class="dots_container">
           <span *ngFor="let image of images; let i = index" 
                 class="dot" 
                 [class.active]="i === currentSlide"
                 (click)="goToSlide(i)"></span>
-        </div>
       </div>
-      
-      
-    
-    
+  </div>
 
-    <section class="how_works">
-        <h2 class="howWorks_title">¿Cómo funciona?</h2>
-        <div class="steps">
+  <section class="how_works">
+      <h2 class="howWorks_title" i18n>¿Cómo funciona?</h2>
+      <div class="steps">
           <div class="step">
-            <img src="../../../assets/section_1.png" alt="Step 1">
-            <div class="step_text_one">
-            <h3>Registrate y asegura tus finanzas</h3>
-            <p>Con YouCreate, gestionar tus finanzas es más sencillo que nunca. Regístrate y conecta todas tus fuentes de ingresos en un solo lugar. La seguridad de tus datos está garantizada con nuestras medidas de protección y encriptación.</p>
-          </div>
+              <img src="../../../assets/section_1.png" alt="Step 1">
+              <div class="step_text_one">
+                  <h3 i18n>Regístrate y asegura tus finanzas</h3>
+                  <p i18n>Con YouCreate, gestionar tus finanzas es más sencillo que nunca. Regístrate y conecta todas tus fuentes de ingresos en un solo lugar. La seguridad de tus datos está garantizada con nuestras medidas de protección y encriptación.</p>
+              </div>
           </div>
           <div class="step">
-            <img src="../../../assets/section_2.png" alt="Step 2">
-            <div class="step_text_two">
-            <h3>Controla tus ingresos, gastos e impuestos</h3>
-            
-            <p>Monitorea tus ingresos, controla tus gastos y paga impuestos de manera personalizada. YouCreate está diseñada específicamente para influencers que buscan tener un control total sobre sus finanzas.</p>
-          </div>
+              <img src="../../../assets/section_2.png" alt="Step 2">
+              <div class="step_text_two">
+                  <h3 i18n>Controla tus ingresos, gastos e impuestos</h3>
+                  <p i18n>Monitorea tus ingresos, controla tus gastos y paga impuestos de manera personalizada. YouCreate está diseñada específicamente para influencers que buscan tener un control total sobre sus finanzas.</p>
+              </div>
           </div>
           <div class="step">
-            <img src="../../../assets/section_3.png" alt="Step 3">
-            <div class="step_text_three">
-            <h3>Mantente al día con notificaciones automáticas</h3>
-            <p>Con YouCreate, nunca perderás de vista las fechas importantes. Recibe alertas automáticas sobre tus pagos e impuestos para que puedas concentrarte en lo que mejor haces.</p>
+              <img src="../../../assets/section_3.png" alt="Step 3">
+              <div class="step_text_three">
+                  <h3 i18n>Mantente al día con notificaciones automáticas</h3>
+                  <p i18n>Con YouCreate, nunca perderás de vista las fechas importantes. Recibe alertas automáticas sobre tus pagos e impuestos para que puedas concentrarte en lo que mejor haces.</p>
+              </div>
           </div>
-          </div>
-        </div>
-      </section>
-    
-      
-      <section class="why_choose">
-        <h2>¿Por qué elegir YouCreate?</h2>
-        <div class="reasons">
+      </div>
+  </section>
+
+  <section class="why_choose">
+      <h2 i18n>¿Por qué elegir YouCreate?</h2>
+      <div class="reasons">
           <div class="reason">
-            <h3>Diseñado para influenciadores</h3>
-            <p>Entendemos las necesidades financieras únicas de los creadores de contenido. YouCreate ha sido desarrollada para ofrecerte herramientas que se adaptan a tu estilo de vida y la dinámica de tus ingresos.</p>
-          </div>
-          <div class="reason">
-            <h3>Todo en un solo lugar</h3>
-            <p>Ya no necesitas múltiples plataformas para gestionar tus finanzas. Con YouCreate, tienes acceso a el seguimiento de tus ingresos, la gestión de impuestos y puedes realizar pagos desde la plataforma. </p>
-        
+              <h3 i18n>Diseñado para influenciadores</h3>
+              <p i18n>Entendemos las necesidades financieras únicas de los creadores de contenido. YouCreate ha sido desarrollada para ofrecerte herramientas que se adaptan a tu estilo de vida y la dinámica de tus ingresos.</p>
           </div>
           <div class="reason">
-            <h3>Inteligente e intuitivo</h3>
-            <p>La tecnología debe simplificar, no complicar. Por eso, YouCreate combina una interfaz intuitiva con tecnología avanzada, brindándote una experiencia fácil, para que te enfoques en lo que realmente importa: crear.</p>
-            
+              <h3 i18n>Todo en un solo lugar</h3>
+              <p i18n>Ya no necesitas múltiples plataformas para gestionar tus finanzas. Con YouCreate, tienes acceso a el seguimiento de tus ingresos, la gestión de impuestos y puedes realizar pagos desde la plataforma.</p>
           </div>
-        </div>
-      </section>
-    
+          <div class="reason">
+              <h3 i18n>Inteligente e intuitivo</h3>
+              <p i18n>La tecnología debe simplificar, no complicar. Por eso, YouCreate combina una interfaz intuitiva con tecnología avanzada, brindándote una experiencia fácil, para que te enfoques en lo que realmente importa: crear.</p>
+          </div>
+      </div>
+  </section>
 
-
-     <footer class="footer">
-        <div class="footer_div">
-        <img class="footer_img" src="../../../assets/logoFooter.png" alt="">
-        <p class="footer_copy">&copy; YouCreate copyright 2024</p>
-        </div>
-      </footer>
-
+  <footer class="footer">
+      <div class="footer_div">
+          <img class="footer_img" src="../../../assets/logoFooter.png" alt="">
+          <p class="footer_copy" i18n>&copy; YouCreate copyright 2024</p>
+      </div>
+  </footer>
 </div>
-  

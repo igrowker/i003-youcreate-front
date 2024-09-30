@@ -94,7 +94,7 @@ body {
   .dots_container {
     position: absolute;
     z-index: 100;
-    bottom: 20px;
+    bottom: 14px;
   
     display: flex;
     justify-content: center;
