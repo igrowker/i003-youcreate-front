@@ -8,9 +8,9 @@
     <div class="buttons-header">
       <button class="add-button" (click)="dialog.openDialog()">
         <img class="icon" src="assets/icons/add.svg" alt="icon">
-        <span>Agregar Pago</span>
+        <span>Agregar pago</span>
       </button>
-      <register-payments-dialog #dialog/>
+      <register-payments-dialog #dialog (formValues)="getNewPaymentRegistered($event)"/>
     </div>
 
     <div class="table-wrapper">

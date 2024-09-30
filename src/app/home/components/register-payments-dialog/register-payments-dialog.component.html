@@ -5,15 +5,27 @@
       <h2 class="title">Registrar pagos</h2>
     </div>
     <div class="dialog-body">
-      <form>
+      <form
+        [formGroup]="registerPaymentsForm"
+        (ngSubmit)="submitForm()"
+      >
         <div class="form-group">
           <label for="nombre">¿A quién le vas a pagar?</label>
-          <input type="text" id="nombre" placeholder="Nombre y Apellido" />
+          <input
+            formControlName="name"
+            type="text"
+            id="nombre"
+            placeholder="Nombre y Apellido"
+          />
         </div>
 
         <div class="form-group custom-select-container">
           <label for="wallet">Elige una billetera</label>
-          <select id="wallet" class="custom-select">
+          <select
+            formControlName="wallet"
+            id="wallet"
+            class="custom-select"
+          >
             <option value="" disabled selected>Medio de pago</option>
             <option class="select-option" value="masculino">Masculino</option>
             <option value="femenino">Femenino</option>
@@ -23,22 +35,36 @@
 
         <div class="form-group">
           <label for="date">Fecha de pago</label>
-          <input type="text" id="date" placeholder="DD/MM/AA" />
+          <input
+            formControlName="date"
+            type="text"
+            id="date"
+            placeholder="DD/MM/AAAA"
+          />
         </div>
 
         <div class="form-group">
           <label for="service">Describe el servicio a pagar</label>
-          <input type="text" id="service" placeholder="Servicio" />
+          <input
+            formControlName="service"
+            type="text"
+            id="service"
+            placeholder="Servicio"
+          />
         </div>
 
         <div class="form-group">
           <label for="monto">Ingresa el monto</label>
-          <input type="text" id="monto" placeholder="ARS" />
+          <input
+            formControlName="monto"
+            type="number"
+            id="monto"
+            placeholder="ARS"
+          />
         </div>
+
+        <button (click)="closeDialog()">Guardar</button>
       </form>
-    </div>
-    <div class="dialog-footer">
-      <button (click)="closeDialog()">Guardar</button>
     </div>
   </div>
 }

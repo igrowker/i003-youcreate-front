@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import {ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
+import { RegisterPayments } from '../../../core/models/register-payments.interface';
 
 @Component({
   selector: 'app-collaborator-payments',
@@ -119,6 +120,10 @@ export class CollaboratorPaymentsComponent {
     this.currentPage = page;
   }
 
+  getNewPaymentRegistered(newPayment: RegisterPayments) {
+    console.log(newPayment);
+  }
+
   getStateColor( state: State ) {
     switch(state) {
       case 'Por pagar':
@@ -130,6 +135,7 @@ export class CollaboratorPaymentsComponent {
     }
 
   }
+
   openDialog(collaborator: Collaboration): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
