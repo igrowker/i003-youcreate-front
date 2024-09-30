@@ -2,15 +2,15 @@
 
   <div class="manage-payments">
     <div class="title">
-      Gestionar pagos
+      Pagos pendientes
     </div>
 
     <div class="buttons-header">
-      <button>Editar</button>
-      <button class="add-button">
-        <img class="icon" src="icons/add.svg" alt="icon">
-        <span>Agregar colaborador</span>
+      <button class="add-button" (click)="dialog.openDialog()">
+        <img class="icon" src="assets/icons/add.svg" alt="icon">
+        <span>Agregar Pago</span>
       </button>
+      <register-payments-dialog #dialog/>
     </div>
 
     <div class="table-wrapper">
@@ -42,12 +42,7 @@
                 </div>
               </td>
               <td class="td-button">
-                @if (collaborator.state !== 'Pagado' ) {
-                  <button (click)="openDialog(collaborator)">Pagar</button>
-                }
-                @else {
-                  <button class="btn-detail">Ver detalle</button>
-                }
+                <button (click)="openDialog(collaborator)">Pagar</button>
               </td>
             </tr>
           }

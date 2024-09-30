@@ -5,11 +5,16 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { CommonModule } from '@angular/common';
 import {ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
 
 @Component({
   selector: 'app-collaborator-payments',
   standalone: true,
-  imports: [ PaginatorComponent, CommonModule ],
+  imports: [
+    CommonModule,
+    PaginatorComponent,
+    RegisterPaymentsDialogComponent
+  ],
   templateUrl: './collaborator-payments.component.html',
   styleUrl: './collaborator-payments.component.css'
 })
@@ -22,7 +27,7 @@ export class CollaboratorPaymentsComponent {
       name: 'Juan Pérez',
       servicio: 'Tutorial Youtube',
       monto: '600.000',
-      state: 'Pagado'
+      state: 'Por pagar'
     },
     {
       date: '05/09/2024',
@@ -50,7 +55,7 @@ export class CollaboratorPaymentsComponent {
       name: 'Juan Pérez',
       servicio: 'Tutorial Youtube',
       monto: '600.000',
-      state: 'Pagado'
+      state: 'Vencido'
     },
   ];
 
@@ -116,8 +121,6 @@ export class CollaboratorPaymentsComponent {
 
   getStateColor( state: State ) {
     switch(state) {
-      case 'Pagado':
-        return 'paid';
       case 'Por pagar':
         return 'payable';
       case 'Vencido':
@@ -135,7 +138,7 @@ export class CollaboratorPaymentsComponent {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-  
+
     });
   }
 }

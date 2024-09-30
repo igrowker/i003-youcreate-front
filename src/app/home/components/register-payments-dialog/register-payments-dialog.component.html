@@ -1,0 +1,44 @@
+@if (isVisible) {
+  <div class="backdrop" (click)="closeDialog()"></div>
+  <div class="dialog">
+    <div class="dialog-header">
+      <h2 class="title">Registrar pagos</h2>
+    </div>
+    <div class="dialog-body">
+      <form>
+        <div class="form-group">
+          <label for="nombre">¿A quién le vas a pagar?</label>
+          <input type="text" id="nombre" placeholder="Nombre y Apellido" />
+        </div>
+
+        <div class="form-group custom-select-container">
+          <label for="wallet">Elige una billetera</label>
+          <select id="wallet" class="custom-select">
+            <option value="" disabled selected>Medio de pago</option>
+            <option class="select-option" value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Fecha de pago</label>
+          <input type="text" id="date" placeholder="DD/MM/AA" />
+        </div>
+
+        <div class="form-group">
+          <label for="service">Describe el servicio a pagar</label>
+          <input type="text" id="service" placeholder="Servicio" />
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Ingresa el monto</label>
+          <input type="text" id="monto" placeholder="ARS" />
+        </div>
+      </form>
+    </div>
+    <div class="dialog-footer">
+      <button (click)="closeDialog()">Guardar</button>
+    </div>
+  </div>
+}
