@@ -1,9 +1,9 @@
 .graphic-container {
   background-color: var(--base-white);
   position: relative;
-  width: 100%;
+  width: 32vw;
   /*Minimo 290px*/
-  max-height: 265px;
+  max-height: 22vh;
   /*Minimo 130*/
 }
 
