@@ -59,9 +59,7 @@
             </div>
             <div class="phone-number">
                 <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Teléfono"/>
-                <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
-                    Número de teléfono es requerido
-                </div>
+                <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"></div>
             </div>
         </div>
 
@@ -105,7 +103,7 @@
         </div>
 
         <!-- BOTÓN DE ENVÍO -->
-        <button type="submit"  >Continuar</button>
+        <button type="submit" >Continuar</button>
     </form>
 </div>
 
