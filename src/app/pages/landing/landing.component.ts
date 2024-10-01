@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class LandingComponent implements OnInit, OnDestroy {
   ];
   currentSlide = 0;
   autoSlideInterval: any;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     if (typeof window !== 'undefined') {
@@ -41,5 +44,9 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.currentSlide = index;
     clearInterval(this.autoSlideInterval); 
     this.startAutoSlide(); 
+  }
+
+  goToRegister(){
+    this.router.navigate(["/auth/register"])
   }
 }
