@@ -1,11 +1,13 @@
 <div class="landing_container">
-  <header class="header_landing">
-      <img class="header_img" src="../../../assets/logoHeader.png" alt="Logo">
-      <div class="header_buttons">
-          <button class="login_button" i18n>Acceder</button>
-          <button class="register_button" i18n>Registrarse</button>
-      </div>
-  </header>
+    <header class="header_landing">
+      
+        <img class="header_img" src="../../../assets/logoHeader.png" alt="Logo" >
+        <div class="header_buttons">
+        <button class="login_button">Acceder</button>
+        <button class="register_button" (click)="goToRegister()">Registrarse</button>
+        </div>
+    
+    </header>
 
   <div class="carousel-container">
       <div class="carousel-slide" *ngFor="let image of images; let i = index" [class.active]="i === currentSlide">

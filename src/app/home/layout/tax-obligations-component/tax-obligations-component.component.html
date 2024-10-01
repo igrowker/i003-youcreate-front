@@ -10,7 +10,8 @@
     </div>
     <div class="card">
     <div class="fiscal-body">
-      <div class="fiscal-row" *ngFor="let obligation of obligations">
+      <div class="fiscal-row" *ngFor="let obligation of obligationsData">
+
         <div class="fiscal-item">{{ obligation.type }}</div>
         <div class="fiscal-item">{{ obligation.amount | currency: 'USD': 'symbol':'1.0-0' }}</div>
         <div class="fiscal-item">{{ obligation.dueDate | date:'dd/MM/yyyy' }}</div>
@@ -31,12 +32,7 @@
         <p>No hay obligaciones fiscales disponibles.</p>
       </div>
       <div class="paginator_tax">
-        <paginator 
-          [dataList]="obligations" 
-          [rowsPerPage]="rowsPerPage" 
-          [(currentPage)]="currentPage" 
-          (pageChange)="onPageChange($event)">
-        </paginator>
+        <paginator [dataList]="obligations" [rowsPerPage]="rowsPerPage" (pageChange)="onPageChange($event)"/>
       </div>
     </div>
    

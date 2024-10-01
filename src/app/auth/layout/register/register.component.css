@@ -1,6 +1,6 @@
 
 .register-container {
-    width: 400px;
+    width: 632px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -22,35 +22,34 @@
 }
 
 .logo-container img {
-    width: 80px;
+    width: 90px;
 }
 
 .social-login {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.social-login button {
-    background-color: #f5f5f5;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.social-login button:hover {
-    background-color: #ddd;
+.social-login img {
+    width: 80px;
+    padding: 15px;
+    
 }
 
 h2 {
+    font-size: 30px;
     text-align: center;
-    font-size: 24px;
     color: #333;
     margin-bottom: 20px;
+}
+
+h3 {
+    text-align: left;
+    margin-left: 20%;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 form {
@@ -70,12 +69,13 @@ label {
 }
 
 input[type="text"], input[type="email"], input[type="password"], select {
-    width: 100%;
+    width: 60%;
     padding: 10px;
-    font-size: 14px;
+    /* font-size: 14px; */
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    margin-left: 20%;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
@@ -83,19 +83,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     border-color: #5b9bd5;
     box-shadow: 0px 0px 5px rgba(91, 155, 213, 0.5);
 }
-input[type="number"]{
-    width: 50%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
 .phone-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
 }
 
 .area-code{
@@ -105,9 +95,29 @@ input[type="number"]{
     flex: 3;
 }
 
-.area-code select, .phone-number input {
-    width: 100%
+.area-code select {
+    width: 60%;
+    height: 95%;
+    margin-left: 80%;
 }
+
+.phone-number input{
+    width: 54%;
+}
+
+.content-creation{
+    width: 60%;
+    margin-left: 20%;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
 
 button[type="submit"] {
     background-color: #8A2BE2;
@@ -118,25 +128,17 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%;
+    width: 60%;
+    margin-left: 20%;
 }
 
 button[type="submit"]:hover {
-    background-color: #6a1bb9;
+    background-color: #ea54ff;
 }
 
 button[type="submit"]:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-
-
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-input::placeholder {
-    color: #aaa;
 }
 
 .error-message {
@@ -159,7 +161,7 @@ input::placeholder {
 }
 
 .platform-checkbox input[type="text"] {
-    margin-left: 10px;
+    margin-left: 10px; 
     flex-grow: 1;
 }
 
