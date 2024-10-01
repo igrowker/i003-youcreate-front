@@ -53,6 +53,6 @@ svg{
 .contenedor{
   background-color: var(--base-white);
 
-  padding: 20px;
+  padding: 10px 40px;
   border-radius: 5px;
 }

@@ -1,0 +1,20 @@
+
+
+.row{
+  margin-top: 2vh;
+}
+
+h2{
+  margin:0;
+  margin-left: 10px;
+  padding: 0;
+
+  text-align: start;
+  font-size:larger;
+  font-weight: bolder;
+}
+
+.col{
+  margin: 10px 10px;
+  padding: 0;
+}
