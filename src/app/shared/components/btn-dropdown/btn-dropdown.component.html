@@ -7,7 +7,12 @@
         alt="icon"
       >
     }
-    <span class="btn-name">{{ selectedOption | titlecase}}</span>
+
+    @if (selectedOption === 'Reiniciar filtro') {
+      <span class="btn-name">{{ 'filtrar dato' | titlecase }}</span>
+    }@else {
+      <span class="btn-name">{{ selectedOption | titlecase }}</span>
+    }
 
     <img
       class="btn-icon"
