@@ -5,11 +5,18 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { CommonModule } from '@angular/common';
 import {ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
+import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe';
 
 @Component({
   selector: 'app-collaborator-payments',
   standalone: true,
-  imports: [ PaginatorComponent, CommonModule ],
+  imports: [
+    CommonModule,
+    PaginatorComponent,
+    RegisterPaymentsDialogComponent,
+    NumberWithDotsPipe
+  ],
   templateUrl: './collaborator-payments.component.html',
   styleUrl: './collaborator-payments.component.css'
 })
@@ -20,37 +27,37 @@ export class CollaboratorPaymentsComponent {
     {
       date: '05/09/2024',
       name: 'Juan Pérez',
-      servicio: 'Tutorial Youtube',
-      monto: '600.000',
-      state: 'Pagado'
+      service: 'Tutorial Youtube',
+      monto: 600000,
+      state: 'Por pagar'
     },
     {
       date: '05/09/2024',
       name: 'Sofia Caldero',
-      servicio: 'Patrocinio Stream',
-      monto: '400.000',
+      service: 'Patrocinio Stream',
+      monto: 400000,
       state: 'Por pagar'
     },
     {
       date: '05/09/2024',
       name: 'Lucas Morales',
-      servicio: 'Video Review',
-      monto: '500.000',
+      service: 'Video Review',
+      monto: 500000,
       state: 'Vencido'
     },
     {
       date: '05/09/2024',
       name: 'Jose Medina',
-      servicio: 'Pauta Publicitaria',
-      monto: '1.000.000',
+      service: 'Pauta Publicitaria',
+      monto: 1000000,
       state: 'Por pagar'
     },
     {
       date: '05/09/2024',
       name: 'Juan Pérez',
-      servicio: 'Tutorial Youtube',
-      monto: '600.000',
-      state: 'Pagado'
+      service: 'Tutorial Youtube',
+      monto: 600000,
+      state: 'Vencido'
     },
   ];
 
@@ -58,42 +65,43 @@ export class CollaboratorPaymentsComponent {
     {
       date: '05/09/2024',
       name: 'Juan Pérez',
-      servicio: 'Tutorial Youtube',
-      monto: '600.000',
-      paymentMethod: 'Transferencia Bancaria'
+      service: 'Tutorial Youtube',
+      monto: 600000,
+      wallet: 'Transferencia Bancaria'
     },
     {
       date: '05/09/2024',
       name: 'Sofia Caldero',
-      servicio: 'Patrocinio Stream',
-      monto: '400.000',
-      paymentMethod: 'Transferencia Bancaria'
+      service: 'Patrocinio Stream',
+      monto: 400000,
+      wallet: 'Transferencia Bancaria'
     },
     {
       date: '05/09/2024',
       name: 'Lucas Morales',
-      servicio: 'Video Review',
-      monto: '500.000',
-      paymentMethod: 'Transferencia Bancaria'
+      service: 'Video Review',
+      monto: 500000,
+      wallet: 'Transferencia Bancaria'
     },
     {
       date: '05/09/2024',
       name: 'Jose Medina',
-      servicio: 'Pauta Publicitaria',
-      monto: '1.000.000',
-      paymentMethod: 'Transferencia Bancaria'
+      service: 'Pauta Publicitaria',
+      monto: 1000000,
+      wallet: 'Transferencia Bancaria'
     },
     {
       date: '05/09/2024',
       name: 'Juan Pérez',
-      servicio: 'Tutorial Youtube',
-      monto: '600.000',
-      paymentMethod: 'Transferencia Bancaria'
+      service: 'Tutorial Youtube',
+      monto: 600000,
+      wallet: 'Transferencia Bancaria'
     },
   ]
 
   currency: string = 'ARS';
   currentPage: number = 1;
+  currentPageHistorie: number = 1;
   rawsPerPage: number = 3;
 
   constructor( private paginatorService: PaginatorService, public dialog: MatDialog) {}
@@ -107,17 +115,48 @@ export class CollaboratorPaymentsComponent {
   }
 
   get paymentHistoryData() {
-    return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, this.collaboratorsHistorie);
+    return this.paginatorService.paginatedData(this.currentPageHistorie, this.rawsPerPage, this.collaboratorsHistorie);
   }
 
   onPageChange(page: number) {
     this.currentPage = page;
   }
 
+  onHistoriePageChange(page: number) {
+    this.currentPageHistorie = page;
+  }
+
+  setNewPaymentRegistered(newPayment: Collaboration) {
+
+    this.isDateExpired(newPayment.date) ? newPayment.state = 'Vencido' : newPayment.state = 'Por pagar';
+
+    this.collaborators.push(newPayment)
+    this.collaboratorsData;
+  }
+
+  isDateExpired(date: string): boolean {
+
+    const newDate = date.split('-');
+    const month = this.adjustMonth(newDate[1]);
+
+    const inputDate = new Date(+newDate[0], month, +newDate[2]);
+    const currentDate = new Date();
+
+    inputDate.setHours(0,0,0,0);
+    currentDate.setHours(0,0,0,0);
+
+    return inputDate < currentDate;
+  }
+
+  adjustMonth(month: string):number {
+    const cleanCero = Number(month.replace(/^0/, ''));
+    const adjustedMonth = cleanCero - 1;
+
+    return adjustedMonth;
+  }
+
   getStateColor( state: State ) {
     switch(state) {
-      case 'Pagado':
-        return 'paid';
       case 'Por pagar':
         return 'payable';
       case 'Vencido':
@@ -127,6 +166,7 @@ export class CollaboratorPaymentsComponent {
     }
 
   }
+
   openDialog(collaborator: Collaboration): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
@@ -135,7 +175,7 @@ export class CollaboratorPaymentsComponent {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-  
+
     });
   }
 }

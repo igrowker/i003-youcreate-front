@@ -1,10 +1,10 @@
 export interface Collaboration {
-  date: string;
   name: string;
-  servicio: string;
-  monto: string;
+  wallet?: string
+  date: string;
+  service: string;
+  monto: number;
   state?: State;
-  paymentMethod?: string
 }
 
 export type State = 'Pagado' | 'Por pagar' | 'Vencido';
