@@ -17,6 +17,11 @@
             id="nombre"
             placeholder="Nombre y Apellido"
           />
+          @if (registerPaymentsForm.get('name')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('name')?.errors) }}
+            </span>
+          }
         </div>
 
         <div class="form-group custom-select-container">
@@ -27,20 +32,30 @@
             class="custom-select"
           >
             <option value="" disabled selected>Medio de pago</option>
-            <option class="select-option" value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
+            @for (method of paymentMethod; track method) {
+              <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
+            }
           </select>
+          @if (registerPaymentsForm.get('wallet')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('wallet')?.errors) }}
+            </span>
+          }
         </div>
 
         <div class="form-group">
           <label for="date">Fecha de pago</label>
           <input
             formControlName="date"
-            type="text"
+            type="date"
             id="date"
             placeholder="DD/MM/AAAA"
           />
+          @if (registerPaymentsForm.get('date')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('date')?.errors) }}
+            </span>
+          }
         </div>
 
         <div class="form-group">
@@ -51,6 +66,11 @@
             id="service"
             placeholder="Servicio"
           />
+          @if (registerPaymentsForm.get('service')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('service')?.errors) }}
+            </span>
+          }
         </div>
 
         <div class="form-group">
@@ -61,9 +81,14 @@
             id="monto"
             placeholder="ARS"
           />
+          @if (registerPaymentsForm.get('monto')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('monto')?.errors) }}
+            </span>
+          }
         </div>
 
-        <button (click)="closeDialog()">Guardar</button>
+        <button (click)="closeDialog()" [disabled]="registerPaymentsForm.invalid">Guardar</button>
       </form>
     </div>
   </div>

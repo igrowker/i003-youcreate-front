@@ -87,6 +87,10 @@ button:hover {
   background-color: #9721a7;
 }
 
+button:disabled {
+  background-color: #ccc;
+}
+
 /*************Select**************/
 .custom-select-container {
   position: relative;
@@ -119,4 +123,10 @@ button:hover {
 
 .select-option {
   cursor: pointer !important;
+}
+
+/***Error del formulario***/
+.error-message {
+  color: red;
+  font-size: 12px;
 }
