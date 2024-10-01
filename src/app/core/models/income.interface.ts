@@ -5,3 +5,8 @@ export interface Income {
   category: string,
   description: string
 }
+
+export interface IncomeHistory {
+  year:string;
+  data:number[]
+}

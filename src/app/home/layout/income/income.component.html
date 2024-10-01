@@ -28,6 +28,7 @@
           [options]="years"
           [label]="currentYear.toString()"
           type="borderless"
+          (selectedValue)="getYearToFilter($event)"
           [disabled]="typeToFilter() === ''"
         />
       }
@@ -81,7 +82,7 @@
         <bar-graphic
           [labels]="months"
           title="Historial De Ingresos"
-          [data]="dataGraficoPrueba"
+          [data]="filterByYear()"
           [barStyles]="barStyles"
         />
       </div>

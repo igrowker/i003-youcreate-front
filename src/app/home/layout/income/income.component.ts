@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Income } from '../../../core/models/income.interface';
+import { Income, IncomeHistory } from '../../../core/models/income.interface';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { PaginatorService } from '../../../services/paginator.service';
 import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/btn-dropdown.component';
@@ -26,11 +26,11 @@ export class IncomeComponent implements OnInit{
   public currency:string = 'ARS';
   public currentPage:number = 1;
   public rawsPerPage:number = 8;
-  public yearToFilter:string = '';
 
   public currentYear:number = new Date().getFullYear();
   public monthToFilter = signal<string>('');
   public typeToFilter = signal<string>('');
+  public yearToFilter = signal<string>('');
 
   public incomeList: Income[] = [
     {
@@ -120,7 +120,20 @@ export class IncomeComponent implements OnInit{
     'Julio', 'Agosto', 'Septiembre',
     'Octubre', 'Noviembre', 'Diciembre'
   ];
-  public dataGraficoPrueba = [65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12];
+  public dataGraficoPrueba:IncomeHistory[] = [
+    {
+      year:'2023',
+      data:[15, 68, 50, 21, 66, 75, 60, 46, 60, 15, 7, 12]
+    },
+    {
+      year:'2024',
+      data:[65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12]
+    },
+    {
+      year:'2021',
+      data:[50, 90, 70, 60, 30, 20, 40, 68, 20, 25, 37, 12]
+    },
+  ];
   public barStyles = [
     '#37e7ff',
     '#D7FAFF',
@@ -173,6 +186,10 @@ export class IncomeComponent implements OnInit{
     this.monthToFilter.set(month)
   }
 
+  getYearToFilter(year: string)  {
+    this.yearToFilter.set(year)
+  }
+
   filterByMonth(): Income[] {
 
     if(this.monthToFilter() === '' || this.typeToFilter() === 'Reiniciar filtro' ) {
@@ -192,12 +209,23 @@ export class IncomeComponent implements OnInit{
 
   }
 
+  filterByYear():number[] {
+    debugger
+    const year = this.yearToFilter() || '2024';
+
+    const dataFiltered:IncomeHistory[] = this.dataGraficoPrueba.filter((history) => {
+      return history.year === year;
+    });
+
+    return dataFiltered.map( history => history.data).flat();
+
+  }
+
   resetFilters() {
     this.typeToFilter.set('');
     this.monthToFilter.set('');
-    this.yearToFilter = '';
+    this.yearToFilter.set('');
   }
-
 
   generateYearList() {
 
