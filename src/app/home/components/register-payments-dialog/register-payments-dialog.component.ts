@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { RegisterPayments } from '../../../core/models/register-payments.interface';
 import { ErrorType } from '../../../core/models/error-type.interface';
+import { Collaboration } from '../../../core/models/collaborator-payments.interface';
 
 @Component({
   selector: 'register-payments-dialog',
@@ -22,7 +22,7 @@ export class RegisterPaymentsDialogComponent implements OnInit{
     'Otro'
   ]
 
-  @Output() formValues = new EventEmitter<RegisterPayments>();
+  @Output() formValues = new EventEmitter<Collaboration>();
 
   constructor( private fb: FormBuilder ) {}
 

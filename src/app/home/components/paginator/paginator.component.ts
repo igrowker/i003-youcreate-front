@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Collaboration } from '../../../core/models/collaborator-payments.interface';
 
 @Component({
   selector: 'paginator',
@@ -10,14 +9,14 @@ import { Collaboration } from '../../../core/models/collaborator-payments.interf
 })
 export class PaginatorComponent {
 
-  @Input({ required: true }) dataList!: Collaboration[] | any[];
+  @Input({ required: true }) dataList!: any[];
 
   @Input({required: true})  rowsPerPage!: number;
 
   @Input() currentPage:number = 1;
 
   @Output() pageChange = new EventEmitter<number>();
-  
+
   @Output() currentPageChange = new EventEmitter<number>();
 
   get totalPages(): number {

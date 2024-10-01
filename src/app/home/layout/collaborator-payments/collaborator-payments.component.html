@@ -8,9 +8,9 @@
     <div class="buttons-header">
       <button class="add-button" (click)="dialog.openDialog()">
         <img class="icon" src="assets/icons/add.svg" alt="icon">
-        <span>Agregar pago</span>
+        <span>Agregar Pago</span>
       </button>
-      <register-payments-dialog #dialog (formValues)="getNewPaymentRegistered($event)"/>
+      <register-payments-dialog #dialog (formValues)="setNewPaymentRegistered($event)"/>
     </div>
 
     <div class="table-wrapper">
@@ -26,14 +26,14 @@
           </tr>
         </thead>
         <tbody class="body">
-          @for (collaborator of collaboratorsData; track collaborator) {
+          @for (collaborator of collaboratorsData; track $index) {
             <tr>
-              <td>{{ collaborator.date }}</td>
+              <td>{{ collaborator.date | date:'dd/MM/yyyy'}}</td>
               <td>{{ collaborator.name }}</td>
-              <td>{{ collaborator.servicio }}</td>
+              <td>{{ collaborator.service }}</td>
               <td>
                 <span>{{ currency }} </span>
-                <span>{{ collaborator.monto }} </span>
+                <span>{{ collaborator.monto | numberWithDots }}</span>
               </td>
               <td>
                 <div class="td-state">
@@ -72,21 +72,21 @@
         <tbody class="body">
           @for (collaborator of paymentHistoryData; track collaborator) {
             <tr>
-              <td class="td-history">{{ collaborator.date }}</td>
+              <td class="td-history">{{ collaborator.date | date:'dd/MM/yyyy'}}</td>
               <td class="td-history">{{ collaborator.name }}</td>
-              <td class="td-history">{{ collaborator.servicio }}</td>
+              <td class="td-history">{{ collaborator.service }}</td>
               <td class="td-history">
                 <span>{{ currency }} </span>
-                <span>{{ collaborator.monto }}</span>
+                <span>{{ collaborator.monto | numberWithDots }}</span>
               </td>
-              <td class="td-history">{{ collaborator.paymentMethod }}</td>
+              <td class="td-history">{{ collaborator.wallet }}</td>
             </tr>
           }
         </tbody>
       </table>
     </div>
 
-    <paginator [dataList]="collaborators" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
+    <paginator [dataList]="collaboratorsHistorie" [rowsPerPage]="rawsPerPage" (pageChange)="onHistoriePageChange($event)"/>
   </div>
 
 </div>
