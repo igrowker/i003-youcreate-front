@@ -162,7 +162,7 @@ export class IncomeComponent implements OnInit{
   }
 
   getTypeToFilter(value: string) {
-    if (value === 'Reiniciar Filtro') {
+    if (value === 'Reiniciar filtro') {
       this.resetFilters();
     } else {
       this.typeToFilter.set(value);

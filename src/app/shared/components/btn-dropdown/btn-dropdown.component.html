@@ -1,5 +1,5 @@
 <div class="dropdown">
-  <button [ngClass]="getClassType(type)" (click)="toggleDropdown()">
+  <button [ngClass]="getClassType(type)" (click)="toggleDropdown()" [disabled]="disabled">
     @if (type === 'filter') {
       <img
         class="icon-filter"

@@ -20,6 +20,7 @@
           [options]="months"
           [label]="getCurrentMonth()"
           type="borderless"
+          [disabled]="typeToFilter() === ''"
           (selectedValue)="getMonthToFilter($event)"
         />
       } @else {
@@ -27,6 +28,7 @@
           [options]="years"
           [label]="currentYear.toString()"
           type="borderless"
+          [disabled]="typeToFilter() === ''"
         />
       }
 
