@@ -46,6 +46,7 @@
 .table-container {
   background-color: #FBDEFF;
   width: 959px;
+  min-height: 500px;
   border-radius: 10px;
   padding: 35px 50px;
 }
@@ -119,8 +120,24 @@ th, td {
 
 /*******************Graphic Bar**************************/
 .graphicBar-container {
+  position: relative;
   background-color: #FFFFFF;
   width: 959px;
   padding: 35px 50px;
   border-radius: 10px;
+  min-height: 500px;
+}
+
+/*****************Spinne*********************/
+.spinner {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
 }

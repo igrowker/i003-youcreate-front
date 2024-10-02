@@ -1,99 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-import { Income } from '../../../core/models/income.interface';
+import { Component, OnInit, signal } from '@angular/core';
+import { Income, IncomeHistory } from '../../../core/models/income.interface';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { PaginatorService } from '../../../services/paginator.service';
 import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/btn-dropdown.component';
 import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
 import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
+import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 
 @Component({
   selector: 'app-income',
   standalone: true,
   imports: [
+    CommonModule,
     PaginatorComponent,
     BtnDropdownComponent,
     SwapGraphicsComponent,
-    BarGraphicComponent
+    BarGraphicComponent,
+    SpinnerComponent
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
 })
 export class IncomeComponent implements OnInit{
 
-  incomeList: Income[] = [
+  public currency:string = 'ARS';
+  public currentPage:number = 1;
+  public rawsPerPage:number = 8;
+  public isLoading:boolean = false;
+
+  public currentYear:number = new Date().getFullYear();
+  public monthToFilter = signal<string>('');
+  public typeToFilter = signal<string>('');
+  public yearToFilter = signal<string>('');
+
+  public incomeList: Income[] = [
     {
-      date: '05/09/2024',
+      date: '05-08-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-08-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-11-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-09-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-09-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-07-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-09-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-11-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-09-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-10-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
       description: 'Pagado'
     },
     {
-      date: '05/09/2024',
+      date: '05-10-2024',
       name: 'Juan Pérez',
       monto: '600.000',
       category: 'Tutorial Youtube',
@@ -101,20 +115,29 @@ export class IncomeComponent implements OnInit{
     },
   ];
 
-  categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
-
-  filterType:string[] = ['Filtrar por mes', 'Filtrar por año'];
-
-  months:string[] = [
+  public categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
+  public filterType:string[] = ['Filtrar por mes', 'Filtrar por año', 'Reiniciar filtro'];
+  public months:string[] = [
     'Enero', 'Febrero', 'Marzo',
     'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre',
     'Octubre', 'Noviembre', 'Diciembre'
   ];
-
-  dataGraficoPrueba = [65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12];
-
-  barStyles = [
+  public dataGraficoPrueba:IncomeHistory[] = [
+    {
+      year:'2023',
+      data:[95, 68, 50, 21, 66, 75, 60, 46, 60, 15, 97, 1]
+    },
+    {
+      year:'2024',
+      data:[65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12]
+    },
+    {
+      year:'2021',
+      data:[50, 90, 70, 60, 30, 20, 40, 68, 20, 25, 37, 12]
+    },
+  ];
+  public barStyles = [
     '#37e7ff',
     '#D7FAFF',
     '#AFF5FF',
@@ -128,27 +151,17 @@ export class IncomeComponent implements OnInit{
     '#005561',
     '#053F47'
   ]
-
-  years:string[] = [];
-
-  currency:string = 'ARS';
-
-  currentPage:number = 1;
-  rawsPerPage:number = 8;
-  monthToFilter:string = '';
-  yearToFilter:string = '';
-  dataTypeToFilter:string = '';
-  currentYear:number = new Date().getFullYear();
+  public years:string[] = [];
 
 
   constructor(private paginatorService: PaginatorService) {}
 
   ngOnInit(): void {
-      this.generateYearList();
+    this.generateYearList();
   }
 
-  get paginatedData() {
-    return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, this.incomeList);
+  paginatedData(dataList: Income[]):Income[] {
+    return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, dataList);
   }
 
   onPageChange(page: number) {
@@ -164,26 +177,62 @@ export class IncomeComponent implements OnInit{
 
   }
 
-  getDataTypeToFilter(value: string) {
-    this.dataTypeToFilter = value;
+  getTypeToFilter(value: string) {
+    if (value === 'Reiniciar filtro') {
+      this.resetFilters();
+    } else {
+      this.typeToFilter.set(value);
+    }
   }
 
-  getMonthToFilter(value: string) {
-    this.monthToFilter = value;
+  getMonthToFilter(month: string)  {
+    this.monthToFilter.set(month)
   }
 
-  getYearToFilter(value: string) {
-    this.monthToFilter = value;
+  getYearToFilter(year: string)  {
+    this.yearToFilter.set(year)
+
+    //TODO: cambiar cuando se tenga el endpoint
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000)
   }
 
-  isYearsOrMonthsDropdown():boolean {
+  filterByMonth(): Income[] {
 
-    if(this.dataTypeToFilter.toLocaleLowerCase() === 'filtrar por mes') return true;
+    if(this.monthToFilter() === '' || this.typeToFilter() === 'Reiniciar filtro' ) {
+      return this.paginatedData(this.incomeList);
+    }
 
-    if(this.dataTypeToFilter.toLocaleLowerCase() === 'filtrar por año') return false;
+    const monthIndex = this.months.indexOf(this.monthToFilter()) + 1;
+    const monthString = monthIndex < 10 ? `0${monthIndex}` : monthIndex.toString();
 
-    return true;
+     const dataFiltered = this.incomeList.filter(collaborator => {
+      const incomeMonth = collaborator.date.split('-')[1];
 
+      return incomeMonth === monthString;
+    });
+
+    return  this.paginatedData(dataFiltered)
+
+  }
+
+  filterByYear():number[] {
+    const year = this.yearToFilter() || '2024';
+
+    const dataFiltered:IncomeHistory[] = this.dataGraficoPrueba.filter((history) => {
+      return history.year === year;
+    });
+
+    return dataFiltered.map( history => history.data).flat();
+
+  }
+
+  resetFilters() {
+    this.typeToFilter.set('');
+    this.monthToFilter.set('');
+    this.yearToFilter.set('');
   }
 
   generateYearList() {
@@ -192,6 +241,16 @@ export class IncomeComponent implements OnInit{
       const newYear = (this.currentYear - i).toString()
       this.years.push(newYear);
     }
+  }
+
+  isYearsOrMonthsDropdown():boolean {
+
+    if(this.typeToFilter().toLocaleLowerCase() === 'filtrar por mes') return true;
+
+    if(this.typeToFilter().toLocaleLowerCase() === 'filtrar por año') return false;
+
+    return true;
+
   }
 
 }

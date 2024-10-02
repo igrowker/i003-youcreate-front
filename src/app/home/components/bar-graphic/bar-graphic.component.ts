@@ -12,7 +12,7 @@ import ChartDataLabels  from 'chartjs-plugin-datalabels';
 export class BarGraphicComponent implements OnInit{
 
   @Input({required: true}) labels!: string[];
-  @Input({required: true}) data!: number[];
+  @Input({required: true}) data!: number[] | any[];
   @Input({required: true}) barStyles!: string[];
   @Input() title: string = '';
 
