@@ -46,6 +46,7 @@
 .table-container {
   background-color: #FBDEFF;
   width: 959px;
+  min-height: 500px;
   border-radius: 10px;
   padding: 35px 50px;
 }
