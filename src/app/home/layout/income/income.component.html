@@ -79,12 +79,16 @@
       </div>
     } @else {
       <div class="graphicBar-container">
-        <bar-graphic
-          [labels]="months"
-          title="Historial De Ingresos"
-          [data]="filterByYear()"
-          [barStyles]="barStyles"
-        />
+        @if (isLoading) {
+          <app-spinner class="spinner"/>
+        }@else {
+          <bar-graphic
+            [labels]="months"
+            title="Historial De Ingresos"
+            [data]="filterByYear()"
+            [barStyles]="barStyles"
+          />
+        }
       </div>
     }
 

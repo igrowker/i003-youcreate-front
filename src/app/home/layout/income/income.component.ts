@@ -6,6 +6,7 @@ import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/bt
 import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
 import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
 import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
     PaginatorComponent,
     BtnDropdownComponent,
     SwapGraphicsComponent,
-    BarGraphicComponent
+    BarGraphicComponent,
+    SpinnerComponent
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -26,6 +28,7 @@ export class IncomeComponent implements OnInit{
   public currency:string = 'ARS';
   public currentPage:number = 1;
   public rawsPerPage:number = 8;
+  public isLoading:boolean = false;
 
   public currentYear:number = new Date().getFullYear();
   public monthToFilter = signal<string>('');
@@ -123,7 +126,7 @@ export class IncomeComponent implements OnInit{
   public dataGraficoPrueba:IncomeHistory[] = [
     {
       year:'2023',
-      data:[15, 68, 50, 21, 66, 75, 60, 46, 60, 15, 7, 12]
+      data:[95, 68, 50, 21, 66, 75, 60, 46, 60, 15, 97, 1]
     },
     {
       year:'2024',
@@ -188,6 +191,12 @@ export class IncomeComponent implements OnInit{
 
   getYearToFilter(year: string)  {
     this.yearToFilter.set(year)
+
+    //TODO: cambiar cuando se tenga el endpoint
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000)
   }
 
   filterByMonth(): Income[] {
@@ -210,7 +219,6 @@ export class IncomeComponent implements OnInit{
   }
 
   filterByYear():number[] {
-    debugger
     const year = this.yearToFilter() || '2024';
 
     const dataFiltered:IncomeHistory[] = this.dataGraficoPrueba.filter((history) => {
