@@ -4,6 +4,7 @@ import { DashboardComponent } from "./layout/dashboard/dashboard.component";
 import { CollaboratorPaymentsComponent } from "./layout/collaborator-payments/collaborator-payments.component";
 
 import { TaxObligationsComponentComponent } from "./layout/tax-obligations-component/tax-obligations-component.component";
+import {  ProfileComponent } from "./layout/profile/profile.component";
 
 
 export const HOME_ROUTES: Routes = [
@@ -16,6 +17,7 @@ export const HOME_ROUTES: Routes = [
       { path: 'payments', loadComponent: () => import('./layout/collaborator-payments/collaborator-payments.component').then(c => c.CollaboratorPaymentsComponent) },
       { path: 'tax-obligations', loadComponent: () => import('./layout/tax-obligations-component/tax-obligations-component.component').then(c => c.TaxObligationsComponentComponent) },
       { path: 'income', loadComponent: () => import('./layout/income/income.component').then(c => c.IncomeComponent) },
+      { path: 'profile', loadComponent: () => import('./layout/profile/profile.component').then(c => c.ProfileComponent) },
 
 
     ]
