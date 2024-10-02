@@ -45,12 +45,13 @@ export class TokenService {
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
   }
 
-  gerRefreshToken(): string | null{
+  getRefreshToken(): string | null{
     return localStorage.getItem(this.REFRESH_TOKEN_KEY);
   }
 
   clearRefreshToken():void{
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
+
 
 }

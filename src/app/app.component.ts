@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TokenService } from './core/services/token.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,38 +11,54 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'template-angular-ts';
+  title= 'titulo';
 
+  token1 = 'token1';
+  token2 = 'token2';
+  token3 = 'token3';
+  token4 = 'token4';
+  token5 = 'token5';
 
+  private url = 'http://127.0.0.1:8000/';
 
   usuario = {
-    "nombre": "Damian",
+    "nombre": "dami",
     "apellido": "Lamb",
-    "correo": "damian1@gmail.com",
-    "password": "ACNM0000",
-    "password2": "ACNM0000",
+    "correo": "dami@gmail.com",
+    "password": "3CNM0000",
+    "password2": "3CNM0000",
     "pais_residencia": "AR",
-    "redes_sociales": {
-      "instagram": "@dami"
-    }
-  };
-
+    "redes_sociales": {"instagram": "@dam"}
+  }
+  
 
   constructor(
-    //private auth: AuthService
+    private token: TokenService,
+    private http: HttpClient
   )
   {}
 
-  // registrarse(){
-  //   this.auth.register( this.usuario ).subscribe({
-  //     next:(datos)=>{
-  //       console.log('Registrado',datos);
-  //     },
+  registro(){
+    this.http.post<any>( this.url+`auth/register/`, this.usuario ).subscribe( res =>{
+      console.log(res.status);
+      console.log(res.body);
+    });
+  }
 
-  //     error:(datos)=>{
-  //       console.error('Error en registro:',datos);
-  //     }
-  //   });
-  // }
+
+
+  guardarToken():void {
+    this.token.saveToken(this.token1);
+    this.token.saveRefreshToken(this.token2);
+  }
+  
+  verTokens(){
+    console.log(this.token.getToken(),this.token.getRefreshToken());
+  }
+
+  limpiar(){
+    this.token.clearToken();
+    this.token.clearRefreshToken();
+  }
   
 }
