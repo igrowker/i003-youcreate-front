@@ -20,23 +20,24 @@
           [options]="months"
           [label]="getCurrentMonth()"
           type="borderless"
-
+          [disabled]="typeToFilter() === ''"
+          (selectedValue)="getMonthToFilter($event)"
         />
       } @else {
         <btn-dropdown
           [options]="years"
           [label]="currentYear.toString()"
           type="borderless"
-
+          (selectedValue)="getYearToFilter($event)"
+          [disabled]="typeToFilter() === ''"
         />
       }
-
 
        <btn-dropdown
           [options]="filterType"
           type="filter"
           label="filtrar datos"
-          (selectedValue)="getDataTypeToFilter($event)"
+          (selectedValue)="getTypeToFilter($event)"
         />
     </div>
 
@@ -53,10 +54,10 @@
               </tr>
             </thead>
             <tbody class="body">
-              @for (income of paginatedData; track income) {
+              @for (income of filterByMonth(); track income) {
                 <tr>
                   <td>{{ income.name }}</td>
-                  <td>{{ income.date }}</td>
+                  <td>{{ income.date | date:'MM/dd/yyyy' }}</td>
                   <td>
                     <span>{{ currency }} </span>
                     <span>{{ income.monto }} </span>
@@ -78,12 +79,24 @@
       </div>
     } @else {
       <div class="graphicBar-container">
-        <bar-graphic
-          [labels]="months"
-          title="Historial De Ingresos"
-          [data]="dataGraficoPrueba"
-          [barStyles]="barStyles"
-        />
+        @if (isLoading) {
+          <app-spinner class="spinner"/>
+        }
+
+        @if(!isLoading) {
+
+          @if(filterByYear().length > 0){
+            <bar-graphic
+              [labels]="months"
+              title="Historial De Ingresos"
+              [data]="filterByYear()"
+              [barStyles]="barStyles"
+            />
+          }@else {
+            <p class="spinner">No hay información disponible</p>
+          }
+
+        }
       </div>
     }
 
