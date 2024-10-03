@@ -46,7 +46,14 @@ export class GraficoIngresosComponent implements OnInit {
       },
       plugins: {
         legend: {
-          position: 'right' as const
+          position: 'right' as const,
+          labels:{
+            boxWidth:10,
+            font:{
+              size:10,
+              weight: 700
+            }
+          }
         }
       }
     };

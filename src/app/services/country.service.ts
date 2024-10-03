@@ -12,6 +12,5 @@ export class CountryService {
 
   getCountries(): Observable<any>{
     return this.http.get<any>(this.countriesUrl)
-    console.log(this.countriesUrl)
   }
 }

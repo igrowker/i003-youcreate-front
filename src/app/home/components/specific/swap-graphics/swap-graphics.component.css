@@ -4,6 +4,10 @@
   justify-content: space-between;
 }
 
+h4 {
+  font-size: medium;
+}
+
 .selector{
   background-color: var(--azul-primario-700);
 
@@ -49,6 +53,6 @@ svg{
 .contenedor{
   background-color: var(--base-white);
 
-  padding: 20px;
+  padding: 10px 40px;
   border-radius: 5px;
 }
