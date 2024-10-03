@@ -21,14 +21,35 @@ export class AppComponent {
 
   private url = 'http://127.0.0.1:8000/';
 
-  usuario = {
-    "nombre": "dami",
-    "apellido": "Lamb",
-    "correo": "dami@gmail.com",
-    "password": "3CNM0000",
-    "password2": "3CNM0000",
+  usuario1 = {
+    "nombre": "ddd",
+    "apellido": "dddd",
+    "email": "ggg@gmail.com",
+    "password1": "ACNM0000",
+    "password2": "ACNM0000",
     "pais_residencia": "AR",
     "redes_sociales": {"instagram": "@dam"}
+  }
+
+  usuario2 = {
+    "nombre": "eee",
+    "apellido": "eeee",
+    "email": "hhh@gmail.com",
+    "password1": "BCNM0000",
+    "password2": "BCNM0000",
+    "pais_residencia": "AR",
+    "redes_sociales": {"instagram": "@dam"}
+  }
+
+  usuario3 = {
+    "nombre": "fff",
+    "apellido": "ffff",
+    "email": "iii@gmail.com",
+    "password1": "CCNM0000",
+    "password2": "CCNM0000",
+    "pais_residencia": "AR",
+    "redes_sociales": {"instagram": "@dam"},
+    "numero_fiscal": "123456"
   }
   
 
@@ -39,7 +60,7 @@ export class AppComponent {
   {}
 
   registro(){
-    this.http.post<any>( this.url+`auth/register/`, this.usuario ).subscribe( res =>{
+    this.http.post<any>( this.url+`auth/registration/`, this.usuario2 ).subscribe( res =>{
       console.log(res.status);
       console.log(res.body);
     });
