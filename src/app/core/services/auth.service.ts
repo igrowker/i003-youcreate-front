@@ -10,12 +10,33 @@ export class AuthService {
 
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
-
+  private url = 'http://127.0.0.1:8000/';
 
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
+
+
+
+  registrarse( user : any ): Observable<any> {
+    return this.http.post<any>( this.url+`auth/registration/`, user);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
