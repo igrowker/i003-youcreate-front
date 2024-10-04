@@ -1,0 +1,52 @@
+<!--LOGO-->
+
+<div class="login-wrapper">
+    <div class="login-container">
+        <div class="logo">
+            <img src="../../../../assets/logoHeader.png" alt="">
+        </div>
+
+        <h2>Inicia Sesión</h2>
+
+        <p>¿No tienes una cuenta?</p> <a href="/auth/register">Regístrate aquí</a>
+
+        <!--CAMPO EMAIL-->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <input type="email" formControlName="email" placeholder="Email" />
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                    <small *ngIf="loginForm.get('email')?.errors?.['required']">Email es requerido</small>
+                    <small *ngIf="loginForm.get('email')?.errors?.['email']">Email no valido</small>
+                </div>
+            </div>
+
+        <!--CAMPO PASSWORD-->
+            <div class="input-group">
+                <input type="password" formControlName="password" placeholder="Password" />
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    <small *ngIf="loginForm.get('password')?.errors?.['required']">Password es requerido</small>
+                    <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Miimo 6 carácteres</small>                
+                </div>
+            </div>
+
+        <!--BOTON DE ACCESO-->
+            <button class="btn primary-btn" type="submit" [disabled]="loginForm.invalid">Ingresar</button>      
+        </form>
+
+        <div class="divider">
+            <span>o</span>
+        </div>
+
+        <button class="btn primary-btn">
+            <img src="../../../../assets/g.png" alt="Google" />
+            Continuar con Google
+        </button>
+
+        <button class="btn primary-btn">
+            <img src="../../../../assets/apple-logo.png" alt="Apple" />
+            Continuar con Apple
+        </button>
+
+    </div>
+</div>
+

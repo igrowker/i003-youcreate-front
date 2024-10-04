@@ -49,4 +49,8 @@ export class LandingComponent implements OnInit, OnDestroy {
   goToRegister(){
     this.router.navigate(["/auth/register"])
   }
+
+  goToLogin(){
+    this.router.navigate(["/auth/login"])
+  }
 }

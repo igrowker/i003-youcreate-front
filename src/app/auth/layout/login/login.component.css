@@ -1,0 +1,104 @@
+/*ESTILOS GENERALES*/
+.login-wraper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3e8ff;
+}
+
+.login-container{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.logo.img{
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+h2{
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+p a {
+    color: #6b2fb3;
+    text-decoration: none;
+}
+
+/*ESTILOS DEL INPUT*/
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline: none;
+    border-color: #6b2fb3;
+}
+
+small{
+    color: red;
+}
+
+/*BOTONES*/
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.primary-btn{
+    background-color: #6b2fb3;
+    color: #fff;
+}
+
+/*ESTILOS DE LOS ICONOS DE LOS BOTONES*/
+button img{
+    margin: 10px;
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
+}
+
+/*DIVIDER*/
+.divider{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.divider span{
+    padding: 0 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.divider::before, .divider::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+}

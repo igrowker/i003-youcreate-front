@@ -21,7 +21,7 @@
         <div>
             <input type="text" id="firstName" formControlName="firstName" placeholder="Nombre"/>
             <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
-                Nombre es requerido
+                <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Nombre es requerido</small>
             </div>
         </div>
 
@@ -30,32 +30,27 @@
             
             <input type="text" id="lastName" formControlName="lastName" placeholder="Apellido"/>
             <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
-                Apellido es requerido
+                <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Apellido es requerido</small>
             </div>
         </div>
 
         <!-- CAMPO PARA PAIS -->        
             <div>
                 <select id="country" formControlName="country">
-                    <option value="" disabled></option>
+                    <option value="" disabled selected>País</option>
                     <option *ngFor="let country of countries" [value]="country.code">
-                        {{ country.name }}
+                        {{country.name}}
                     </option>
                 </select>
                 <div *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
-                    País es requerido
+                    <small *ngIf="registerForm.get('country')?.errors?.['required']">País es requerido</small>
                 </div>
             </div>       
         
         <!-- CAMPO PARA CÓDIGO DE ÁREA Y TELÉFONO -->
         <div class="phone-container" >
             <div class="area-code">
-                <select id="areaCode" formControlName="areaCode">
-                    <option value="" disabled></option>
-                    <option *ngFor="let country of countries" [value]="country.areaCode">
-                        {{ country.areaCode }}
-                    </option>
-                </select>
+                <input type="text" id="areaCode" formControlName="areaCode" readonly />
             </div>
             <div class="phone-number">
                 <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Teléfono"/>
@@ -67,7 +62,8 @@
         <div>
             <input type="email" id="email" formControlName="email" placeholder="Correo electrónico"/>
             <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-                Email es requerido
+                <small *ngIf="registerForm.get('email')?.errors?.['required']">Email es requerido</small>
+                <small *ngIf="registerForm.get('email')?.errors?.['email']">Email no valido</small>
             </div>
         </div>
 
@@ -75,14 +71,15 @@
         <div>
             <input type="password" id="password" formControlName="password" placeholder="Contraseña"/>
             <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-                Contraseña es requerida
+                <small *ngIf="registerForm.get('password')?.errors?.['required']">Password es requerido</small>
+                <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 carácteres</small>
             </div>
         </div>
 
         <div>
             <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmar contraseña"/>
             <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
-                Las contraseñas deben coincidir
+                <small *ngIf="registerForm.get('password')?.errors?.['required']">Passwords deben coincidir</small>
             </div>
         </div>
 
