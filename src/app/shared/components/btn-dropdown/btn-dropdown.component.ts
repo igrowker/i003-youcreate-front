@@ -17,6 +17,7 @@ export class BtnDropdownComponent implements OnInit{
   @Input({required: true}) options:string[] = [];
   @Input({required: true}) label!:string;
   @Input() type:Type = 'normal';
+  @Input() disabled:boolean = false;
   @Output() selectedValue = new EventEmitter<string>();
 
 
