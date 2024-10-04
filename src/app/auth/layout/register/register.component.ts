@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CountryService } from '../../../services/country.service';
+import { CountryService, Country } from '../../../services/country.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserRegister } from '../../../core/models/user-register.interface';
 import { selectSocialMedia } from '../../../core/validators/social-media.validator';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
-  countries: any[] = [];
+  countries: Country[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +29,8 @@ export class RegisterComponent implements OnInit{
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      // areaCode: ['', [Validators.required]],
-      // phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      areaCode: [{value: '', disabled: true}, Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
@@ -66,10 +66,26 @@ export class RegisterComponent implements OnInit{
 
   }
 
-  ngOnInit() {
-    this.countryService.getCountries().subscribe((data: any[]) => {
-      this.countries = data
-    })
+  ngOnInit(): void {
+    this.countryService.getCountries().subscribe(
+      (data: Country[]) => {
+        this.countries = data;
+      },
+      (error) => {
+        console.error('Error al cargar los países', error);
+      }
+    );
+
+    this.registerForm.get('country')?.valueChanges.subscribe((countryCode) => {
+      const selectedCountry = this.countries.find(
+      (country) => country.code === countryCode 
+      );
+      if(selectedCountry){
+        this.registerForm.patchValue({
+          areaCode: selectedCountry.areaCode
+        });
+      }
+    });
   }
 
   onSubmit() {
