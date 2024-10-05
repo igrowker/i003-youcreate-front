@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { computed, Injectable, signal } from '@angular/core';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -11,6 +11,10 @@ export class AuthService {
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
   private url = 'http://127.0.0.1:8000/';
+
+  private _currentUser = signal<any|null>(null);
+
+  public currentUser = computed( () => this._currentUser() )
 
   constructor(
     private http: HttpClient,
@@ -23,24 +27,23 @@ export class AuthService {
     return this.http.post<any>( this.url+`auth/registration/`, user);
   }
 
+  login( email: string, password: string ): Observable<any> {
+    return this.http.post<any>( `${this.url}auth/login/`,{email, password})
+      .pipe(
+        map(({access, refresh, user}) => {
+          //*Se guardan los tokens en localstorage
+          this.tokenService.saveToken(access);
+          this.tokenService.saveRefreshToken(refresh)
 
+          //*Retorna la información del usuario
+          this._currentUser.set(user)
+          return user;
+        }),
 
+        catchError ( error => throwError( () =>  error))
+      )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
   startRefreshTokenTimer(): void {
     this.refreshTokenInterval = setInterval(() => {

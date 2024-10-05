@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,21 +12,37 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder){
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
+  ngOnInit(): void {
+
+  }
+
   onSubmit(){
     if(this.loginForm.valid){
       const{ email, password } = this.loginForm.value;
-      console.log('Login details', email, password)
-      //llamamos al servicio de autenticacion
+      this.authService.login(email, password)
+        .subscribe({
+          next: (resp) => {
+            this.router.navigateByUrl('/home')
+          },
+          error: (message) => {
+            console.log(message);
+          }
+        })
+
     }else{
       console.log('Datos no Incorrectos')
     }

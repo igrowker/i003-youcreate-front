@@ -7,6 +7,8 @@ import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/s
 import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
+import { HomeService } from '../../../services/home.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 
 @Component({
@@ -154,10 +156,23 @@ export class IncomeComponent implements OnInit{
   public years:string[] = [];
 
 
-  constructor(private paginatorService: PaginatorService) {}
+  constructor(
+    private paginatorService: PaginatorService,
+    private homeService: HomeService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.generateYearList();
+
+    const {pk} = this.authService.currentUser();
+    console.log(pk);
+
+    this.homeService.getIncomeById(pk).subscribe({
+      next: (resp) => {
+        console.log(resp)
+      }
+    })
   }
 
   paginatedData(dataList: Income[]):Income[] {

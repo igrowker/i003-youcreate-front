@@ -9,7 +9,7 @@
         "sourceLocale": "es",
         "locales": {
 
-          "en-US": "src/locale/messages/en-US.xlf" 
+          "en-US": "src/locale/messages/en-US.xlf"
 
         }
       },
@@ -46,7 +46,7 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": {
               "entry": "server.ts"
             }
