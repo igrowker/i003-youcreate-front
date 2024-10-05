@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -23,24 +23,22 @@ export class AuthService {
     return this.http.post<any>( this.url+`auth/registration/`, user);
   }
 
+  login( email: string, password: string ): Observable<any> {
+    return this.http.post<any>( `${this.url}auth/login/`,{email, password})
+      .pipe(
+        map(({access, refresh, user}) => {
+          //*Se guardan los tokens en localstorage
+          this.tokenService.saveToken(access);
+          this.tokenService.saveRefreshToken(refresh)
 
+          //*Retorna la información del usuario
+          return user;
+        }),
 
+        catchError ( error => throwError( () =>  error))
+      )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
   startRefreshTokenTimer(): void {
     this.refreshTokenInterval = setInterval(() => {
