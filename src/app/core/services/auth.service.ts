@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { TokenService } from './token.service';
 
@@ -11,6 +11,10 @@ export class AuthService {
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
   private url = 'http://127.0.0.1:8000/';
+
+  private _currentUser = signal<any|null>(null);
+
+  public currentUser = computed( () => this._currentUser() )
 
   constructor(
     private http: HttpClient,
@@ -32,6 +36,7 @@ export class AuthService {
           this.tokenService.saveRefreshToken(refresh)
 
           //*Retorna la información del usuario
+          this._currentUser.set(user)
           return user;
         }),
 
