@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 import { HomeService } from '../../../services/home.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { AuthService } from '../../../core/services/auth.service';
     BtnDropdownComponent,
     SwapGraphicsComponent,
     BarGraphicComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NumberWithDotsPipe
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -37,85 +39,85 @@ export class IncomeComponent implements OnInit{
   public typeToFilter = signal<string>('');
   public yearToFilter = signal<string>('');
 
-  public incomeList: Income[] = [
-    {
-      date: '05-08-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-08-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-11-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-09-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-09-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-07-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-09-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-11-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-09-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-10-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-    {
-      date: '05-10-2024',
-      name: 'Juan Pérez',
-      monto: '600.000',
-      category: 'Tutorial Youtube',
-      description: 'Pagado'
-    },
-  ];
+  // public income: Income[] = [
+  //   {
+  //     date: '05-08-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-08-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-11-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-09-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-09-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-07-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-09-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-11-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-09-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-10-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  //   {
+  //     date: '05-10-2024',
+  //     name: 'Juan Pérez',
+  //     monto: '600.000',
+  //     category: 'Tutorial Youtube',
+  //     description: 'Pagado'
+  //   },
+  // ];
 
   public categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
   public filterType:string[] = ['Filtrar por mes', 'Filtrar por año', 'Reiniciar filtro'];
@@ -154,6 +156,7 @@ export class IncomeComponent implements OnInit{
     '#053F47'
   ]
   public years:string[] = [];
+  public incomeList:Income[] = [];
 
 
   constructor(
@@ -170,7 +173,8 @@ export class IncomeComponent implements OnInit{
 
     this.homeService.getIncomeById(pk).subscribe({
       next: (resp) => {
-        console.log(resp)
+        console.log(resp);
+        this.incomeList = resp;
       }
     })
   }
@@ -214,6 +218,7 @@ export class IncomeComponent implements OnInit{
     }, 3000)
   }
 
+  //TODO: corregir cuando esten los datos completos
   filterByMonth(): Income[] {
 
     if(this.monthToFilter() === '' || this.typeToFilter() === 'Reiniciar filtro' ) {
@@ -223,10 +228,10 @@ export class IncomeComponent implements OnInit{
     const monthIndex = this.months.indexOf(this.monthToFilter()) + 1;
     const monthString = monthIndex < 10 ? `0${monthIndex}` : monthIndex.toString();
 
-     const dataFiltered = this.incomeList.filter(collaborator => {
-      const incomeMonth = collaborator.date.split('-')[1];
+    const dataFiltered = this.incomeList.filter(collaborator => {
+    // const incomeMonth = collaborator.date.split('-')[1];
 
-      return incomeMonth === monthString;
+      // return incomeMonth === monthString;
     });
 
     return  this.paginatedData(dataFiltered)

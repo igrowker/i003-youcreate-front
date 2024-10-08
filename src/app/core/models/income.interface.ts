@@ -1,9 +1,9 @@
 export interface Income {
-  name: string,
-  date: string,
-  monto: string,
-  category: string,
-  description: string
+  origen: string,
+  date?: string,
+  total: number,
+  category?: string,
+  description?: string
 }
 
 export interface IncomeHistory {
