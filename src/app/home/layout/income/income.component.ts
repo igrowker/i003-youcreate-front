@@ -1,15 +1,18 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { Income, IncomeHistory } from '../../../core/models/income.interface';
-import { PaginatorComponent } from '../../components/paginator/paginator.component';
-import { PaginatorService } from '../../../services/paginator.service';
-import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/btn-dropdown.component';
-import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
-import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
-import { HomeService } from '../../../services/home.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { Component, OnInit, signal } from '@angular/core';
+
+import { Income, IncomeHistory } from '../../../core/models/income.interface';
+
+import { BarGraphicComponent } from '../../components/bar-graphic/bar-graphic.component';
+import { BtnDropdownComponent } from '../../../shared/components/btn-dropdown/btn-dropdown.component';
 import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe';
+import { PaginatorComponent } from '../../components/paginator/paginator.component';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
+import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
+
+import { HomeService } from '../../../services/home.service';
+import { PaginatorService } from '../../../services/paginator.service';
+import { TokenService } from '../../../core/services/token.service';
 
 
 @Component({
@@ -17,12 +20,12 @@ import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe'
   standalone: true,
   imports: [
     CommonModule,
-    PaginatorComponent,
-    BtnDropdownComponent,
-    SwapGraphicsComponent,
     BarGraphicComponent,
+    BtnDropdownComponent,
+    NumberWithDotsPipe,
+    PaginatorComponent,
     SpinnerComponent,
-    NumberWithDotsPipe
+    SwapGraphicsComponent,
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -38,86 +41,7 @@ export class IncomeComponent implements OnInit{
   public monthToFilter = signal<string>('');
   public typeToFilter = signal<string>('');
   public yearToFilter = signal<string>('');
-
-  // public income: Income[] = [
-  //   {
-  //     date: '05-08-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-08-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-11-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-09-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-09-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-07-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-09-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-11-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-09-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-10-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  //   {
-  //     date: '05-10-2024',
-  //     name: 'Juan Pérez',
-  //     monto: '600.000',
-  //     category: 'Tutorial Youtube',
-  //     description: 'Pagado'
-  //   },
-  // ];
+  public totalIncome = signal<number>(0);
 
   public categoryOptions:string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
   public filterType:string[] = ['Filtrar por mes', 'Filtrar por año', 'Reiniciar filtro'];
@@ -162,21 +86,17 @@ export class IncomeComponent implements OnInit{
   constructor(
     private paginatorService: PaginatorService,
     private homeService: HomeService,
-    private authService: AuthService,
+    private tokenService: TokenService,
   ) {}
 
   ngOnInit(): void {
     this.generateYearList();
 
-    const {pk} = this.authService.currentUser();
-    console.log(pk);
+    const {user_id} = this.tokenService.decodeToken();
 
-    this.homeService.getIncomeById(pk).subscribe({
-      next: (resp) => {
-        console.log(resp);
-        this.incomeList = resp;
-      }
-    })
+    this.getIncomeData(user_id);
+    this.getTotalIncome(user_id);
+
   }
 
   paginatedData(dataList: Income[]):Income[] {
@@ -270,6 +190,25 @@ export class IncomeComponent implements OnInit{
     if(this.typeToFilter().toLocaleLowerCase() === 'filtrar por año') return false;
 
     return true;
+
+  }
+
+  getIncomeData(userId: number):void {
+    this.homeService.getIncomeById(userId).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.incomeList = resp;
+      },
+      error: (err) => console.error(err)
+    })
+  }
+
+  getTotalIncome(userId: number):void {
+
+    this.homeService.getTotalIncome(userId).subscribe({
+      next: (total) => this.totalIncome.set(total),
+      error: err => console.error(err)
+    })
 
   }
 

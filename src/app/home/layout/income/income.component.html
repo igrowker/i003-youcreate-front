@@ -3,11 +3,15 @@
 
     <div class="price rectangle">
       <span class="currency">ARS</span>
-      <span class="price-number">$750.000</span>
+      @if(totalIncome() !== 0) {
+        <span class="price-number">${{ totalIncome() | numberWithDots }}</span>
+      }@else {
+        <p>Cargando...</p>
+      }
     </div>
 
     <div class="graphic rectangle">
-      <span class="graph-title">Ingresos Totales Septiembre</span>
+      <span class="graph-title">Ingresos Totales {{ getCurrentMonth() }}</span>
        <!-- <app-swap-graphics/> -->
     </div>
 

@@ -13,20 +13,27 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
+  /*************Endpoints Ingresos*****************/
   getIncomeById(id: number): Observable<Income[]> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos/${id}`)
+    return this.http.get<any>(`${this.apiUrl}/api/ingresos/${id}`);
   }
 
-  getMonthlyIncome(id: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-por-mes/${id}`)
+  getMonthlyIncome(id: number, month: number):Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/ingresos-por-mes/${id}/${month}`);
   }
 
-  getAnnualIncome(id: number) {
-    return this.http.get(`${this.apiUrl}/api/ingresos-por-anio/${id}`)
+  getAnnualIncome(id: number, year: number):Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/ingresos-por-anio/${id}/${year}`);
   }
 
-  getTotalIncome(id: number) {
-    return this.http.get(`${this.apiUrl}/api/ingresos-totales/${id}`)
+  getTotalIncome(id: number):Observable<number> {
+    return this.http.get<any>(`${this.apiUrl}/api/ingresos-totales/${id}`)
+      .pipe(
+        map( ({total}) => total)
+      )
   }
+
+  /*************Endpoints Pagos-Colaboradores*****************/
+
 
 }
