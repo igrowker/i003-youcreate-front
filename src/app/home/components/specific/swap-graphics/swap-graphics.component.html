@@ -4,7 +4,7 @@
       <h4>Ingresos totales Septiembre</h4>
     </div>
   
-    <div class="col-2">
+    <div class="col-3">
       <div class="selector">
         <input type="radio" class="btn-check" name="options" id="donut" autocomplete="off" [(ngModel)]="elegido"
           value="donut" checked>
@@ -19,12 +19,13 @@
         </label>
       </div>
     </div>
-  
   </div>
-  <div class="grafico">
-    <app-grafico-ingresos class="col-4" [valores]="[123,32,14,231,85]" *ngIf="elegido === 'donut'">
+
+
+  <div>
+    <app-grafico-ingresos [valores]="[123,32,14,231,85]" *ngIf="elegido === 'donut'">
     </app-grafico-ingresos>
   
-    <app-grafico-lineal class="col-4" *ngIf="elegido === 'line'"></app-grafico-lineal>
+    <app-grafico-lineal *ngIf="elegido === 'line'"></app-grafico-lineal>
   </div>
 </div>
