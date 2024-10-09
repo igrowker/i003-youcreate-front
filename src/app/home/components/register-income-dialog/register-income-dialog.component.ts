@@ -1,42 +1,43 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ErrorType } from '../../../core/models/error-type.interface';
-import { Payment } from '../../../core/models/payment.interface';
+import { CommonModule } from '@angular/common';
+import { Income } from '../../../core/models/income.interface';
 
 @Component({
-  selector: 'register-payments-dialog',
+  selector: 'register-income-dialog',
   standalone: true,
   imports: [ CommonModule, ReactiveFormsModule ],
-  templateUrl: './register-payments-dialog.component.html',
-  styleUrl: './register-payments-dialog.component.css'
+  templateUrl: './register-income-dialog.component.html',
+  styleUrl: './register-income-dialog.component.css'
 })
-export class RegisterPaymentsDialogComponent implements OnInit{
+export class RegisterIncomeDialogComponent implements OnInit{
 
   public isVisible = false;
-  public registerPaymentsForm!: FormGroup;
+  public registerIncomeForm!: FormGroup;
   public paymentMethod:string[] = [
-    'Transferencia Bancaria',
-    'Tarjeta De Crédito',
-    'Tarjeta De Debito',
-    'Otro'
+    'Youtube',
+    'Twitch',
+    'Campañas',
+    'Colaboraciones',
+    'Regalos'
   ]
 
-  @Output() formValues = new EventEmitter<Payment>();
+  @Output() formValues = new EventEmitter<Income>();
 
   constructor( private fb: FormBuilder ) {}
 
   ngOnInit(): void {
-      this.registerPaymentsForm = this.fb.group({
+      this.registerIncomeForm = this.fb.group({
         name: ['', [Validators.required]],
-        wallet: ['', [Validators.required]],
+        categoria: ['', [Validators.required]],
         fecha_pago: ['', [Validators.required, this.validDateValidator]],
         descripcion: ['', [Validators.required]],
         monto: [0, [Validators.required, Validators.min(500)]],
       })
   }
 
-  openDialog() {
+   openDialog() {
     this.isVisible = true;
   }
 
@@ -45,9 +46,9 @@ export class RegisterPaymentsDialogComponent implements OnInit{
   }
 
   submitForm() {
-    this.formValues.emit(this.registerPaymentsForm.value);
+    this.formValues.emit(this.registerIncomeForm.value);
 
-    this.registerPaymentsForm.reset({
+    this.registerIncomeForm.reset({
       name: '',
       wallet: '',
       fecha_pago: '',
@@ -83,9 +84,5 @@ export class RegisterPaymentsDialogComponent implements OnInit{
     return  errorMessage;
 
   }
-
-
-
-
 
 }

@@ -11,31 +11,28 @@
 
 .dashboard-top {
   display: flex;
-  height: auto;
-  width: 100%;
-  gap: 2vw;
+  gap: 128px;
 }
 
-app-swap-graphics{
+/* app-swap-graphics{
   width: 35vw;
   height: auto;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   padding: 1vw;
-}
+} */
 
 .rectangle {
-  /* height: 25vh;
-  min-width: 30vw; */
+  height: 243px;
+  width: 416px;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-  padding: 1vw;
+  padding: 10px;
 }
 
 .price {
-  width: 30vw;
   position: relative;
   display: flex;
   justify-content: center;
@@ -59,9 +56,8 @@ app-swap-graphics{
 
 .table-container {
   background-color: #FBDEFF;
-  width: 67vw;
-  height: auto;
-  /* min-height: 500px; */
+  width: 959px;
+  min-height: 500px;
   border-radius: 10px;
   padding: 35px 50px;
 }
@@ -80,7 +76,7 @@ table {
   width: 100%;
   font-family: 'poppins';
   font-size: 14px;
-  text-align: center;
+  text-align: left;
   background-color: #FFFFFF;
   border-radius: 10px 10px 0 0;
   color: #1D2820;
@@ -92,8 +88,16 @@ th {
   height: 60px;
 }
 
+.th-center {
+  text-align: center;
+}
+
 th, td {
   padding: 7px 20px;
+}
+
+.td-category {
+  text-align: center;
 }
 
 .td-description {
@@ -103,7 +107,10 @@ th, td {
 
 /*************************Grafico*****************************/
 .graphic {
-  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .graph-title {
@@ -152,4 +159,57 @@ th, td {
   right: 0;
   bottom: 0;
 
+}
+
+.spinner-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 650px;
+  left: 193px;
+  right: 0;
+  bottom: 0;
+}
+
+/****************************************/
+.empty-message {
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  color: #313131;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/*************************************************/
+.add-button {
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  background-color: #393F50;
+  color: #F4FEFF;
+  height: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.add-button:hover {
+  background-color: #4c5469;
+  color: white;
+}
+
+.icon {
+  width: 17px;
+  color: #ffffff;
+  align-items: center;
+}
+
+.buttons-right {
+  display: flex;
+  gap: 15px;
 }

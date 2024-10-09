@@ -73,11 +73,15 @@ button:hover{
 
 /**********Meses***********/
 .btn-months {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
   background-color: #FFFFFF;
   color: #000000;
   border-radius: 5px;
   padding: 8px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   border: none;
 }
