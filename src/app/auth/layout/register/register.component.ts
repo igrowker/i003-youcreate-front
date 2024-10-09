@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
   countries: Country[] = [];
+  showModal = false;
 
   constructor(
     private fb: FormBuilder,
@@ -114,8 +115,9 @@ export class RegisterComponent implements OnInit{
       this.auth.registrarse(userRegister).subscribe({
         next: (response) => {
           console.log('Registro Correcto', response);
-          this.router.navigate(["/auth/verificar"]);
+          //this.router.navigate(["/auth/verificar"]);
           //Redireccionar a cartel de correo enviado
+          this.showModal = true;
         },
 
         error: (error) => {
@@ -127,9 +129,13 @@ export class RegisterComponent implements OnInit{
     } else {
       console.log('Form is invalid');
     }
+
   }
 
-
+  closeModal(){
+    this.showModal = false;
+    this.router.navigate(['/auth/login']);
+  }
 
 
 

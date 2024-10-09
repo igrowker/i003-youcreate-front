@@ -31,6 +31,7 @@ export class EmailVerificationComponent {
     const enteredCode = this.code.join('');
     if(enteredCode === this.generatedCode){
       this.showModal = true
+      console.log("Codigo correcto");
     }else{
       alert('Código incorrecto, por favor trata de nuevo')
     }
@@ -38,6 +39,6 @@ export class EmailVerificationComponent {
 
   closeModal(){
     this.showModal = false;
-    this.router.navigate(['/auth/login'])
+    this.router.navigate(['/home']);
   }
 }
