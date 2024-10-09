@@ -99,6 +99,25 @@ export class IncomeComponent implements OnInit{
 
   }
 
+  getIncomeData(userId: number):void {
+    this.homeService.getIncomeById(userId).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.incomeList = resp;
+      },
+      error: (err) => console.error(err)
+    })
+  }
+
+  getTotalIncome(userId: number):void {
+
+    this.homeService.getTotalIncome(userId).subscribe({
+      next: (total) => this.totalIncome.set(total),
+      error: err => console.error(err)
+    })
+
+  }
+
   paginatedData(dataList: Income[]):Income[] {
     return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, dataList);
   }
@@ -190,25 +209,6 @@ export class IncomeComponent implements OnInit{
     if(this.typeToFilter().toLocaleLowerCase() === 'filtrar por año') return false;
 
     return true;
-
-  }
-
-  getIncomeData(userId: number):void {
-    this.homeService.getIncomeById(userId).subscribe({
-      next: (resp) => {
-        console.log(resp);
-        this.incomeList = resp;
-      },
-      error: (err) => console.error(err)
-    })
-  }
-
-  getTotalIncome(userId: number):void {
-
-    this.homeService.getTotalIncome(userId).subscribe({
-      next: (total) => this.totalIncome.set(total),
-      error: err => console.error(err)
-    })
 
   }
 

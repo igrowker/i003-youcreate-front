@@ -42,11 +42,18 @@ export class RegisterPaymentsDialogComponent implements OnInit{
 
   closeDialog() {
     this.isVisible = false;
-
   }
 
   submitForm() {
     this.formValues.emit(this.registerPaymentsForm.value);
+
+    this.registerPaymentsForm.reset({
+      name: '',
+      wallet: '',
+      fecha_pago: '',
+      descripcion: '',
+      monto: 0
+    });
   }
 
 

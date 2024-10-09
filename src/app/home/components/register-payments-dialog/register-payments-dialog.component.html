@@ -51,9 +51,9 @@
             id="date"
             placeholder="DD/MM/AAAA"
           />
-          @if (registerPaymentsForm.get('date')?.touched) {
+          @if (registerPaymentsForm.get('fecha_pago')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerPaymentsForm.get('date')?.errors) }}
+              {{ setFormErrorMessage(registerPaymentsForm.get('fecha_pago')?.errors) }}
             </span>
           }
         </div>
@@ -66,9 +66,9 @@
             id="service"
             placeholder="Servicio"
           />
-          @if (registerPaymentsForm.get('service')?.touched) {
+          @if (registerPaymentsForm.get('descripcion')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerPaymentsForm.get('service')?.errors) }}
+              {{ setFormErrorMessage(registerPaymentsForm.get('descripcion')?.errors) }}
             </span>
           }
         </div>
