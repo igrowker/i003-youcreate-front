@@ -1,10 +1,6 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
-import { DashboardComponent } from "./layout/dashboard/dashboard.component";
-import { CollaboratorPaymentsComponent } from "./layout/collaborator-payments/collaborator-payments.component";
 
-import { TaxObligationsComponentComponent } from "./layout/tax-obligations-component/tax-obligations-component.component";
-import {  ProfileComponent } from "./layout/profile/profile.component";
 
 
 export const HOME_ROUTES: Routes = [
@@ -18,6 +14,7 @@ export const HOME_ROUTES: Routes = [
       { path: 'tax-obligations', loadComponent: () => import('./layout/tax-obligations-component/tax-obligations-component.component').then(c => c.TaxObligationsComponentComponent) },
       { path: 'income', loadComponent: () => import('./layout/income/income.component').then(c => c.IncomeComponent) },
       { path: 'profile', loadComponent: () => import('./layout/profile/profile.component').then(c => c.ProfileComponent) },
+      { path:  'account-data', loadComponent: () => import('./layout/profile/account-data/account-data.component').then(c => c.AccountDataComponent) } 
 
 
     ]
