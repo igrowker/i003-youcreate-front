@@ -37,18 +37,33 @@
         />
       }
 
-       <btn-dropdown
-          [options]="filterType"
-          type="filter"
-          label="filtrar datos"
-          (selectedValue)="getTypeToFilter($event)"
-        />
+      <div class="buttons-right">
+        <button class="add-button" (click)="dialog.openDialog()">
+          <img class="icon" src="assets/icons/add.svg" alt="icon">
+          <span>Agregar ingreso</span>
+        </button>
+        <register-income-dialog #dialog (formValues)="setNewIncomeRegistered($event)"></register-income-dialog>
+
+         <btn-dropdown
+            [options]="filterType"
+            type="filter"
+            label="filtrar datos"
+            (selectedValue)="getTypeToFilter($event)"
+          />
+      </div>
     </div>
 
     @if (isYearsOrMonthsDropdown()) {
 
       <div class="table-container">
         @if (!isLoadingMonth && filterByMonth().length > 0) {
+          <!-- <div class="buttons-header">
+            <button class="add-button">
+              <img class="icon" src="assets/icons/add.svg" alt="icon">
+              <span>Agregar ingreso</span>
+            </button>
+            <register-payments-dialog #dialog (formValues)="setNewPaymentRegistered($event)"/>
+          </div> -->
           <table class="payment-table">
               <thead class="header-titles">
                 <tr>

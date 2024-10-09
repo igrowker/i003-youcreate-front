@@ -13,6 +13,7 @@ import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/s
 import { HomeService } from '../../../services/home.service';
 import { PaginatorService } from '../../../services/paginator.service';
 import { TokenService } from '../../../core/services/token.service';
+import { RegisterIncomeDialogComponent } from '../../components/register-income-dialog/register-income-dialog.component';
 
 
 @Component({
@@ -26,6 +27,7 @@ import { TokenService } from '../../../core/services/token.service';
     PaginatorComponent,
     SpinnerComponent,
     SwapGraphicsComponent,
+    RegisterIncomeDialogComponent
   ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -216,6 +218,10 @@ export class IncomeComponent implements OnInit{
 
     return true;
 
+  }
+
+  setNewIncomeRegistered(newIncome: any) {
+    console.log(newIncome);
   }
 
 }

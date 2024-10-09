@@ -171,3 +171,34 @@ th, td {
   align-items: center;
   min-height: 80vh;
 }
+
+/*************************************************/
+.add-button {
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  background-color: #393F50;
+  color: #F4FEFF;
+  height: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.add-button:hover {
+  background-color: #4c5469;
+  color: white;
+}
+
+.icon {
+  width: 17px;
+  color: #ffffff;
+  align-items: center;
+}
+
+.buttons-right {
+  display: flex;
+  gap: 15px;
+}
