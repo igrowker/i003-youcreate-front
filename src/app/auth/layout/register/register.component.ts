@@ -6,8 +6,6 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserRegister } from '../../../core/models/user-register.interface';
 import { selectSocialMedia } from '../../../core/validators/social-media.validator';
 import { Router } from '@angular/router';
-import { concat } from 'rxjs';
-
 
 @Component({
   selector: 'app-register',
