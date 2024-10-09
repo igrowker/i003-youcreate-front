@@ -29,7 +29,7 @@ export class IncomeComponent implements OnInit{
 
   public currency:string = 'ARS';
   public currentPage:number = 1;
-  public rawsPerPage:number = 8;
+  public rawsPerPage:number = 6;
   public isLoading:boolean = false;
 
   public currentYear:number = new Date().getFullYear();
@@ -163,16 +163,16 @@ export class IncomeComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.generateYearList();
+    // this.generateYearList();
 
-    const {pk} = this.authService.currentUser();
-    console.log(pk);
+    // const {pk} = this.authService.currentUser();
+    // console.log(pk);
 
-    this.homeService.getIncomeById(pk).subscribe({
-      next: (resp) => {
-        console.log(resp)
-      }
-    })
+    // this.homeService.getIncomeById(pk).subscribe({
+    //   next: (resp) => {
+    //     console.log(resp)
+    //   }
+    // })
   }
 
   paginatedData(dataList: Income[]):Income[] {

@@ -10,8 +10,8 @@ export class AuthService {
 
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
-  private url = 'http://127.0.0.1:8000/';
-
+  //private url = 'https://you-create-backend-service.onrender.com/';
+  private url = 'http://localhost:8000/';
   private _currentUser = signal<any|null>(null);
 
   public currentUser = computed( () => this._currentUser() )
@@ -20,8 +20,6 @@ export class AuthService {
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
-
-
 
   registrarse( user : any ): Observable<any> {
     return this.http.post<any>( this.url+`auth/registration/`, user);

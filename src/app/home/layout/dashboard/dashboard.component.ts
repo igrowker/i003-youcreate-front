@@ -14,6 +14,5 @@ import { DashboardPagosComponent } from '../../components/specific/dashboard-pag
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
-
+export class DashboardComponent{
 }

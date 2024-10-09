@@ -1,107 +1,118 @@
 <div class="register-container">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="step-indicator">Paso 1 de 2</div>
-        
-        <!-- Logotipo -->
-        <div class="logo-container">
-            <img src="../../../../assets/logoHeader.png" alt="Logo" />
-        </div>
-        
-        <h2>Crear una cuenta</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="step-indicator">Paso 1 de 2</div>
 
-        <!-- Botones de redes sociales para registrarse -->
-        <!-- <div class="social-login">
+    <!-- Logotipo -->
+    <div class="logo-container">
+      <img src="../../../../assets/logoHeader.png" alt="Logo" />
+    </div>
+
+    <h2>Crear una cuenta</h2>
+
+    <!-- Botones de redes sociales para registrarse -->
+    <!-- <div class="social-login">
             <img class="google-btn" src="../../../../assets/googleButton.png" />
             <img class="apple-btn" src="../../../../assets/appleButton.png" />
         </div> -->
 
-        <h3>Tus Datos</h3>
+    <h3>Tus Datos</h3>
 
-        <!-- CAMPO PARA NOMBRE -->
-        <div>
-            <input type="text" id="firstName" formControlName="firstName" placeholder="Nombre"/>
-            <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
-                <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Nombre es requerido</small>
-            </div>
-        </div>
+    <!-- CAMPO PARA NOMBRE -->
+    <div>
+      <input type="text" id="firstName" formControlName="firstName" placeholder="Nombre" />
+      <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Nombre es requerido</small>
+      </div>
+    </div>
 
-        <!--CAMPO PARA APELLIDO-->
-        <div>
-            
-            <input type="text" id="lastName" formControlName="lastName" placeholder="Apellido"/>
-            <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
-                <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Apellido es requerido</small>
-            </div>
-        </div>
+    <!--CAMPO PARA APELLIDO-->
+    <div>
 
-        <!-- CAMPO PARA PAIS -->        
-            <div>
-                <select id="country" formControlName="country">
-                    <option value="" disabled selected>País</option>
-                    <option *ngFor="let country of countries" [value]="country.code">
-                        {{country.name}}
-                    </option>
-                </select>
-                <div *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
-                    <small *ngIf="registerForm.get('country')?.errors?.['required']">País es requerido</small>
-                </div>
-            </div>       
-        
-        <!-- CAMPO PARA CÓDIGO DE ÁREA Y TELÉFONO -->
-        <!-- <div class="phone-container" >
-            <div class="area-code">
-                <input type="text" id="areaCode" formControlName="areaCode" readonly />
-            </div>
-            <div class="phone-number">
-                <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Teléfono"/>
-                <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"></div>
-            </div>
-        </div> -->
+      <input type="text" id="lastName" formControlName="lastName" placeholder="Apellido" />
+      <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Apellido es requerido</small>
+      </div>
+    </div>
 
-        <!-- CAMPO PARA EMAIL -->
-        <div>
-            <input type="email" id="email" formControlName="email" placeholder="Correo electrónico"/>
-            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-                <small *ngIf="registerForm.get('email')?.errors?.['required']">Email es requerido</small>
-                <small *ngIf="registerForm.get('email')?.errors?.['email']">Email no valido</small>
-            </div>
-        </div>
+    <!-- CAMPO PARA PAIS -->
+    <div>
+      <select id="country" formControlName="country">
+        <option value="" disabled selected>País</option>
+        <option *ngFor="let country of countries" [value]="country.code">
+          {{country.name}}
+        </option>
+      </select>
+      <div *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
+        <small *ngIf="registerForm.get('country')?.errors?.['required']">País es requerido</small>
+      </div>
+    </div>
 
-        <!-- CAMPOS PARA CONTRASEÑA Y CONFIRMAR CONTRASEÑA -->
-        <div>
-            <input type="password" id="password" formControlName="password" placeholder="Contraseña"/>
-            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-                <small *ngIf="registerForm.get('password')?.errors?.['required']">Password es requerido</small>
-                <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 carácteres</small>
-            </div>
-        </div>
+    <!-- CAMPO PARA CÓDIGO DE ÁREA Y TELÉFONO -->
+    <div class="phone-container">
+      <div class="area-code">
+        <input type="text" id="areaCode" formControlName="areaCode" readonly />
+      </div>
+      <div class="phone-number">
+        <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Teléfono" />
+        <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"></div>
+      </div>
+    </div>
 
-        <div>
-            <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmar contraseña"/>
-            <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
-                <small *ngIf="registerForm.get('password')?.errors?.['required']">Passwords deben coincidir</small>
-            </div>
-        </div>
+    <!-- CAMPO PARA EMAIL -->
+    <div>
+      <input type="email" id="email" formControlName="email" placeholder="Correo electrónico" />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Email es requerido</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Email no valido</small>
+      </div>
+    </div>
 
-        <!-- SECCIÓN PARA CREAR CONTENIDO -->
-        <div class="content-creation">
-            <p>¿Dónde estás creando contenido?</p>
-            <div class="platform-checkbox">
-                <input type="checkbox" id="youtube" formControlName="youtube" />
-                <label for="youtube">Youtube</label>
-                <input type="text" id="youtube-username" formControlName="youtubeUsername" placeholder="@tu_usuario"/>
-            </div>
+    <!-- CAMPOS PARA CONTRASEÑA Y CONFIRMAR CONTRASEÑA -->
+    <div>
+      <input type="password" id="password" formControlName="password" placeholder="Contraseña" />
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Password es requerido</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 carácteres</small>
+      </div>
+    </div>
 
-            <div class="platform-checkbox">
-                <input type="checkbox" id="twitch" formControlName="twitch" />
-                <label for="twitch">Twitch</label>
-                <input type="text" id="twitch-username" formControlName="twitchUsername" placeholder="@tu_usuario"/>
-            </div>
-        </div>
+    <div>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword"
+        placeholder="Confirmar contraseña" />
+      <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Passwords deben coincidir</small>
+      </div>
+    </div>
 
-        <!-- BOTÓN DE ENVÍO -->
-        <button type="submit" >Continuar</button>
-    </form>
+    <!-- SECCIÓN PARA CREAR CONTENIDO -->
+    <div class="content-creation">
+      <p>¿Dónde estás creando contenido?</p>
+      <div class="platform-checkbox">
+        <input type="checkbox" id="youtube" formControlName="youtube" />
+        <label for="youtube">Youtube</label>
+        <input type="text" id="youtube-username" formControlName="youtubeUsername" placeholder="@tu_usuario" />
+      </div>
+
+      <div class="platform-checkbox">
+        <input type="checkbox" id="twitch" formControlName="twitch" />
+        <label for="twitch">Twitch</label>
+        <input type="text" id="twitch-username" formControlName="twitchUsername" placeholder="@tu_usuario" />
+      </div>
+    </div>
+
+    <!-- BOTÓN DE ENVÍO -->
+    <button type="submit">Continuar</button>
+  </form>
+
+  <!--MODAL-->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h2>Autenticación de Correo</h2>
+      <p>Revisa tu correo electrónico para completar tu registro.
+        Haz clic en el enlace que te enviamos para finalizar el proceso de autenticación.</p>
+      <!-- <button (click)="closeModal()" class="continue-btn">Continuar</button> -->
+    </div>
+  </div>
+
+
 </div>
-
-

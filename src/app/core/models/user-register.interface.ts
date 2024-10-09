@@ -6,6 +6,7 @@ export interface UserRegister{
   password2: string;
   pais_residencia: string;
   redes_sociales?: RedesSociales;
+  telefono: string
   numero_fiscal?: string;
 }
 
