@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { Payment } from '../../../core/models/payment.interface';
 import { ErrorType } from '../../../core/models/error-type.interface';
 import { CommonModule } from '@angular/common';
 import { Income } from '../../../core/models/income.interface';
@@ -17,10 +16,11 @@ export class RegisterIncomeDialogComponent implements OnInit{
   public isVisible = false;
   public registerIncomeForm!: FormGroup;
   public paymentMethod:string[] = [
-    'Transferencia Bancaria',
-    'Tarjeta De Crédito',
-    'Tarjeta De Debito',
-    'Otro'
+    'Youtube',
+    'Twitch',
+    'Campañas',
+    'Colaboraciones',
+    'Regalos'
   ]
 
   @Output() formValues = new EventEmitter<Income>();
