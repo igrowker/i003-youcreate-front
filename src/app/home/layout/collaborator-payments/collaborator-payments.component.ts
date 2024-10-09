@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { Collaboration, State } from '../../../core/models/collaborator-payments.interface';
-import { PaginatorService } from '../../../services/paginator.service';
-import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { CommonModule } from '@angular/common';
-import {ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
+
+import { Collaboration } from '../../../core/models/collaborator-payments.interface';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe';
+import { PaginatorComponent } from '../../components/paginator/paginator.component';
+import { Payment } from '../../../core/models/payment.interface';
+import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
+import { TokenService } from '../../../core/services/token.service';
+
+import { HomeService } from '../../../services/home.service';
+import { PaginatorService } from '../../../services/paginator.service';
 
 @Component({
   selector: 'app-collaborator-payments',
@@ -22,92 +27,70 @@ import { NumberWithDotsPipe } from '../../../shared/pipes/number-with-dots.pipe'
 })
 export class CollaboratorPaymentsComponent {
 
+  collaborators: Payment[] = [];
+  collaboratorsHistory: Payment[] = [];
 
-  collaborators: Collaboration[] = [
-    {
-      date: '05/09/2024',
-      name: 'Juan Pérez',
-      service: 'Tutorial Youtube',
-      monto: 600000,
-      state: 'Por pagar'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Sofia Caldero',
-      service: 'Patrocinio Stream',
-      monto: 400000,
-      state: 'Por pagar'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Lucas Morales',
-      service: 'Video Review',
-      monto: 500000,
-      state: 'Vencido'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Jose Medina',
-      service: 'Pauta Publicitaria',
-      monto: 1000000,
-      state: 'Por pagar'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Juan Pérez',
-      service: 'Tutorial Youtube',
-      monto: 600000,
-      state: 'Vencido'
-    },
-  ];
-
-  collaboratorsHistorie: Collaboration[] = [
-    {
-      date: '05/09/2024',
-      name: 'Juan Pérez',
-      service: 'Tutorial Youtube',
-      monto: 600000,
-      wallet: 'Transferencia Bancaria'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Sofia Caldero',
-      service: 'Patrocinio Stream',
-      monto: 400000,
-      wallet: 'Transferencia Bancaria'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Lucas Morales',
-      service: 'Video Review',
-      monto: 500000,
-      wallet: 'Transferencia Bancaria'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Jose Medina',
-      service: 'Pauta Publicitaria',
-      monto: 1000000,
-      wallet: 'Transferencia Bancaria'
-    },
-    {
-      date: '05/09/2024',
-      name: 'Juan Pérez',
-      service: 'Tutorial Youtube',
-      monto: 600000,
-      wallet: 'Transferencia Bancaria'
-    },
-  ]
-
+  isLoading:boolean = false;
   currency: string = 'ARS';
   currentPage: number = 1;
   currentPageHistorie: number = 1;
   rawsPerPage: number = 3;
+  colaborador_id: number = 0;
 
-  constructor( private paginatorService: PaginatorService, public dialog: MatDialog) {}
+  constructor(
+    private paginatorService: PaginatorService,
+    private homeService: HomeService,
+    private tokenService: TokenService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
 
+    const {user_id } = this.tokenService.decodeToken();
+    this.colaborador_id = user_id;
+
+    this.getCollaboratorsPayment();
+
+  }
+
+  getCollaboratorsPayment() {
+
+    this.isLoading = true;
+    this.homeService.getCollaboratorPayments().subscribe({
+      next: (resp) => {
+        this.collaborators = resp;
+        this.collaboratorsHistory = [...this.collaborators];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.isLoading = false
+      }
+    })
+  }
+
+
+  setNewPaymentRegistered(newPayment: Payment) {
+    debugger
+    const { monto, fecha_pago, descripcion } = newPayment;
+
+    if( typeof window !== 'undefined' && localStorage) {
+
+      const payment = { colaborador_id: this.colaborador_id , monto, fecha_pago, descripcion };
+
+      this.homeService.addPayment(payment).subscribe({
+        next: (payment) => {
+          this.collaborators.push(payment);
+          this.collaboratorsHistory = [...this.collaborators]
+        },
+        error: (err) => console.error(err)
+      })
+    }
+
+
+
+    this.collaboratorsData;
+    this.paymentHistoryData;
   }
 
   get collaboratorsData() {
@@ -115,7 +98,7 @@ export class CollaboratorPaymentsComponent {
   }
 
   get paymentHistoryData() {
-    return this.paginatorService.paginatedData(this.currentPageHistorie, this.rawsPerPage, this.collaboratorsHistorie);
+    return this.paginatorService.paginatedData(this.currentPageHistorie, this.rawsPerPage, this.collaboratorsHistory);
   }
 
   onPageChange(page: number) {
@@ -124,14 +107,6 @@ export class CollaboratorPaymentsComponent {
 
   onHistoriePageChange(page: number) {
     this.currentPageHistorie = page;
-  }
-
-  setNewPaymentRegistered(newPayment: Collaboration) {
-
-    this.isDateExpired(newPayment.date) ? newPayment.state = 'Vencido' : newPayment.state = 'Por pagar';
-
-    this.collaborators.push(newPayment)
-    this.collaboratorsData;
   }
 
   isDateExpired(date: string): boolean {
@@ -155,11 +130,14 @@ export class CollaboratorPaymentsComponent {
     return adjustedMonth;
   }
 
-  getStateColor( state: State ) {
-    switch(state) {
-      case 'Por pagar':
+  getStateColor( date: string ) {
+
+    const isExpired = this.isDateExpired(date);
+
+    switch(isExpired) {
+      case false:
         return 'payable';
-      case 'Vencido':
+      case true:
         return 'expired';
       default:
         return '';
@@ -178,4 +156,5 @@ export class CollaboratorPaymentsComponent {
 
     });
   }
+
 }

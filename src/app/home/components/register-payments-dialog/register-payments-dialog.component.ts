@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ErrorType } from '../../../core/models/error-type.interface';
-import { Collaboration } from '../../../core/models/collaborator-payments.interface';
+import { Payment } from '../../../core/models/payment.interface';
 
 @Component({
   selector: 'register-payments-dialog',
@@ -22,7 +22,7 @@ export class RegisterPaymentsDialogComponent implements OnInit{
     'Otro'
   ]
 
-  @Output() formValues = new EventEmitter<Collaboration>();
+  @Output() formValues = new EventEmitter<Payment>();
 
   constructor( private fb: FormBuilder ) {}
 
@@ -30,8 +30,8 @@ export class RegisterPaymentsDialogComponent implements OnInit{
       this.registerPaymentsForm = this.fb.group({
         name: ['', [Validators.required]],
         wallet: ['', [Validators.required]],
-        date: ['', [Validators.required, this.validDateValidator]],
-        service: ['', [Validators.required]],
+        fecha_pago: ['', [Validators.required, this.validDateValidator]],
+        descripcion: ['', [Validators.required]],
         monto: [0, [Validators.required, Validators.min(500)]],
       })
   }
