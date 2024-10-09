@@ -11,31 +11,28 @@
 
 .dashboard-top {
   display: flex;
-  height: auto;
-  width: 100%;
-  gap: 2vw;
+  gap: 128px;
 }
 
-app-swap-graphics{
+/* app-swap-graphics{
   width: 35vw;
   height: auto;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   padding: 1vw;
-}
+} */
 
 .rectangle {
-  /* height: 25vh;
-  min-width: 30vw; */
+  height: 243px;
+  width: 416px;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-  padding: 1vw;
+  padding: 10px;
 }
 
 .price {
-  width: 30vw;
   position: relative;
   display: flex;
   justify-content: center;
@@ -59,9 +56,8 @@ app-swap-graphics{
 
 .table-container {
   background-color: #FBDEFF;
-  width: 67vw;
-  height: auto;
-  /* min-height: 500px; */
+  width: 959px;
+  min-height: 500px;
   border-radius: 10px;
   padding: 35px 50px;
 }
@@ -111,7 +107,10 @@ th, td {
 
 /*************************Grafico*****************************/
 .graphic {
-  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .graph-title {
