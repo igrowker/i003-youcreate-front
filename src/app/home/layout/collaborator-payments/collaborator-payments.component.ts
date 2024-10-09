@@ -12,6 +12,7 @@ import { TokenService } from '../../../core/services/token.service';
 
 import { HomeService } from '../../../services/home.service';
 import { PaginatorService } from '../../../services/paginator.service';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-collaborator-payments',
@@ -20,7 +21,8 @@ import { PaginatorService } from '../../../services/paginator.service';
     CommonModule,
     PaginatorComponent,
     RegisterPaymentsDialogComponent,
-    NumberWithDotsPipe
+    SpinnerComponent,
+    NumberWithDotsPipe,
   ],
   templateUrl: './collaborator-payments.component.html',
   styleUrl: './collaborator-payments.component.css'
@@ -46,7 +48,7 @@ export class CollaboratorPaymentsComponent {
 
   ngOnInit(): void {
 
-    const {user_id } = this.tokenService.decodeToken();
+    const { user_id } = this.tokenService.decodeToken();
     this.colaborador_id = user_id;
 
     this.getCollaboratorsPayment();
@@ -69,25 +71,19 @@ export class CollaboratorPaymentsComponent {
     })
   }
 
-
   setNewPaymentRegistered(newPayment: Payment) {
-    debugger
+
     const { monto, fecha_pago, descripcion } = newPayment;
 
-    if( typeof window !== 'undefined' && localStorage) {
+    const payment = { colaborador_id: this.colaborador_id , monto, fecha_pago, descripcion };
 
-      const payment = { colaborador_id: this.colaborador_id , monto, fecha_pago, descripcion };
-
-      this.homeService.addPayment(payment).subscribe({
-        next: (payment) => {
-          this.collaborators.push(payment);
-          this.collaboratorsHistory = [...this.collaborators]
-        },
-        error: (err) => console.error(err)
-      })
-    }
-
-
+    this.homeService.addPayment(payment).subscribe({
+      next: (payment) => {
+        this.collaborators.push(payment);
+        this.collaboratorsHistory = [...this.collaborators]
+      },
+      error: (err) => console.error(err)
+    })
 
     this.collaboratorsData;
     this.paymentHistoryData;

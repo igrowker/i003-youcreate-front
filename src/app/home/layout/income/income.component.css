@@ -65,7 +65,7 @@ table {
   width: 100%;
   font-family: 'poppins';
   font-size: 14px;
-  text-align: center;
+  text-align: left;
   background-color: #FFFFFF;
   border-radius: 10px 10px 0 0;
   color: #1D2820;
@@ -77,8 +77,16 @@ th {
   height: 60px;
 }
 
+.th-center {
+  text-align: center;
+}
+
 th, td {
   padding: 7px 20px;
+}
+
+.td-category {
+  text-align: center;
 }
 
 .td-description {

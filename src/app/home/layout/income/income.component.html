@@ -53,8 +53,8 @@
                 <th>Nombre</th>
                 <th>Fecha</th>
                 <th>Monto</th>
-                <th>Categoria</th>
-                <th>Descripción</th>
+                <th class="th-center">Categoria</th>
+                <th class="th-center">Descripción</th>
               </tr>
             </thead>
             <tbody class="body">
@@ -66,7 +66,7 @@
                     <span>{{ currency }} </span>
                     <span>{{ income.total | numberWithDots }} </span>
                   </td>
-                  <td>
+                  <td class="td-category">
                     <btn-dropdown
                       [options]="categoryOptions"
                       label="categoria"

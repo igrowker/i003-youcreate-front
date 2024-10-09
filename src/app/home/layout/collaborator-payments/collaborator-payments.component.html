@@ -1,12 +1,13 @@
 <div class="container">
 
   <div class="manage-payments">
-    <div class="title">
-      Pagos pendientes
-    </div>
 
 
-    @if (isLoading) {
+    @if (!isLoading && collaboratorsData.length > 0) {
+      <div class="title">
+        Pagos pendientes
+      </div>
+
       <div class="buttons-header">
         <button class="add-button" (click)="dialog.openDialog()">
           <img class="icon" src="assets/icons/add.svg" alt="icon">
@@ -52,9 +53,10 @@
       </div>
       <paginator [dataList]="collaborators" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
     }
+
   </div>
 
-  @if (isLoading) {
+  @if (!isLoading && collaboratorsData.length > 0) {
 
     <div class="payment-history">
 
@@ -89,9 +91,11 @@
           </tbody>
         </table>
       </div>
-
-      <!-- <paginator [dataList]="collaboratorsHistory" [rowsPerPage]="rawsPerPage" (pageChange)="onHistoriePageChange($event)"/> -->
+      <paginator [dataList]="collaboratorsHistory" [rowsPerPage]="rawsPerPage" (pageChange)="onHistoriePageChange($event)"/>
     </div>
   }
 
+  @if(isLoading) {
+    <app-spinner class="spinner"/>
+  }
 </div>
