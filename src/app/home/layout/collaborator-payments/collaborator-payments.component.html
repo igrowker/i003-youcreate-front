@@ -2,7 +2,6 @@
 
   <div class="manage-payments">
 
-
     @if (!isLoading && collaboratorsData.length > 0) {
       <div class="title">
         Pagos pendientes
@@ -52,6 +51,8 @@
         </table>
       </div>
       <paginator [dataList]="collaborators" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
+    }@else if(!isLoading && collaboratorsData.length === 0) {
+      <span class="empty-message">No hay información disponible en este momento</span>
     }
 
   </div>

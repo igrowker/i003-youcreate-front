@@ -149,3 +149,25 @@ th, td {
   bottom: 0;
 
 }
+
+.spinner-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 650px;
+  left: 193px;
+  right: 0;
+  bottom: 0;
+}
+
+/****************************************/
+.empty-message {
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  color: #313131;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}

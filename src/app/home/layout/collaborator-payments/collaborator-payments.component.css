@@ -149,8 +149,19 @@ th, td {
   align-items: center;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 193px;
   right: 0;
   bottom: 0;
+}
+
+/*******************************/
+.empty-message {
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  color: #504f4f;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
 }
 

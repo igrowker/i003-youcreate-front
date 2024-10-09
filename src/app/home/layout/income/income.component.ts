@@ -35,7 +35,8 @@ export class IncomeComponent implements OnInit{
   public currency:string = 'ARS';
   public currentPage:number = 1;
   public rawsPerPage:number = 8;
-  public isLoading:boolean = false;
+  public isLoadingYear:boolean = false;
+  public isLoadingMonth:boolean = false;
 
   public currentYear:number = new Date().getFullYear();
   public monthToFilter = signal<string>('');
@@ -100,12 +101,17 @@ export class IncomeComponent implements OnInit{
   }
 
   getIncomeData(userId: number):void {
+    this.isLoadingMonth = true;
     this.homeService.getIncomeById(userId).subscribe({
       next: (resp) => {
         console.log(resp);
         this.incomeList = resp;
+        this.isLoadingMonth = false;
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err);
+        this.isLoadingMonth = false;
+      }
     })
   }
 
@@ -151,9 +157,9 @@ export class IncomeComponent implements OnInit{
     this.yearToFilter.set(year)
 
     //TODO: cambiar cuando se tenga el endpoint
-    this.isLoading = true;
+    this.isLoadingYear = true;
     setTimeout(() => {
-      this.isLoading = false;
+      this.isLoadingYear = false;
     }, 3000)
   }
 
