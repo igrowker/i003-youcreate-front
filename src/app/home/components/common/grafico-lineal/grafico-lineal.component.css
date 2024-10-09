@@ -1,13 +1,13 @@
 .graphic-container {
   background-color: var(--base-white);
   position: relative;
-  width: 32vw;
+  width: 95%;
   /*Minimo 290px*/
-  max-height: 22vh;
+  max-height: 100%;
   /*Minimo 130*/
 }
 
 canvas {
   width: 100% !important;
-  height: 100% !important;
+  max-height: 91% !important;
 }

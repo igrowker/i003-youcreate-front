@@ -7,7 +7,6 @@ import { UserRegister } from '../../../core/models/user-register.interface';
 import { selectSocialMedia } from '../../../core/validators/social-media.validator';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -18,6 +17,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
   countries: Country[] = [];
+  showModal = false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,12 +28,14 @@ export class RegisterComponent implements OnInit{
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      areaCode: [{value: '', disabled: true}, Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
+
+      country: ['', [Validators.required]],
+      areaCode: [{value: '', disabled: true}, Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       
       //Redes sociales
       youtube: [false],
@@ -81,9 +83,7 @@ export class RegisterComponent implements OnInit{
       (country) => country.code === countryCode 
       );
       if(selectedCountry){
-        this.registerForm.patchValue({
-          areaCode: selectedCountry.areaCode
-        });
+        this.registerForm.patchValue({areaCode: selectedCountry.areaCode});
       }
     });
   }
@@ -96,16 +96,18 @@ export class RegisterComponent implements OnInit{
       const userRegister: UserRegister = {
         nombre: this.registerForm.value.firstName || '',
         apellido: this.registerForm.value.lastName || '',
+
         email: this.registerForm.value.email || '',
         password1: this.registerForm.value.password || '',
         password2: this.registerForm.value.confirmPassword || '',
-        pais_residencia: this.registerForm.value.country || '',
-        numero_fiscal: '123',
 
+        pais_residencia: this.registerForm.value.country || '',
         redes_sociales:{
           youtube: this.registerForm.value.youtubeUsername || undefined,
           twitch: this.registerForm.value.twitchUsername || undefined,
-        }
+        },
+        telefono: (this.registerForm.value.areaCode || '') + (this.registerForm.value.phoneNumber || ''),
+        numero_fiscal: '1',
       }
 
       console.log('Modelo de interfaz:',userRegister);
@@ -113,8 +115,9 @@ export class RegisterComponent implements OnInit{
       this.auth.registrarse(userRegister).subscribe({
         next: (response) => {
           console.log('Registro Correcto', response);
-          this.router.navigate(["/auth/verificar"]);
+          //this.router.navigate(["/auth/verificar"]);
           //Redireccionar a cartel de correo enviado
+          this.showModal = true;
         },
 
         error: (error) => {
@@ -126,9 +129,13 @@ export class RegisterComponent implements OnInit{
     } else {
       console.log('Form is invalid');
     }
+
   }
 
-
+  closeModal(){
+    this.showModal = false;
+    this.router.navigate(['/auth/login']);
+  }
 
 
 
