@@ -21,8 +21,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["en-US"],
-            "outputPath": "dist/template-angular-ts",
+            "localize": false,
+            "outputPath": "dist/youcreate",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
