@@ -16,38 +16,38 @@ export class HomeService {
 
   /*************Endpoints Ingresos*****************/
   getIncomeById(id: number): Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.apiUrl}/api/ingresos/${id}`);
+    return this.http.get<Income[]>(`${this.apiUrl}api/ingresos/${id}`);
   }
 
   getTotalIncome(id: number):Observable<number> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-totales/${id}`)
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-totales/${id}`)
       .pipe(
         map( ({total}) => total)
       )
   }
 
   getMonthlyIncome(id: number, month: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-por-mes/${id}/${month}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-por-mes/${id}/${month}`);
   }
 
   getAnnualIncome(id: number, year: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-por-anio/${id}/${year}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-por-anio/${id}/${year}`);
   }
 
   /*************Endpoints Pagos-Colaboradores*****************/
   getCollaboratorPayments(): Observable<Payment[]> {
-    return this.http.get<any>(`${this.apiUrl}/api/pagos-colaboradores/`)
+    return this.http.get<any>(`${this.apiUrl}api/pagos-colaboradores/`)
       .pipe(
         map( ({results}) => results )
       )
   }
 
   addPayment(newPayment: Payment):Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/pagos-colaboradores/`, newPayment);
+    return this.http.post<any>(`${this.apiUrl}api/pagos-colaboradores/`, newPayment);
   }
 
   editPayment(payment: any):Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/api/pagos-colaboradores/`, payment);
+    return this.http.put<any>(`${this.apiUrl}api/pagos-colaboradores/`, payment);
   }
 
   /**********************************************************/

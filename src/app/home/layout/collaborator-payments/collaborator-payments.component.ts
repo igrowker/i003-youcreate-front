@@ -50,6 +50,8 @@ export class CollaboratorPaymentsComponent {
 
     const { user_id } = this.tokenService.decodeToken();
     this.colaborador_id = user_id;
+    // console.log(this.colaborador_id);
+
 
     this.getCollaboratorsPayment();
 
@@ -73,9 +75,9 @@ export class CollaboratorPaymentsComponent {
 
   setNewPaymentRegistered(newPayment: Payment) {
 
-    const { monto, fecha_pago, descripcion } = newPayment;
+    const payment = { colaborador_id: this.colaborador_id , ...newPayment };
+    console.log(payment);
 
-    const payment = { colaborador_id: this.colaborador_id , monto, fecha_pago, descripcion };
 
     this.homeService.addPayment(payment).subscribe({
       next: (payment) => {
