@@ -7,7 +7,6 @@ export const AUTH_ROUTES: Routes = [
     component: AuthComponent,
     children: [
       { path: 'register', loadComponent: () => import('./layout/register/register.component').then(c => c.RegisterComponent) },
-      { path: 'autenticado', loadComponent: () => import('./layout/email-register/email-register.component').then(c => c.EmailRegisterComponent) },
       { path: 'login', loadComponent: () => import('./layout/login/login.component').then(c => c.LoginComponent) },
       { path: 'verificar', loadComponent: () => import('./layout/email-verification/email-verification.component').then(c => c.EmailVerificationComponent) },
     ]
