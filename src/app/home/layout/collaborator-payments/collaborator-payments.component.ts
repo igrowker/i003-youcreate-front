@@ -50,8 +50,6 @@ export class CollaboratorPaymentsComponent {
 
     const { user_id } = this.tokenService.decodeToken();
     this.colaborador_id = user_id;
-    // console.log(this.colaborador_id);
-
 
     this.getCollaboratorsPayment();
 
