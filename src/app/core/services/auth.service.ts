@@ -56,8 +56,8 @@ export class AuthService {
   codeVerification(code:verificationCode): Observable<any> {  
     return this.http.post<any>(`${this.url}auth/2fa-verify/`,code)
       .pipe(
-        map(({ access, refresh, user }) => {
-          this.tokenService.saveToken(access);
+        map(({ token, refresh, user }) => {
+          this.tokenService.saveToken(token);
           this.tokenService.saveRefreshToken(refresh)
 
           //*Retorna la información del usuario

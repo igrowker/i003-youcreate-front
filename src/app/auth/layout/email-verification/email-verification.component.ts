@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { TokenService } from '../../../core/services/token.service';
 
 type verificationCode = {
   email:string;
@@ -22,7 +23,8 @@ export class EmailVerificationComponent {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private token: TokenService
   ){}
 
   moveToNext(event: Event, index: number){
@@ -69,12 +71,10 @@ export class EmailVerificationComponent {
     })
   }
 
-
-
-
   closeModal(){
     this.showModal = false;
     sessionStorage.clear();
+    this.token.decodeToken();
     this.router.navigate(['/home']);
   }
 }
