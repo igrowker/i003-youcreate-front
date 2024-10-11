@@ -113,10 +113,9 @@ export class RegisterComponent implements OnInit{
       console.log('Modelo de interfaz:',userRegister);
 
       this.auth.registrarse(userRegister).subscribe({
+        
         next: (response) => {
           console.log('Registro Correcto', response);
-          //this.router.navigate(["/auth/verificar"]);
-          //Redireccionar a cartel de correo enviado
           this.showModal = true;
         },
 

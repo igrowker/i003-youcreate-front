@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-email-verification',
@@ -12,21 +13,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class EmailVerificationComponent {
   code: string[] = ['', '', '', '']
-  generatedCode = '1234';
+  generatedCode = '123456';
   showModal = false
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private auth: AuthService
+  ){}
 
   moveToNext(event: Event, index: number){
     const input = event.target as HTMLInputElement;
-    if(input.value && index < 4){
+    if(input.value && index < 6){
       const nextInput = input.nextElementSibling as HTMLInputElement;
       if(nextInput){
         nextInput.focus()
       }
     }
   }
-
+/*
   verifyCode(){
     const enteredCode = this.code.join('');
     if(enteredCode === this.generatedCode){
@@ -36,6 +40,22 @@ export class EmailVerificationComponent {
       alert('Código incorrecto, por favor trata de nuevo')
     }
   }
+*/
+
+  verifyCode(){
+    const enteredCode =this.code.join('');
+    this.auth.codeVerification(enteredCode).subscribe({
+      next:(resp)=>{
+        console.log(resp);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+  }
+
+
+
 
   closeModal(){
     this.showModal = false;
