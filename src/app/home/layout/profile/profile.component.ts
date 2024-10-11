@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   standalone: true,
   styleUrls: ['./profile.component.css'],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, RouterOutlet, RouterLink]
 })
 export class ProfileComponent /*implements OnInit */{
+
+ 
+
+  
+
   user: any = {};
   profileForm: FormGroup;
 
@@ -20,7 +27,11 @@ export class ProfileComponent /*implements OnInit */{
       email: [''],
       photo: [null]
     });
+
+    
   }
+
+  
 
  /* ngOnInit(): void {
     this.http.get('https://api.example.com/user')
@@ -55,6 +66,8 @@ export class ProfileComponent /*implements OnInit */{
   }
 
   navigateTo(route: string): void {
-    this.router.navigate([route]);
+    this.router.navigate(['/account-data']); 
+
   }
+  
 }

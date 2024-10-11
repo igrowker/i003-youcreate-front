@@ -12,7 +12,7 @@
 
 </div >
     <div class="menu">
-      <div class="menu-item" (click)="navigateTo('personal-info')">
+      <div  class="menu-item" >
         <img src="assets/icons/personal-info.svg" alt="Personal Information Icon">
         <span class="span_one">Información personal</span>
         <button class="btn-icon">
@@ -20,15 +20,17 @@
           </button>
  
       </div>
-      <div class="menu-item" (click)="navigateTo('account-data')">
+      <div class="menu-item" >
         <img src="assets/icons/account-data.svg" alt="Account Data Icon">
         <span class="span_one">Datos de tu cuenta</span>
-        <button class="btn-icon">
-            <img src="assets/icons/arrow-right.svg" alt="Button Icon">
-          </button>
+        <button [routerLink]="['/home','account-data']"  class="btn-icon">
+          <img src="assets/icons/arrow-right.svg" alt="Button Icon">
+        </button>
+      </div>
+   
    
       </div>
-      <div class="menu-item" (click)="navigateTo('security')">
+      <div class="menu-item">
         <img src="assets/icons/security.svg" alt="Security Icon">
         <span class="span_one">Seguridad</span>
         <button class="btn-icon">
@@ -36,7 +38,7 @@
           </button>
     
       </div>
-      <div class="menu-item" (click)="navigateTo('card')">
+      <div class="menu-item">
         <img src="assets/icons/credit-card.svg" alt="cardCredit Icon">
         <span class="span_one"><strong>Tarjetas</strong></span>
         <button class="btn-icon">
@@ -61,5 +63,5 @@
       
       </div>
     </div>
-  </div>
+
   
