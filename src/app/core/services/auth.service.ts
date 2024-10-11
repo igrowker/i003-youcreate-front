@@ -8,6 +8,10 @@ type loginBody = {
   email:string;
   password:string;
 }
+type verificationCode = {
+  email:string;
+  otp_code:string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +21,6 @@ export class AuthService {
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
   private url = environment.apiUrl;
-  private _currentUser = signal<any|null>(null);
-
-  public currentUser = computed( () => this._currentUser() )
 
   constructor(
     private http: HttpClient,
@@ -31,36 +32,16 @@ export class AuthService {
     return this.http.post<any>( `${this.url}auth/registration/`,user);
   }
 
-
-
   login( loginBody:loginBody ): Observable<any> {
-    return this.http.post<any>( `${this.url}auth/login/`,loginBody)
-       .pipe(
-         map(({access, refresh, user}) => {
-
-           //*Se guardan los tokens en localstorage
-           this.tokenService.saveToken(access);
-           this.tokenService.saveRefreshToken(refresh)
-
-           //*Retorna la información del usuario
-           this._currentUser.set(user)
-           return user;
-         }),
-
-         catchError ( error => throwError( () =>  error))
-       )
+    return this.http.post<any>( `${this.url}auth/2fa-login/`,loginBody);
   }
 
-  codeVerification(code: string): Observable<any> {
-    return this.http.post<any>(`${this.url}auth/2fa-verify/`, { code })
+  codeVerification(code:verificationCode): Observable<any> {  
+    return this.http.post<any>(`${this.url}auth/2fa-verify/`,code)
       .pipe(
-        map(({ access, refresh, user }) => {
-          this.tokenService.saveToken(access);
+        map(({ token, refresh }) => {
+          this.tokenService.saveToken(token);
           this.tokenService.saveRefreshToken(refresh)
-
-          //*Retorna la información del usuario
-          this._currentUser.set(user)
-          return user;
         }),
 
         catchError(error => throwError(() => error))

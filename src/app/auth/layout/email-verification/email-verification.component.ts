@@ -3,6 +3,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { TokenService } from '../../../core/services/token.service';
+
+type verificationCode = {
+  email:string;
+  otp_code:string;
+}
 
 @Component({
   selector: 'app-email-verification',
@@ -12,13 +18,13 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './email-verification.component.css'
 })
 export class EmailVerificationComponent {
-  code: string[] = ['', '', '', '']
-  generatedCode = '123456';
-  showModal = false
+  code: string[] = ['', '', '', '','',''];
+  showModal = false;
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private token: TokenService
   ){}
 
   moveToNext(event: Event, index: number){
@@ -43,10 +49,21 @@ export class EmailVerificationComponent {
 */
 
   verifyCode(){
+    
     const enteredCode =this.code.join('');
-    this.auth.codeVerification(enteredCode).subscribe({
+    const email = sessionStorage.getItem('email') || '';
+    
+    const code: verificationCode = {
+      otp_code: enteredCode,
+      email: email
+    };
+
+    console.log(code);
+
+    this.auth.codeVerification(code).subscribe({
       next:(resp)=>{
         console.log(resp);
+        this.showModal = true
       },
       error:(err)=>{
         console.log(err);
@@ -54,11 +71,10 @@ export class EmailVerificationComponent {
     })
   }
 
-
-
-
   closeModal(){
     this.showModal = false;
+    sessionStorage.clear();
+    this.token.decodeToken();
     this.router.navigate(['/home']);
   }
 }
