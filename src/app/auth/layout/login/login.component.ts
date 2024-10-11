@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit{
         .subscribe({
           next: (resp) => {
             console.log(resp);
-            this.router.navigateByUrl('/home');
+
+            sessionStorage.setItem('email',this.loginForm.value.email);
+            
+            this.router.navigateByUrl('/auth/verificar');
           },
           error: (message) => {
             console.log(message);
@@ -47,6 +50,5 @@ export class LoginComponent implements OnInit{
     }else{
       console.log('Datos no Incorrectos')
     }
-
   }
 }
