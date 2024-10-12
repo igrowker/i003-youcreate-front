@@ -73,7 +73,7 @@ export class CollaboratorPaymentsComponent {
 
   setNewPaymentRegistered(newPayment: Payment) {
 
-    const payment = { colaborador_id: this.colaborador_id , ...newPayment };
+    const payment = { colaborador_id: 1, ...newPayment };
     console.log(payment);
 
 
