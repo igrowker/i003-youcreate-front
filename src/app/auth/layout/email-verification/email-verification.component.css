@@ -1,4 +1,14 @@
 /* email-verification.component.css */
+
+input{
+  width: 3vw;
+  height: 6vh;
+  
+  border-radius: 5px;
+
+  margin: 0 1vw;
+}
+
 .modal {
   position: fixed;
   top: 0;

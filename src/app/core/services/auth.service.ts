@@ -1,7 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { TokenService } from './token.service';
+import { environment } from '../../../environments/environment';
+
+type loginBody = {
+  email:string;
+  password:string;
+}
+type verificationCode = {
+  email:string;
+  otp_code:string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -10,38 +20,34 @@ export class AuthService {
 
   private readonly refreshTokenUrl = ''; //Url para enviar el token de refresco y solicitar un nuevo token de acceso
   private refreshTokenInterval: any;
-  private url = 'https://you-create-backend-service.onrender.com/';
- // private url = 'http://localhost:8000/';
-  private _currentUser = signal<any|null>(null);
-
-  public currentUser = computed( () => this._currentUser() )
+  private url = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
 
+
   registrarse( user : any ): Observable<any> {
-    return this.http.post<any>( this.url+`auth/registration/`, user);
+    return this.http.post<any>( `${this.url}auth/registration/`,user);
   }
 
-  login( email: string, password: string ): Observable<any> {
-    return this.http.post<any>( `${this.url}auth/login/`,{email, password})
-      .pipe(
-        map(({access, refresh, user}) => {
-          //*Se guardan los tokens en localstorage
-          this.tokenService.saveToken(access);
-          this.tokenService.saveRefreshToken(refresh)
+  login( loginBody:loginBody ): Observable<any> {
+    return this.http.post<any>( `${this.url}auth/2fa-login/`,loginBody);
+  }
 
-          //*Retorna la información del usuario
-          this._currentUser.set(user)
-          return user;
+  codeVerification(code:verificationCode): Observable<any> {  
+    return this.http.post<any>(`${this.url}auth/2fa-verify/`,code)
+      .pipe(
+        map(({ token, refresh }) => {
+          this.tokenService.saveToken(token);
+          this.tokenService.saveRefreshToken(refresh)
         }),
 
-        catchError ( error => throwError( () =>  error))
+        catchError(error => throwError(() => error))
       )
-
   }
+
 
   startRefreshTokenTimer(): void {
     this.refreshTokenInterval = setInterval(() => {

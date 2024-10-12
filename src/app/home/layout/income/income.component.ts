@@ -10,10 +10,10 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 import { SwapGraphicsComponent } from '../../components/specific/swap-graphics/swap-graphics.component';
 
-import { HomeService } from '../../../services/home.service';
 import { PaginatorService } from '../../../services/paginator.service';
 import { TokenService } from '../../../core/services/token.service';
 import { RegisterIncomeDialogComponent } from '../../components/register-income-dialog/register-income-dialog.component';
+import { IngresosService } from '../../../services/ingresos.service';
 
 
 @Component({
@@ -88,7 +88,7 @@ export class IncomeComponent implements OnInit{
 
   constructor(
     private paginatorService: PaginatorService,
-    private homeService: HomeService,
+    private ingresosService: IngresosService,
     private tokenService: TokenService,
   ) {}
 
@@ -104,10 +104,9 @@ export class IncomeComponent implements OnInit{
 
   getIncomeData(userId: number):void {
     this.isLoadingMonth = true;
-    this.homeService.getIncomeById(userId).subscribe({
+    this.ingresosService.getAllIngresos(userId).subscribe({
       next: (resp) => {
-        console.log(resp);
-        this.incomeList = resp;
+        Array.isArray(resp) ? this.incomeList = resp : this.incomeList = [];
         this.isLoadingMonth = false;
       },
       error: (err) => {
@@ -119,8 +118,10 @@ export class IncomeComponent implements OnInit{
 
   getTotalIncome(userId: number):void {
 
-    this.homeService.getTotalIncome(userId).subscribe({
-      next: (total) => this.totalIncome.set(total),
+    this.ingresosService.getTotalIngresos(userId).subscribe({
+      next: (total) => {
+        total !== null ? this.totalIncome.set(total) : this.totalIncome.set(0);
+      },
       error: err => console.error(err)
     })
 
