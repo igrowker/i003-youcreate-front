@@ -8,8 +8,7 @@
 
 canvas{
   box-sizing: border-box;
-  width: 100% !important;
-  height: 20vh !important;
-  max-height: 400px; 
+  width: 200px !important;
+  height: 200px !important;
 }
 

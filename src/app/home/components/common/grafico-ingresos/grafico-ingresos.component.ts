@@ -13,34 +13,16 @@ import { isPlatformBrowser } from '@angular/common';
 export class GraficoIngresosComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('chartCanvas',{static:false}) chartCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild ('chartContainer',{static:false}) chartContainer!: ElementRef<HTMLDivElement>;
-
   @Input() valores!: number[];
   chart: Chart | null = null;
-  resizeObserver!: ResizeObserver;
-  isBrowser:boolean;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object){
-    this.isBrowser= isPlatformBrowser(this.platformId);
-  }
+ 
+  constructor(){}
 
   ngAfterViewInit(): void {
-    if(this.isBrowser){
-      window.dispatchEvent(new Event('resize'));
-      this.createChart();
-
-      this.resizeObserver = new ResizeObserver(()=>{
-        this.resizeChart(); //Cuando el contenedor cambie, redibuja el grafico
-      });
-  
-      this.resizeObserver.observe(this.chartContainer.nativeElement);
-    }
+    this.createChart();
   }
 
   ngOnDestroy(){
-    if(this.resizeObserver){
-      this.resizeObserver.disconnect();
-    }
     if(this.chart){
       this.chart.destroy();
     }
@@ -76,7 +58,7 @@ export class GraficoIngresosComponent implements AfterViewInit, OnDestroy {
     };
 
     const options = {
-      responsive: true,
+      responsive: false,
       maintainAspectRatio: false,
       layout: {
         padding: 5
@@ -104,12 +86,6 @@ export class GraficoIngresosComponent implements AfterViewInit, OnDestroy {
       });
     }else{
       console.log("Error: Fallo al adquirir contexto.");
-    }
-  }
-
-  resizeChart(){
-    if(this.chart){
-      this.chart.resize();
     }
   }
 
