@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Income } from '../core/models/income.interface';
 import { environment } from '../../environments/environment';
 
@@ -55,7 +55,13 @@ export class IngresosService {
 
   // * `POST /ingresos/` - Crear un nuevo ingreso
   postIngreso(newIncome: Income):Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/ingresos`,newIncome);
+    return this.http.post<any>(`${this.apiUrl}/api/ingresos`,newIncome)
+      .pipe(
+        catchError( err => {
+          console.error('An error occurred:', err);
+          return throwError(()=>new Error('No se pudo crear el ingreso'));
+        })
+      );
   }
 
 }

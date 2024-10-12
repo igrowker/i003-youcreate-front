@@ -14,6 +14,7 @@ import { HomeService } from '../../../services/home.service';
 import { PaginatorService } from '../../../services/paginator.service';
 import { TokenService } from '../../../core/services/token.service';
 import { RegisterIncomeDialogComponent } from '../../components/register-income-dialog/register-income-dialog.component';
+import { IngresosService } from '../../../services/ingresos.service';
 
 
 @Component({
@@ -90,6 +91,7 @@ export class IncomeComponent implements OnInit{
     private paginatorService: PaginatorService,
     private homeService: HomeService,
     private tokenService: TokenService,
+    private ingresosService: IngresosService
   ) {}
 
   ngOnInit(): void {
@@ -222,6 +224,15 @@ export class IncomeComponent implements OnInit{
 
   setNewIncomeRegistered(newIncome: any) {
     console.log(newIncome);
+    this.ingresosService.postIngreso(newIncome)
+      .subscribe({
+        next:(resp)=>{
+          console.log('ingreso creado',resp);
+        },
+        error:(err)=>{
+          console.log('Error al cargar ingreso', err);
+        }
+      });
   }
 
 }
