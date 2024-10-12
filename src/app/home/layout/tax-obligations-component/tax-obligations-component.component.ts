@@ -49,6 +49,7 @@ export class TaxObligationsComponentComponent {
       next: (data) => {
         //console.log(data);
         this.obligations = data;
+       // console.log(this.obligations);
       },
       error: (error) => {
         console.error(error);
