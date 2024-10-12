@@ -28,8 +28,9 @@ export class RegisterPaymentsDialogComponent implements OnInit{
 
   ngOnInit(): void {
       this.registerPaymentsForm = this.fb.group({
-        name: ['', [Validators.required]],
-        wallet: ['', [Validators.required]],
+        nombre: ['', [Validators.required]],
+        apellido: ['', [Validators.required]],
+        metodo_pago: ['', [Validators.required]],
         fecha_pago: ['', [Validators.required, this.validDateValidator]],
         descripcion: ['', [Validators.required]],
         monto: [0, [Validators.required, Validators.min(500)]],
@@ -82,6 +83,16 @@ export class RegisterPaymentsDialogComponent implements OnInit{
 
     return  errorMessage;
 
+  }
+
+  setErrorName(): string {
+    if(this.registerPaymentsForm.get('nombre')?.errors) {
+      return  this.setFormErrorMessage(this.registerPaymentsForm.get('nombre')?.errors);
+    }else if (this.registerPaymentsForm.get('apellido')?.errors){
+      return  this.setFormErrorMessage(this.registerPaymentsForm.get('apellido')?.errors);
+    }
+
+    return '';
   }
 
 

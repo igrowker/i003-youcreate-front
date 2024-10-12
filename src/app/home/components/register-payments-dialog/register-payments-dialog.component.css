@@ -150,3 +150,8 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #7e008f #f1f1f1;
 }
+
+.name {
+  display: flex;
+  gap: 5px;
+}

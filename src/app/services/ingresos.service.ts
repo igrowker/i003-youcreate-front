@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Income } from '../core/models/income.interface';
 import { environment } from '../../environments/environment';
 
@@ -15,19 +15,19 @@ export class IngresosService {
 
   //ARREGLOS DE INGRESOS
 
- //  `GET /ingresos/<int:usuario_id>/` - Listar todos los ingresos de un usuario 
+ //  `GET /ingresos/<int:usuario_id>/` - Listar todos los ingresos de un usuario
   getAllIngresos(userId: number): Observable <Income[]> {
-    return this.http.get<Income[]>(`${this.apiUrl}/api/ingresos/${userId}`);
+    return this.http.get<Income[]>(`${this.apiUrl}api/ingresos/${userId}`);
   }
 
   // * `GET /ingresos-de-un-mes/<int:usuario_id>/<int:mes>/<int:anio>/` - Obtener los ingresos de un usuario por mes y año
   getIngresosDelMes(userId: number, mes: number, anio: number):Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.apiUrl}/api/ingresos-de-un-mes/${userId}/${mes}/${anio}`);
+    return this.http.get<Income[]>(`${this.apiUrl}api/ingresos-de-un-mes/${userId}/${mes}/${anio}`);
   }
 
   // * `GET /ingresos-de-un-anio/<int:usuario_id>/<int:anio>/` - Obtener los ingresos de un usuario por año
   getIngresosDelAnio(userId: number, anio: number):Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.apiUrl}/api/ingresos-de-un-anio/${userId}/${anio}`);
+    return this.http.get<Income[]>(`${this.apiUrl}api/ingresos-de-un-anio/${userId}/${anio}`);
   }
 
 
@@ -35,19 +35,22 @@ export class IngresosService {
 
   // * `GET /ingresos-totales/<int:usuario_id>/` - Obtener el total de ingresos de un usuario
   getTotalIngresos(userId: number):Observable <any>{
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-totales/${userId}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-totales/${userId}`)
+    .pipe(
+      map( ({total}) => total )
+    )
   }
 
 
   // * `GET /ingreso-total-en-un-mes/<int:usuario_id>/<int:mes>/<int:anio>/` - Obtener el total de ingresos de un usuario por mes y año
   getTotalDelMes(userId: number, mes: number, anio: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-total-en-un-mes/${userId}/${mes}/${anio}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-total-en-un-mes/${userId}/${mes}/${anio}`);
   }
 
 
   // * `GET /ingreso-total-en-un-anio/<int:usuario_id>/<int:anio>/` - Obtener el total de ingresos de un usuario por año
   getTotalDelAnio(userId: number, anio: number) {
-    return this.http.get<any>(`${this.apiUrl}/api/ingresos-total-en-un-anio/${userId}/${anio}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingresos-total-en-un-anio/${userId}/${anio}`);
   }
 
 
@@ -55,7 +58,7 @@ export class IngresosService {
 
   // * `POST /ingresos/` - Crear un nuevo ingreso
   postIngreso(newIncome: Income):Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/ingresos`,newIncome);
+    return this.http.post<any>(`${this.apiUrl}api/ingresos`,newIncome);
   }
 
 }
