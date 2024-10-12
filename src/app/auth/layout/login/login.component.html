@@ -6,7 +6,7 @@
             <img src="../../../../assets/logoHeader.png" alt="">
         </div>
 
-        <h2>Inicia Sesión</h2>
+        <h2 class="title">Iniciar sesión</h2>
 
         <p>¿No tienes una cuenta?</p> <a href="/auth/register">Regístrate aquí</a>
 
@@ -25,12 +25,12 @@
                 <input type="password" formControlName="password" placeholder="Password" />
                 <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                     <small *ngIf="loginForm.get('password')?.errors?.['required']">Password es requerido</small>
-                    <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Miimo 6 carácteres</small>                
+                    <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Miimo 8 carácteres</small>
                 </div>
             </div>
 
         <!--BOTON DE ACCESO-->
-            <button class="btn primary-btn" type="submit" [disabled]="loginForm.invalid">Ingresar</button>      
+            <button class="btn primary-btn" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
         </form>
 
         <!-- <div class="divider">

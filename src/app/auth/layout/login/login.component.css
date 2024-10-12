@@ -5,6 +5,7 @@
     align-items: center;
     height: 100vh;
     background-color: #f3e8ff;
+    font-family: 'Poppins';
 }
 
 .login-container{
@@ -15,6 +16,7 @@
     width: 400px;
     text-align: center;
     margin: 50px auto;
+    font-family: 'Poppins';
 }
 
 .logo.img{
