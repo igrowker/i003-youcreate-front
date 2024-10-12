@@ -10,7 +10,7 @@ import { Payment } from '../../../core/models/payment.interface';
 import { RegisterPaymentsDialogComponent } from '../../components/register-payments-dialog/register-payments-dialog.component';
 import { TokenService } from '../../../core/services/token.service';
 
-import { HomeService } from '../../../services/home.service';
+import { PagosService } from '../../../services/pagos.service';
 import { PaginatorService } from '../../../services/paginator.service';
 import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
@@ -41,7 +41,7 @@ export class CollaboratorPaymentsComponent {
 
   constructor(
     private paginatorService: PaginatorService,
-    private homeService: HomeService,
+    private pagosService: PagosService,
     private tokenService: TokenService,
     public dialog: MatDialog
   ) {}
@@ -58,7 +58,7 @@ export class CollaboratorPaymentsComponent {
   getCollaboratorsPayment() {
 
     this.isLoading = true;
-    this.homeService.getCollaboratorPayments().subscribe({
+    this.pagosService.getCollaboratorPayments().subscribe({
       next: (resp) => {
         this.collaborators = resp;
         this.collaboratorsHistory = [...this.collaborators];
@@ -77,7 +77,7 @@ export class CollaboratorPaymentsComponent {
     console.log(payment);
 
 
-    this.homeService.addPayment(payment).subscribe({
+    this.pagosService.addPayment(payment).subscribe({
       next: (payment) => {
         this.collaborators.push(payment);
         this.collaboratorsHistory = [...this.collaborators]

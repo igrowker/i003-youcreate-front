@@ -8,7 +8,7 @@ import { Payment } from '../core/models/payment.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class PagosService {
 
   private apiUrl = environment.apiUrl;
 
