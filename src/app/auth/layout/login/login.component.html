@@ -8,7 +8,9 @@
 
         <h2 class="title">Iniciar sesión</h2>
 
-        <p>¿No tienes una cuenta?</p> <a href="/auth/register">Regístrate aquí</a>
+        <div class="link-registro">
+          <p class="question">¿No tienes una cuenta?</p> <a href="/auth/register" class="link">Regístrate aquí</a>
+        </div>
 
         <!--CAMPO EMAIL-->
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

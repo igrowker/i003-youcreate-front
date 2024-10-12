@@ -4,9 +4,11 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: #f3e8ff;
 }
 
 .verification-card {
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 33px;
