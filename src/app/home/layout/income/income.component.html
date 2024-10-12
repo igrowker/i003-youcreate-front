@@ -3,7 +3,7 @@
 
     <div class="price rectangle">
       <span class="currency">ARS</span>
-      @if(totalIncome() !== 0) {
+      @if(totalIncome() >= 0) {
         <span class="price-number">${{ totalIncome() | numberWithDots }}</span>
       }@else {
         <p>Sin ingresos registrados</p>
@@ -56,13 +56,6 @@
 
       <div class="table-container">
         @if (!isLoadingMonth && filterByMonth().length > 0) {
-          <!-- <div class="buttons-header">
-            <button class="add-button">
-              <img class="icon" src="assets/icons/add.svg" alt="icon">
-              <span>Agregar ingreso</span>
-            </button>
-            <register-payments-dialog #dialog (formValues)="setNewPaymentRegistered($event)"/>
-          </div> -->
           <table class="payment-table">
               <thead class="header-titles">
                 <tr>

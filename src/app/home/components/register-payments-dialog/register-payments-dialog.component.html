@@ -11,15 +11,24 @@
       >
         <div class="form-group">
           <label for="nombre">¿A quién le vas a pagar?</label>
-          <input
-            formControlName="name"
-            type="text"
-            id="nombre"
-            placeholder="Nombre y Apellido"
-          />
-          @if (registerPaymentsForm.get('name')?.touched) {
+          <div class="name">
+            <input
+              formControlName="nombre"
+              type="text"
+              id="nombre"
+              placeholder="Nombre"
+            />
+
+            <input
+              formControlName="apellido"
+              type="text"
+              id="nombre"
+              placeholder="Apellido"
+            />
+          </div>
+          @if (registerPaymentsForm.get('nombre')?.touched || registerPaymentsForm.get('apellido')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerPaymentsForm.get('name')?.errors) }}
+              {{ setErrorName() }}
             </span>
           }
         </div>
@@ -27,7 +36,7 @@
         <div class="form-group custom-select-container">
           <label for="wallet">Elige una billetera</label>
           <select
-            formControlName="wallet"
+            formControlName="metodo_pago"
             id="wallet"
             class="custom-select"
           >
@@ -36,9 +45,9 @@
               <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
             }
           </select>
-          @if (registerPaymentsForm.get('wallet')?.touched) {
+          @if (registerPaymentsForm.get('metodo_pago')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerPaymentsForm.get('wallet')?.errors) }}
+              {{ setFormErrorMessage(registerPaymentsForm.get('metodo_pago')?.errors) }}
             </span>
           }
         </div>

@@ -3,9 +3,9 @@
     <div class="logo">
       <img src="../../../../assets/logoHeader.png" alt="Logo">
     </div>
-    <h2>Verificación de Seguridad</h2>
-    <p>Hemos enviado un código de verificacón a tu email. Por favor, ingrésalo a continuación para verificar tu cuenta.</p>
-    <div class="codeinputs">
+    <h2 class="title">Verificación de Seguridad</h2>
+    <p class="message">Hemos enviado un código de verificacón a tu email. Por favor, ingrésalo a continuación para verificar tu cuenta.</p>
+    <div class="code-Inputs">
       <input type="text" maxlength="1" [(ngModel)]="code[0]" (input)="moveToNext($event, 1)">
       <input type="text" maxlength="1" [(ngModel)]="code[1]" (input)="moveToNext($event, 2)">
       <input type="text" maxlength="1" [(ngModel)]="code[2]" (input)="moveToNext($event, 3)">
@@ -22,9 +22,9 @@
       <div class="modal-logo">
         <img src="../../../../assets/logoHeader.png" alt="Logo" />
       </div>
-  
+
       <h2>¡Verificación Completada!</h2>
-  
+
       <img src="../../../../assets/check.png" alt="Verificado" class="modal-image" />
       <p>Tu cuenta ha sido verificada Exitosamente</p>
       <button (click)="closeModal()" class="continue-btn">Continuar</button>

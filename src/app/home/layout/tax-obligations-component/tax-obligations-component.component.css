@@ -32,11 +32,12 @@
 .fiscal-header {
   display: flex;
   justify-content: space-between;
+  width: 90%;
 
   
   font-family: var(--secondary-font);
   font-size: 12px;
-  gap: 32px;
+  gap: 2vw;
   color: #000;
   
  
