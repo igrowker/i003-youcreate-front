@@ -6,7 +6,7 @@
       @if(totalIncome() !== 0) {
         <span class="price-number">${{ totalIncome() | numberWithDots }}</span>
       }@else {
-        <p>Cargando...</p>
+        <p>Sin ingresos registrados</p>
       }
     </div>
 
@@ -97,7 +97,7 @@
             </table>
             <paginator [dataList]="incomeList" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
         }@else if( !isLoadingMonth && filterByMonth().length === 0 ) {
-          <span class="empty-message">No hay información disponible en este momento</span>
+          <span class="empty-message">Sin ingresos registrados</span>
         }
 
         @if (isLoadingMonth) {
