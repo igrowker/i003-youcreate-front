@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog'; 
+import { Card } from '../../../../core/models/card.interface';
 
 interface CardData {
   paymentStatus: 'paid' | 'pending' | 'overdue';
@@ -14,9 +15,15 @@ interface CardData {
   templateUrl: './card-dashboard.component.html',
   styleUrl: './card-dashboard.component.css'
 })
-export class CardDashboardComponent {
+export class CardDashboardComponent implements OnInit{
   
+  @Input() datos!:Card;
+
   constructor(private dialog: MatDialog) {} 
+  
+  ngOnInit(): void {
+    
+  }
 
   cardData: CardData = {
     paymentStatus: 'pending' 
@@ -28,7 +35,7 @@ export class CardDashboardComponent {
         title: action === 'pay' ? 'Confirmar Pago' : 'Detalle del Pago',
         message: action === 'pay'
           ? '¿Deseas confirmar el pago de este impuesto?'
-          : 'Detalles del impuesto seleccionado.'
+          : this.datos.details
       }
     });
 

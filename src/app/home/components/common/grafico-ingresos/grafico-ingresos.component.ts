@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-grafico-ingresos',
@@ -58,7 +57,7 @@ export class GraficoIngresosComponent implements AfterViewInit, OnDestroy {
     };
 
     const options = {
-      responsive: false,
+      responsive: true,
       maintainAspectRatio: false,
       layout: {
         padding: 5
@@ -69,8 +68,8 @@ export class GraficoIngresosComponent implements AfterViewInit, OnDestroy {
           labels: {
             boxWidth: 10,
             font: {
-              size: 10,
-              weight: 700
+              size: 15,
+              weight: 800
             }
           }
         }
