@@ -90,7 +90,6 @@ export class IncomeComponent implements OnInit{
     private paginatorService: PaginatorService,
     private ingresosService: IngresosService,
     private tokenService: TokenService,
-    private ingresosService: IngresosService
   ) {}
 
   ngOnInit(): void {
@@ -224,6 +223,7 @@ export class IncomeComponent implements OnInit{
 
   setNewIncomeRegistered(newIncome: any) {
     console.log(newIncome);
+    
     this.ingresosService.postIngreso(newIncome)
       .subscribe({
         next:(resp)=>{

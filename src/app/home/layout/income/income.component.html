@@ -70,20 +70,13 @@
                 @for (income of filterByMonth(); track income) {
                   <tr>
                     <td>{{ income.origen }}</td>
-                    <td>{{ income.date | date:'MM/dd/yyyy' }}</td>
+                    <td>{{ income.fecha| date:'dd/MM/yyyy' }}</td>
                     <td>
                       <span>{{ currency }} </span>
-                      <span>{{ income.total | numberWithDots }} </span>
+                      <span>{{ income.monto| numberWithDots }} </span>
                     </td>
-                    <td class="td-category">
-                      <btn-dropdown
-                        [options]="categoryOptions"
-                        label="categoria"
-                      />
-                    </td>
-                    <td class="td-description">
-                      <button class="btn-base">Descripción</button>
-                    </td>
+                    <td>{{income.origen}}</td>
+                    <td>{{income.descripcion}}</td>
                   </tr>
                 }
               </tbody>

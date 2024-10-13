@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Income } from '../core/models/income.interface';
 import { environment } from '../../environments/environment';
 
@@ -32,7 +32,6 @@ export class IngresosService {
 
 
   //TOTALES
-
   // * `GET /ingresos-totales/<int:usuario_id>/` - Obtener el total de ingresos de un usuario
   getTotalIngresos(userId: number):Observable <any>{
     return this.http.get<any>(`${this.apiUrl}api/ingresos-totales/${userId}`)
@@ -57,8 +56,17 @@ export class IngresosService {
   //NUEVO INGRESO
 
   // * `POST /ingresos/` - Crear un nuevo ingreso
+
   postIngreso(newIncome: Income):Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/ingresos`,newIncome)
+    const prueba = {
+      "monto": 10000,
+      "origen": "Test",
+      "fecha": "2024/10/12",
+      "categoria": "youtube",
+      "descripcion": "Una prueba"
+    }
+    
+    return this.http.post<any>(`${this.apiUrl}api/ingresos/`,prueba)
       .pipe(
         catchError( err => {
           console.error('An error occurred:', err);

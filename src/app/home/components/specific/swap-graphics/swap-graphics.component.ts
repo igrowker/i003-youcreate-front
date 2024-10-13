@@ -5,6 +5,7 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IngresosService } from '../../../../services/ingresos.service';
 import { Income } from '../../../../core/models/income.interface';
+import { TokenService } from '../../../../core/services/token.service';
 
 @Component({
   selector: 'app-swap-graphics',
@@ -44,7 +45,8 @@ export class SwapGraphicsComponent implements OnInit{
   ];
 
   constructor(
-    private ingresosService: IngresosService
+    private ingresosService: IngresosService,
+    private tokenService: TokenService
   ){}
   ngOnInit() {
     this.ingresosDelMes();
@@ -55,7 +57,15 @@ export class SwapGraphicsComponent implements OnInit{
 
 
   ingresosDelMes(){
-    console.log(this.ingresosMensuales);
+    const id = this.tokenService.getUserId();
+    this.ingresosService.getIngresosDelMes(id,10,2024).subscribe({
+      next: (rta)=>{
+        console.log(rta);
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    });
   }
 
 }
