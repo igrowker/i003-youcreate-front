@@ -89,8 +89,6 @@ export class RegisterComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
-    console.log(this.registerForm.valid);
     if (this.registerForm.valid) {
 
       const userRegister: UserRegister = {
@@ -110,11 +108,10 @@ export class RegisterComponent implements OnInit{
         numero_fiscal: '1',
       }
 
-      console.log('Modelo de interfaz:',userRegister);
-
       this.auth.registrarse(userRegister).subscribe({
         
         next: (response) => {
+          localStorage.clear();
           console.log('Registro Correcto', response);
           this.showModal = true;
         },

@@ -12,14 +12,14 @@
         <div class="form-group">
           <label for="nombre">¿Quién te pagó?</label>
           <input
-            formControlName="name"
+            formControlName="origen"
             type="text"
             id="nombre"
             placeholder="Nombre y Apellido"
           />
-          @if (registerIncomeForm.get('name')?.touched) {
+          @if (registerIncomeForm.get('origen')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerIncomeForm.get('name')?.errors) }}
+              {{ setFormErrorMessage(registerIncomeForm.get('origen')?.errors) }}
             </span>
           }
         </div>
@@ -46,14 +46,14 @@
         <div class="form-group">
           <label for="date">Fecha del pago</label>
           <input
-            formControlName="fecha_pago"
+            formControlName="fecha"
             type="date"
             id="date"
             placeholder="DD/MM/AAAA"
           />
-          @if (registerIncomeForm.get('fecha_pago')?.touched) {
+          @if (registerIncomeForm.get('fecha')?.touched) {
             <span class="error-message">
-              {{ setFormErrorMessage(registerIncomeForm.get('fecha_pago')?.errors) }}
+              {{ setFormErrorMessage(registerIncomeForm.get('fecha')?.errors) }}
             </span>
           }
         </div>

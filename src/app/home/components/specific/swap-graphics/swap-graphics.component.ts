@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GraficoIngresosComponent } from "../../common/grafico-ingresos/grafico-ingresos.component";
 import { GraficoLinealComponent } from "../../common/grafico-lineal/grafico-lineal.component";
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IngresosService } from '../../../../services/ingresos.service';
+import { Income } from '../../../../core/models/income.interface';
+import { TokenService } from '../../../../core/services/token.service';
+import { DateService } from '../../../../services/date.service';
 
 @Component({
   selector: 'app-swap-graphics',
@@ -11,7 +15,83 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './swap-graphics.component.html',
   styleUrl: './swap-graphics.component.css'
 })
-export class SwapGraphicsComponent {
+export class SwapGraphicsComponent implements OnInit{
 
   elegido: string = 'donut';
+
+  totalCategoria :{[key:string]:number}  = {
+    youtube:0,
+    twitch:0,
+    campania:0,
+    colaboradores:0,
+    regalos:0,
+  }
+
+  ingresosMensuales = [
+    {
+      "monto":"20000",
+      "origen":"youtube",
+      "fecha":"10/10/2024",
+      "descripcion":"publicidad",
+    },
+    {
+      "monto":"20000",
+      "origen":"twitch",
+      "fecha":"09/10/2024",
+      "descripcion":"publicidad",
+    },
+    {
+      "monto":"30000",
+      "origen":"youtube",
+      "fecha":"10/10/2024",
+      "descripcion":"publicidad",
+    },
+    {
+      "monto":"10000",
+      "origen":"youtube",
+      "fecha":"10/10/2024",
+      "descripcion":"publicidad",
+    }
+  ];
+
+  constructor(
+    private ingresosService: IngresosService,
+    private tokenService: TokenService,
+    private dateService: DateService
+  ){}
+  ngOnInit() {
+    this.ingresosDelMes();
+  }
+
+  /*monto origen fecha descripcion */
+
+
+
+  ingresosDelMes(){
+    const id = this.tokenService.getUserId();
+    const mes = this.dateService.getMesActual();
+    const anio = this.dateService.getAnioActual();
+    this.ingresosService.getIngresosDelMes(id,mes,anio).subscribe({
+      next: (rta)=>{
+        console.log(rta);
+        //this.sumarIngresos(rta);
+        console.log(this.totalCategoria);
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    });
+  }
+
+  sumarIngresos(ingresos: Income[]){
+    ingresos.forEach( (ing)=>{
+      const categoria = ing.categoria || '';
+      const monto = Number(ing.monto);
+      console.log(ing);
+      if(this.totalCategoria.hasOwnProperty(categoria)){
+        this.totalCategoria[categoria] += monto;
+      }
+    });
+  }
+
 }

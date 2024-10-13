@@ -1,15 +1,6 @@
-
-
-.graphic-container{
-  position: relative;
-  width: 95%; /*Minimo 290px*/
-  max-height: 62.5%; /*Minimo 130*/
-}
-
 canvas{
   box-sizing: border-box;
-  width: 100% !important;
-  height: 20vh !important;
-  max-height: 400px; 
+  width: 40vw !important;
+  height: 200px !important;
 }
 

@@ -3,29 +3,10 @@
     <div class="col">
       <h4>Ingresos totales Septiembre</h4>
     </div>
-  
-    <div class="col-3">
-      <div class="selector">
-        <input type="radio" class="btn-check" name="options" id="donut" autocomplete="off" [(ngModel)]="elegido"
-          value="donut" checked>
-        <label class="btn" for="donut">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" viewBox="0 0 24 24"><path fill="white" d="m16.18 19.6l-2.01-3.48c.98-.72 1.66-1.84 1.8-3.12H20a8.55 8.55 0 0 1-3.82 6.6M13 7.03V3c4.3.26 7.74 3.7 8 8h-4.03A4.49 4.49 0 0 0 13 7.03M7 12.5c0 .64.13 1.25.38 1.8L3.9 16.31A8.4 8.4 0 0 1 3 12.5C3 7.97 6.54 4.27 11 4v4.03c-2.25.25-4 2.15-4 4.47m4.5 8.5c-2.97 0-5.58-1.5-7.1-3.82l3.48-2.01A4.47 4.47 0 0 0 11.5 17c.64 0 1.25-.13 1.8-.38l2.01 3.48c-1.15.58-2.44.9-3.81.9"/></svg>
-        </label>
-  
-        <input type="radio" class="btn-check" name="options" id="lines" autocomplete="off" [(ngModel)]="elegido"
-          value="line">
-        <label class="btn" for="lines">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.75 1.75v12.5h12.5m-9-3v-2.5m4 2.5v-5.5m4 5.5v-8.5"/></svg>
-        </label>
-      </div>
-    </div>
   </div>
 
 
   <div>
-    <app-grafico-ingresos [valores]="[123,32,14,231,85]" *ngIf="elegido === 'donut'">
-    </app-grafico-ingresos>
-  
-    <app-grafico-lineal *ngIf="elegido === 'line'"></app-grafico-lineal>
+    <app-grafico-ingresos [valores]="[123,32,14,231,85]" ></app-grafico-ingresos>
   </div>
 </div>

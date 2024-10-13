@@ -29,9 +29,9 @@ export class RegisterIncomeDialogComponent implements OnInit{
 
   ngOnInit(): void {
       this.registerIncomeForm = this.fb.group({
-        name: ['', [Validators.required]],
+        origen: ['', [Validators.required]],
         categoria: ['', [Validators.required]],
-        fecha_pago: ['', [Validators.required, this.validDateValidator]],
+        fecha: ['', [Validators.required, this.validDateValidator]],
         descripcion: ['', [Validators.required]],
         monto: [0, [Validators.required, Validators.min(500)]],
       })
