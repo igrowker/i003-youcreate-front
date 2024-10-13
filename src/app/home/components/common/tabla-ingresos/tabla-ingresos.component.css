@@ -4,7 +4,7 @@ table{
 }
 
 tr{
-  height: 4vh;
+  height: 3.7vh;
 }
 
 th, td{
@@ -12,7 +12,7 @@ th, td{
   height: 5px;
 
   font-size:small;
-  padding: 4px 8px;
+  padding: 2px 4px;
 }
 
 mat-header-cell, .mat-cell{
