@@ -26,19 +26,21 @@ export class TaxService {
     return this.http.get(`${this.apiUrl}api/obligaciones-fiscales/${id}/`);
   }
 
-  // Actualizar una obligación fiscal
-  updateTax(id: number, obligation: any) {
-    return this.http.put(`${this.apiUrl}api/obligaciones-fiscales/${id}/`, obligation);
-  }
+  
 
   // Eliminar una obligación fiscal
   deleteTax(id: number) {
     return this.http.delete(`${this.apiUrl}api/obligaciones-fiscales/${id}/`);
   }
 
+  // Actualizar una obligación fiscal
+  updateTax(id: number, obligation: TaxObligation): Observable<TaxObligation> {
+    return this.http.put<TaxObligation>(`${this.apiUrl}api/actualizacion-estados/${id}/`, obligation);
+  }
+
   // Actualizar el estado de una obligación fiscal
-  updateTaxStatus(id: number, statusUpdate: any) {
-    return this.http.post(`${this.apiUrl}api/actualizacion-estados/${id}/`, statusUpdate);
+  updateTaxStatus(id: number, statusUpdate: any): Observable<TaxObligation> {
+    return this.http.put<TaxObligation>(`${this.apiUrl}api/actualizacion-estados/${id}/`, statusUpdate);
   }
 
 
