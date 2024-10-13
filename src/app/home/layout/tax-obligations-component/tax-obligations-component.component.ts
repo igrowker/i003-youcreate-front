@@ -29,7 +29,6 @@ export class TaxObligationsComponentComponent {
   rowsPerPage: number = 4;
 
   constructor(
-    //private paginatorService: PaginatorService,
     public dialog: MatDialog,
     private tax: TaxService
   ) {}
@@ -50,11 +49,8 @@ export class TaxObligationsComponentComponent {
     });
   }
 
-
-
+  
   getStatusClass(impuesto: TaxObligation): string {
-    // Clase para colorear las filas en función del estado del pago (green, yellow, red)
-    //if? funcion numeronegativo a parte...
     if(impuesto.estado_pago){
       return 'green';
     }else{
@@ -63,7 +59,7 @@ export class TaxObligationsComponentComponent {
     }
     return 'yellow';
   }
-  // funcion para calcular las fechas, recibe una fecha y saca una fecha actual () actual vencido- mayor falta dias para pagar-
+ 
   getDaysToPay(dueDate: Date): number {
     const now = new Date();
     const diffDays = Math.ceil(

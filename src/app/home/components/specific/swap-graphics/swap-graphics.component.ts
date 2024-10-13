@@ -58,7 +58,6 @@ export class SwapGraphicsComponent implements OnInit{
     this.ingresosService.getIngresosDelMes(id,mes,anio).subscribe({
       next: (rta)=>{
         this.sumarIngresos(rta);
-        console.log(this.totalCategoria);
         this.valores = Object.values(this.totalCategoria);
       },
       error: (err)=>{

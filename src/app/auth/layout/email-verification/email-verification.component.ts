@@ -36,17 +36,6 @@ export class EmailVerificationComponent {
       }
     }
   }
-/*
-  verifyCode(){
-    const enteredCode = this.code.join('');
-    if(enteredCode === this.generatedCode){
-      this.showModal = true
-      console.log("Codigo correcto");
-    }else{
-      alert('Código incorrecto, por favor trata de nuevo')
-    }
-  }
-*/
 
   verifyCode(){
     
@@ -58,11 +47,8 @@ export class EmailVerificationComponent {
       email: email
     };
 
-    console.log(code);
-
     this.auth.codeVerification(code).subscribe({
       next:(resp)=>{
-        console.log(resp);
         this.showModal = true
       },
       error:(err)=>{

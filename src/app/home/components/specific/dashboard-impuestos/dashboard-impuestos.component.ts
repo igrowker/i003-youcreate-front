@@ -45,7 +45,6 @@ export class DashboardImpuestosComponent implements OnInit {
           details: ''
         };
       }
-      console.log(tax);
       this.valores[index].title = tax.tipo_impuesto;
       this.valores[index].monto = parseFloat(tax.monto_a_pagar);
       this.valores[index].vencimiento = tax.fecha_vencimiento.toString();
