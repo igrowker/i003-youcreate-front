@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { IngresosService } from '../../../../services/ingresos.service';
 import { Income } from '../../../../core/models/income.interface';
 import { TokenService } from '../../../../core/services/token.service';
+import { DateService } from '../../../../services/date.service';
 
 @Component({
   selector: 'app-swap-graphics',
@@ -17,6 +18,15 @@ import { TokenService } from '../../../../core/services/token.service';
 export class SwapGraphicsComponent implements OnInit{
 
   elegido: string = 'donut';
+
+  totalCategoria :{[key:string]:number}  = {
+    youtube:0,
+    twitch:0,
+    campania:0,
+    colaboradores:0,
+    regalos:0,
+  }
+
   ingresosMensuales = [
     {
       "monto":"20000",
@@ -46,7 +56,8 @@ export class SwapGraphicsComponent implements OnInit{
 
   constructor(
     private ingresosService: IngresosService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private dateService: DateService
   ){}
   ngOnInit() {
     this.ingresosDelMes();
@@ -58,12 +69,27 @@ export class SwapGraphicsComponent implements OnInit{
 
   ingresosDelMes(){
     const id = this.tokenService.getUserId();
-    this.ingresosService.getIngresosDelMes(id,10,2024).subscribe({
+    const mes = this.dateService.getMesActual();
+    const anio = this.dateService.getAnioActual();
+    this.ingresosService.getIngresosDelMes(id,mes,anio).subscribe({
       next: (rta)=>{
         console.log(rta);
+        //this.sumarIngresos(rta);
+        console.log(this.totalCategoria);
       },
       error: (err)=>{
         console.log(err);
+      }
+    });
+  }
+
+  sumarIngresos(ingresos: Income[]){
+    ingresos.forEach( (ing)=>{
+      const categoria = ing.categoria || '';
+      const monto = Number(ing.monto);
+      console.log(ing);
+      if(this.totalCategoria.hasOwnProperty(categoria)){
+        this.totalCategoria[categoria] += monto;
       }
     });
   }

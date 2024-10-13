@@ -58,15 +58,15 @@ export class IngresosService {
   // * `POST /ingresos/` - Crear un nuevo ingreso
 
   postIngreso(newIncome: Income):Observable<any> {
-    const prueba = {
-      "monto": 10000,
-      "origen": "Test",
-      "fecha": "2024/10/12",
-      "categoria": "youtube",
-      "descripcion": "Una prueba"
-    }
+    // const prueba = {
+    //   "monto": 10000,
+    //   "origen": "Test",
+    //   "fecha": "10/10/2024",
+    //   "categoria": "youtube",
+    //   "descripcion": "Una prueba"
+    // }
     
-    return this.http.post<any>(`${this.apiUrl}api/ingresos/`,prueba)
+    return this.http.post<any>(`${this.apiUrl}api/ingresos/`,newIncome)
       .pipe(
         catchError( err => {
           console.error('An error occurred:', err);

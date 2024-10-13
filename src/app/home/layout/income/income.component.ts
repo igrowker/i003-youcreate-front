@@ -221,7 +221,7 @@ export class IncomeComponent implements OnInit{
 
   }
 
-  setNewIncomeRegistered(newIncome: any) {
+  setNewIncomeRegistered(newIncome: Income) {
     console.log(newIncome);
     
     this.ingresosService.postIngreso(newIncome)
