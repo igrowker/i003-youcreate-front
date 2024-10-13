@@ -32,14 +32,10 @@ export class LoginComponent implements OnInit{
 
   onSubmit(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
       this.authService.login(this.loginForm.value)
         .subscribe({
           next: (resp) => {
-            console.log(resp);
-
             sessionStorage.setItem('email',this.loginForm.value.email);
-            
             this.router.navigateByUrl('/auth/verificar');
           },
           error: (message) => {

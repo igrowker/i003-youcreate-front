@@ -18,6 +18,14 @@ export class ConfirmDialogComponent {
   ) {}
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({ confirmarPago: false});
+  }
+
+  confirmarPago():void{
+    this.dialogRef.close({ confirmarPago: true});
+  }
+
+  cancelar():void{
+    this.dialogRef.close({ confirmarPago: false});
   }
 }

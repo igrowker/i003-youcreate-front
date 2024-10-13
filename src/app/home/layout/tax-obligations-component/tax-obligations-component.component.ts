@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 import { MatDialog } from '@angular/material/dialog';
 import { TaxService } from '../../../services/tax.service';
 import { TaxObligation } from '../../../core/models/tax-obligation';
+import { retryWhen } from 'rxjs';
 
 @Component({
   selector: 'app-tax-obligations-component',
@@ -28,7 +29,6 @@ export class TaxObligationsComponentComponent {
   rowsPerPage: number = 4;
 
   constructor(
-    //private paginatorService: PaginatorService,
     public dialog: MatDialog,
     private tax: TaxService
   ) {}
@@ -36,10 +36,12 @@ export class TaxObligationsComponentComponent {
   ngOnInit(): void {
     this.getTax();
   }
+
   getTax() {
     this.tax.getTaxes().subscribe({
       next: (data) => {
         this.obligations = data.obligaciones;
+        this.setearId();
         console.log(this.obligations);
       },
       error: (error) => {
@@ -49,26 +51,17 @@ export class TaxObligationsComponentComponent {
     });
   }
 
-  getStatusClass(paymentStatus: boolean): string {
-    // Clase para colorear las filas en función del estado del pago (green, yellow, red)
-    //if? funcion numeronegativo a parte...
-    if(paymentStatus){
+
+  getStatusClass(impuesto: TaxObligation): string {
+    if(impuesto.estado_pago){
       return 'green';
     }else{
-      return 'yellow';
+      if(this.isNegative(new Date(impuesto.fecha_vencimiento)))
+      return 'red';
     }
-    // switch (paymentStatus) {
-    //   case 'paid':
-    //     return 'green';
-    //   case 'pending':
-    //     return 'yellow';
-    //   case 'overdue':
-    //     return 'red';
-    //   default:
-    //     return '';
-    // }
+    return 'yellow';
   }
-  // funcion para calcular las fechas, recibe una fecha y saca una fecha actual () actual vencido- mayor falta dias para pagar-
+ 
   getDaysToPay(dueDate: Date): number {
     const now = new Date();
     const diffDays = Math.ceil(
@@ -87,7 +80,16 @@ export class TaxObligationsComponentComponent {
 
   //true os false booleano, numero negativo - if(numeroNegativo){return red}else{return yellow}
 
+  setearId(){
+    this.obligations.forEach( (tax,index)=>{
+      tax.id = index+1;
+    })
+  }
+
+
   openDialog(obligation: TaxObligation): void {
+    console.log("estado_pago antes de abrir el diálogo:", obligation.estado_pago);
+    
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title:
@@ -102,21 +104,50 @@ export class TaxObligationsComponentComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && obligation.estado_pago) {
-        this.confirmPayment(obligation.id);
+
+      console.log("result:",result," result.cp:",result.confirmarPago,"id:",obligation.id);
+      
+      if (result && result.confirmarPago) {
+        console.log("confirm payment");
+        obligation.estado_pago = true;
+        this.confirmPayment(obligation);
       }
     });
   }
-  confirmPayment(obligationId: number) {
-    this.tax
-      .updateTaxStatus(obligationId, { paymentStatus: true })
-      .subscribe({
-        next: () => {
+
+  confirmPayment(obligation: TaxObligation) {
+    const status = {estado_pago:true};
+    this.tax.updateTaxStatus(obligation.id,status).subscribe({
+
+        next: (rta) => {
+          console.log( "estado de pago", rta);
           this.getTax();
         },
         error: (error) => {
           console.error('Error al confirmar pago:', error);
         },
       });
+  }
+
+
+
+
+
+  emailAutomatico(update:any){
+
+    update.fecha_vencimiento = update.fecha_vencimiento.toString();
+    const updateData = {
+      ...update,
+      emailAutomatico: update.emailAutomatico,
+    };
+    
+    this.tax.updateTax(update.id,updateData).subscribe({
+      next:(resp)=>{
+        console.log('Actualizacion exitosa:',resp);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 }

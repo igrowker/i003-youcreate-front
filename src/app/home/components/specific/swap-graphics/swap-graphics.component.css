@@ -1,4 +1,6 @@
 .contenedor{
+  height: 30vh;
+
   background-color: var(--base-white);
   padding: 1vw;
   border-radius: 10px;
@@ -10,63 +12,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1vh;
+  margin-left: 0.5vw;
 }
 
-.col-3{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0;
-  padding: 0;
-
-}
 
 h4 {
   font-size: medium;
 }
 
-.selector{
-  background-color: var(--azul-primario-700);
-
-  width: 80px;
-  height: 40px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  padding: 5px;
-  border-radius: 2px;
+.grafico{
+  margin-top: 2vh;
 }
-
-.btn{
-  margin: 0;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  border-radius: 2px;
-}
-
-svg{
-  margin: 0;
-  padding: 0;
-}
-
-.btn-check:checked +.btn{
-  background-color: var(--base-white);
-  border-color: var(--base-white);
-  fill: black;
-  svg{
-    path{
-      fill: black;
-    }
-  }
-}
-
-.btn-check:not(:checked) +.btn{
-  color: var(--base-white);
-}
-
 
 

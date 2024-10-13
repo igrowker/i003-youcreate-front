@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+
+interface Tabla {
+  fuente: string;
+  monto: string;
+}
 
 @Component({
   selector: 'app-tabla-ingresos',
@@ -8,27 +13,41 @@ import {MatTableModule} from '@angular/material/table';
   templateUrl: './tabla-ingresos.component.html',
   styleUrl: './tabla-ingresos.component.css'
 })
-export class TablaIngresosComponent {
+export class TablaIngresosComponent implements OnInit{
 
+  @Input() valores!: number[];
   columnas= ['fuente', 'monto']
 
   datos=[
     {
-      fuente:"Twitch",
-      monto:400000
+      fuente:"Youtube",
+      monto:0
     },
     {
-      fuente:"Youtube",
-      monto:30000
-    }
-    ,
+      fuente:"Twitch",
+      monto:0
+    },
     {
       fuente:"Campañas",
-      monto:4500
+      monto:0
+    },
+    {
+      fuente:"Colaboradores",
+      monto:0
     },
     {
       fuente:"Regalos",
-      monto:23000
+      monto:0
     }
   ];
+  ngOnInit(): void {
+    this.cargarTabla();
+  }
+  
+  cargarTabla(){
+    this.datos.forEach((dato,index)=>{
+      dato.monto = this.valores[index];
+    });
+  }
+
 }

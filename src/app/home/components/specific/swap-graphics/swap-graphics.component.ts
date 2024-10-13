@@ -26,32 +26,13 @@ export class SwapGraphicsComponent implements OnInit{
     colaboradores:0,
     regalos:0,
   }
-
-  ingresosMensuales = [
-    {
-      "monto":"20000",
-      "origen":"youtube",
-      "fecha":"10/10/2024",
-      "descripcion":"publicidad",
-    },
-    {
-      "monto":"20000",
-      "origen":"twitch",
-      "fecha":"09/10/2024",
-      "descripcion":"publicidad",
-    },
-    {
-      "monto":"30000",
-      "origen":"youtube",
-      "fecha":"10/10/2024",
-      "descripcion":"publicidad",
-    },
-    {
-      "monto":"10000",
-      "origen":"youtube",
-      "fecha":"10/10/2024",
-      "descripcion":"publicidad",
-    }
+  mes: string = '';
+  valores : number[] = [];
+  public months:string[] = [
+    'Enero', 'Febrero', 'Marzo',
+    'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre'
   ];
 
   constructor(
@@ -60,12 +41,15 @@ export class SwapGraphicsComponent implements OnInit{
     private dateService: DateService
   ){}
   ngOnInit() {
+    this.setNombreMes();
     this.ingresosDelMes();
   }
 
   /*monto origen fecha descripcion */
 
-
+  setNombreMes(){
+    this.mes = this.months[this.dateService.getMesActual() - 1];
+  }
 
   ingresosDelMes(){
     const id = this.tokenService.getUserId();
@@ -73,9 +57,8 @@ export class SwapGraphicsComponent implements OnInit{
     const anio = this.dateService.getAnioActual();
     this.ingresosService.getIngresosDelMes(id,mes,anio).subscribe({
       next: (rta)=>{
-        console.log(rta);
-        //this.sumarIngresos(rta);
-        console.log(this.totalCategoria);
+        this.sumarIngresos(rta);
+        this.valores = Object.values(this.totalCategoria);
       },
       error: (err)=>{
         console.log(err);
@@ -87,7 +70,6 @@ export class SwapGraphicsComponent implements OnInit{
     ingresos.forEach( (ing)=>{
       const categoria = ing.categoria || '';
       const monto = Number(ing.monto);
-      console.log(ing);
       if(this.totalCategoria.hasOwnProperty(categoria)){
         this.totalCategoria[categoria] += monto;
       }

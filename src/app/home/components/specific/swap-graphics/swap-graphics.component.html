@@ -1,12 +1,12 @@
 <div class="contenedor">
   <div class="row">
     <div class="col">
-      <h4>Ingresos totales Septiembre</h4>
+      <h4>Ingresos totales de {{mes}}</h4>
     </div>
   </div>
 
 
-  <div>
-    <app-grafico-ingresos [valores]="[123,32,14,231,85]" ></app-grafico-ingresos>
+  <div class="grafico">
+    <app-grafico-ingresos *ngIf="valores?.length" [valores]="valores"></app-grafico-ingresos>
   </div>
 </div>

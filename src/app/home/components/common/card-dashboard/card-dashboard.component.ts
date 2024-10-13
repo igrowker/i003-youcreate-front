@@ -3,6 +3,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 
 import { MatDialog } from '@angular/material/dialog'; 
 import { Card } from '../../../../core/models/card.interface';
+import { CurrencyPipe } from '@angular/common';
 
 interface CardData {
   paymentStatus: 'paid' | 'pending' | 'overdue';
@@ -11,7 +12,7 @@ interface CardData {
 @Component({
   selector: 'app-card-dashboard',
   standalone: true,
-  imports: [ConfirmDialogComponent],
+  imports: [ConfirmDialogComponent,CurrencyPipe],
   templateUrl: './card-dashboard.component.html',
   styleUrl: './card-dashboard.component.css'
 })

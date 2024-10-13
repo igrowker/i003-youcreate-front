@@ -36,9 +36,7 @@ export class TokenService {
     }
 
     try {
-      console.log(jwtDecode(token));
       return jwtDecode(token);
-
     } catch (error) {
       console.log('Token invalido', error);
       return null;
