@@ -6,15 +6,7 @@ import { PaginatorComponent } from '../../components/paginator/paginator.compone
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TaxService } from '../../../services/tax.service';
-
-interface TaxObligation {
-  id: number;
-  type: string;
-  amount: number;
-  dueDate: Date;
-  notification: boolean;
-  paymentStatus: 'paid' | 'pending' | 'overdue';
-}
+import { TaxObligation } from '../../../core/models/tax-obligation';
 
 @Component({
   selector: 'app-tax-obligations-component',
@@ -36,7 +28,7 @@ export class TaxObligationsComponentComponent {
   rowsPerPage: number = 4;
 
   constructor(
-    private paginatorService: PaginatorService,
+    //private paginatorService: PaginatorService,
     public dialog: MatDialog,
     private tax: TaxService
   ) {}
@@ -47,9 +39,8 @@ export class TaxObligationsComponentComponent {
   getTax() {
     this.tax.getTaxes().subscribe({
       next: (data) => {
-        //console.log(data);
-        this.obligations = data;
-       // console.log(this.obligations);
+        this.obligations = data.obligaciones;
+        console.log(this.obligations);
       },
       error: (error) => {
         console.error(error);
@@ -58,31 +49,24 @@ export class TaxObligationsComponentComponent {
     });
   }
 
-  get obligationsData() {
-    return this.paginatorService.paginatedData(
-      this.currentPage,
-      this.rowsPerPage,
-      this.obligations
-    );
-  }
-
-  onPageChange(newPage: number) {
-    this.currentPage = newPage;
-  }
-
-  getStatusClass(paymentStatus: 'paid' | 'pending' | 'overdue'): string {
+  getStatusClass(paymentStatus: boolean): string {
     // Clase para colorear las filas en función del estado del pago (green, yellow, red)
     //if? funcion numeronegativo a parte...
-    switch (paymentStatus) {
-      case 'paid':
-        return 'green';
-      case 'pending':
-        return 'yellow';
-      case 'overdue':
-        return 'red';
-      default:
-        return '';
+    if(paymentStatus){
+      return 'green';
+    }else{
+      return 'yellow';
     }
+    // switch (paymentStatus) {
+    //   case 'paid':
+    //     return 'green';
+    //   case 'pending':
+    //     return 'yellow';
+    //   case 'overdue':
+    //     return 'red';
+    //   default:
+    //     return '';
+    // }
   }
   // funcion para calcular las fechas, recibe una fecha y saca una fecha actual () actual vencido- mayor falta dias para pagar-
   getDaysToPay(dueDate: Date): number {
@@ -107,25 +91,25 @@ export class TaxObligationsComponentComponent {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title:
-          obligation.paymentStatus !== 'paid'
+          obligation.estado_pago
             ? 'Confirmar Pago'
             : 'Detalle del Pago',
         message:
-          obligation.paymentStatus !== 'paid'
+          obligation.estado_pago
             ? '¿Deseas confirmar el pago?'
             : 'Detalles del pago realizado.',
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && obligation.paymentStatus !== 'paid') {
+      if (result && obligation.estado_pago) {
         this.confirmPayment(obligation.id);
       }
     });
   }
   confirmPayment(obligationId: number) {
     this.tax
-      .updateTaxStatus(obligationId, { paymentStatus: 'paid' })
+      .updateTaxStatus(obligationId, { paymentStatus: true })
       .subscribe({
         next: () => {
           this.getTax();

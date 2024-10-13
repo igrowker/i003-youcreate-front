@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { AccountService } from '../../../services/account.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   styleUrls: ['./profile.component.css'],
   imports: [ReactiveFormsModule, RouterOutlet, RouterLink]
 })
-export class ProfileComponent /*implements OnInit */{
+export class ProfileComponent implements OnInit {
 
  
 
@@ -21,28 +22,35 @@ export class ProfileComponent /*implements OnInit */{
   user: any = {};
   profileForm: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder) {
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    private accountService: AccountService) 
+    {
     this.profileForm = this.fb.group({
       name: [''],
       email: [''],
       photo: [null]
     });
-
-    
   }
 
   
 
- /* ngOnInit(): void {
-    this.http.get('https://api.example.com/user')
-      .subscribe(data => {
-        this.user = data;
-        this.profileForm.patchValue({
-          name: this.user.name,
-          email: this.user.email
-        });
-      });
-  }*/
+  ngOnInit() {
+    this.getAccountData();
+  }
+
+  getAccountData(){
+    this.accountService.getAccountData().subscribe({
+      next:(resp) => {
+        console.log(resp);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+  }
 
   onFileChange(event: any): void {
     if (event.target.files.length > 0) {
@@ -70,4 +78,13 @@ export class ProfileComponent /*implements OnInit */{
 
   }
   
+
+  // this.http.get('https://api.example.com/user')
+    //   .subscribe(data => {
+    //     this.user = data;
+    //     this.profileForm.patchValue({
+    //       name: this.user.name,
+    //       email: this.user.email
+    //     });
+    //   });
 }
