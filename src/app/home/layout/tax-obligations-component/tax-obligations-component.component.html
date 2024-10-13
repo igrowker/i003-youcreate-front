@@ -10,19 +10,19 @@
     </div>
     <div class="card">
     <div class="fiscal-body">
-      <div class="fiscal-row" *ngFor="let obligation of obligationsData">
+      <div class="fiscal-row" *ngFor="let obligation of obligations">
 
-        <div class="fiscal-item">{{ obligation.type }}</div>
-        <div class="fiscal-item">{{ obligation.amount | currency: 'USD': 'symbol':'1.0-0' }}</div>
-        <div class="fiscal-item">{{ obligation.dueDate | date:'dd/MM/yyyy' }}</div>
+        <div class="fiscal-item">{{ obligation.tipo_impuesto }}</div>
+        <div class="fiscal-item">{{ obligation.monto_a_pagar| currency: 'USD': 'symbol':'1.0-0' }}</div>
+        <div class="fiscal-item">{{ obligation.fecha_vencimiento| date:'dd/MM/yyyy' }}</div>
         <div class="fiscal-item">
           <label class="switch">
-            <input type="checkbox" [(ngModel)]="obligation.notification">
+            <input type="checkbox" [(ngModel)]="obligation.email_automatico">
             <span class="slider"></span>
           </label>
         </div>
         <div class="fiscal-item">
-          <span class="status-dot" [ngClass]="getStatusClass(obligation.paymentStatus)"></span>
+          <span class="status-dot" [ngClass]="getStatusClass(obligation.estado_pago)"></span>
         </div>
         <div class="fiscal-item">
           <button class="pay-btn"  (click)="openDialog(obligation)">PAGAR</button>
@@ -30,9 +30,6 @@
       </div>
       <div *ngIf="obligations.length === 0" class="no-obligations">
         <p>No hay obligaciones fiscales disponibles.</p>
-      </div>
-      <div class="paginator_tax">
-        <paginator [dataList]="obligations" [rowsPerPage]="rowsPerPage" (pageChange)="onPageChange($event)"/>
       </div>
     </div>
    

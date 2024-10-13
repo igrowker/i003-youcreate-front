@@ -1,43 +1,62 @@
 /*ESTILOS GENERALES*/
-.login-wraper{
+.login-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f3e8ff;
+    font-family: 'Poppins';
 }
 
 .login-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     background-color: #fff;
     border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    padding: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 30vw;
     text-align: center;
-    margin: 50px auto;
+    margin: auto;
+    font-family: 'Poppins';
 }
 
-.logo.img{
-    width: 50px;
-    margin-bottom: 20px;
+.logo img{
+    width: 80px;
 }
 
-h2{
+.title{
+    font-weight: 600;
     font-size: 24px;
-    margin-bottom: 30px;
     color: #333;
 }
 
-p {
-    font-size: 14px;
-    margin-bottom: 30px;
-    color: #666;
+.link-registro{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
-p a {
+.link-registro .question {
+    font-size: 14px;
+    color: black;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.link-registro .link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b2fb3;
+}
+
+/* p a {
     color: #6b2fb3;
     text-decoration: none;
-}
+} */
 
 /*ESTILOS DEL INPUT*/
 input{
@@ -71,6 +90,7 @@ small{
 }
 
 .primary-btn{
+    margin-top: 30px;
     background-color: #6b2fb3;
     color: #fff;
 }

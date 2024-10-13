@@ -23,6 +23,11 @@ export class TokenService {
     localStorage.removeItem(this.TOKEN_KEY);
   }
 
+  getUserId():number{
+    const id = this.decodeToken();
+    return id.user_id;
+  }
+
   decodeToken(): any {
     const token = this.getToken();
 

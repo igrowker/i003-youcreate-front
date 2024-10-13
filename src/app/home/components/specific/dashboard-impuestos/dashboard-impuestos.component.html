@@ -1,6 +1,7 @@
 <div class="row">
   <h2> Notificaciones automáticas</h2>
-  <app-card-dashboard class="col"></app-card-dashboard>
-  <app-card-dashboard class="col"></app-card-dashboard>
-  <app-card-dashboard class="col"></app-card-dashboard>
+  @for (item of valores; track $index; let i = $index) {
+    <app-card-dashboard 
+    class="col" [datos]="valores[i]"></app-card-dashboard>
+  }
 </div>

@@ -221,8 +221,18 @@ export class IncomeComponent implements OnInit{
 
   }
 
-  setNewIncomeRegistered(newIncome: any) {
+  setNewIncomeRegistered(newIncome: Income) {
     console.log(newIncome);
+    
+    this.ingresosService.postIngreso(newIncome)
+      .subscribe({
+        next:(resp)=>{
+          console.log('ingreso creado',resp);
+        },
+        error:(err)=>{
+          console.log('Error al cargar ingreso', err);
+        }
+      });
   }
 
 }
