@@ -26,8 +26,14 @@ export class SwapGraphicsComponent implements OnInit{
     colaboradores:0,
     regalos:0,
   }
-
+  mes: string = '';
   valores : number[] = [];
+  public months:string[] = [
+    'Enero', 'Febrero', 'Marzo',
+    'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre'
+  ];
 
   constructor(
     private ingresosService: IngresosService,
@@ -35,12 +41,15 @@ export class SwapGraphicsComponent implements OnInit{
     private dateService: DateService
   ){}
   ngOnInit() {
+    this.setNombreMes();
     this.ingresosDelMes();
   }
 
   /*monto origen fecha descripcion */
 
-
+  setNombreMes(){
+    this.mes = this.months[this.dateService.getMesActual() - 1];
+  }
 
   ingresosDelMes(){
     const id = this.tokenService.getUserId();

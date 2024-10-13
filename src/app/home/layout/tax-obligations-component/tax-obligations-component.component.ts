@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 import { MatDialog } from '@angular/material/dialog';
 import { TaxService } from '../../../services/tax.service';
 import { TaxObligation } from '../../../core/models/tax-obligation';
+import { retryWhen } from 'rxjs';
 
 @Component({
   selector: 'app-tax-obligations-component',
@@ -49,24 +50,18 @@ export class TaxObligationsComponentComponent {
     });
   }
 
-  getStatusClass(paymentStatus: boolean): string {
+
+
+  getStatusClass(impuesto: TaxObligation): string {
     // Clase para colorear las filas en función del estado del pago (green, yellow, red)
     //if? funcion numeronegativo a parte...
-    if(paymentStatus){
+    if(impuesto.estado_pago){
       return 'green';
     }else{
-      return 'yellow';
+      if(this.isNegative(new Date(impuesto.fecha_vencimiento)))
+      return 'red';
     }
-    // switch (paymentStatus) {
-    //   case 'paid':
-    //     return 'green';
-    //   case 'pending':
-    //     return 'yellow';
-    //   case 'overdue':
-    //     return 'red';
-    //   default:
-    //     return '';
-    // }
+    return 'yellow';
   }
   // funcion para calcular las fechas, recibe una fecha y saca una fecha actual () actual vencido- mayor falta dias para pagar-
   getDaysToPay(dueDate: Date): number {
@@ -107,6 +102,7 @@ export class TaxObligationsComponentComponent {
       }
     });
   }
+
   confirmPayment(obligationId: number) {
     this.tax
       .updateTaxStatus(obligationId, { paymentStatus: true })

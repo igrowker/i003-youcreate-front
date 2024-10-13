@@ -22,7 +22,13 @@ export class SwapTableComponent {
     colaboradores:0,
     regalos:0,
   }
-
+  public months:string[] = [
+    'Enero', 'Febrero', 'Marzo',
+    'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre'
+  ];
+  mes: string = '';
   valores : number[] = [];
 
   constructor(
@@ -31,12 +37,15 @@ export class SwapTableComponent {
     private dateService: DateService
   ){}
   ngOnInit() {
+    this.setNombreMes();
     this.ingresosDelMes();
   }
 
   /*monto origen fecha descripcion */
 
-
+  setNombreMes(){
+    this.mes = this.months[this.dateService.getMesActual()-1];
+  }
 
   ingresosDelMes(){
     const id = this.tokenService.getUserId();

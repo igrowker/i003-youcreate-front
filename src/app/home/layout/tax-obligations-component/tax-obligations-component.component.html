@@ -22,7 +22,7 @@
           </label>
         </div>
         <div class="fiscal-item">
-          <span class="status-dot" [ngClass]="getStatusClass(obligation.estado_pago)"></span>
+          <span class="status-dot" [ngClass]="getStatusClass(obligation)"></span>
         </div>
         <div class="fiscal-item">
           <button class="pay-btn"  (click)="openDialog(obligation)">PAGAR</button>
