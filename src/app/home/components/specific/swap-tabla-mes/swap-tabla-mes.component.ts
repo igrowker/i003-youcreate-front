@@ -38,7 +38,7 @@ export class SwapTablaMesComponent implements OnInit {
       selectedMonth: new FormControl(dateService.getMesActual()),
     });
 
-    this.monthForm.get('selectedMonth')?.valueChanges.subscribe((value) => {
+    this.monthForm.get('selectedMonth')?.valueChanges.subscribe((value:number) => {
       this.onSubmit(value);
     })
   }
@@ -52,7 +52,7 @@ export class SwapTablaMesComponent implements OnInit {
   }
 
   obtenerIngresos(mes:number){
-    this.ingresoService.getIngresosDelMes(this.userId,mes+1,this.dateService.getAnioActual())
+    this.ingresoService.getIngresosDelMes(this.userId,mes,this.dateService.getAnioActual())
     .subscribe({
       next:(data)=>{
         console.log(data);
