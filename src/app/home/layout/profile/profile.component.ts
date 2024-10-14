@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
     {
     this.profileForm = this.fb.group({
       name: [''],
-      email: [''],
-      photo: [null]
+      email: ['']
+     
     });
   }
 
@@ -41,50 +41,23 @@ export class ProfileComponent implements OnInit {
     this.getAccountData();
   }
 
-  getAccountData(){
+  getAccountData() {
     this.accountService.getAccountData().subscribe({
-      next:(resp) => {
-        console.log(resp);
+      next: (resp) => {
+        this.user = {
+          nombreCompleto: resp.nombre_completo,  
+          email: resp.email
+        };
       },
-      error:(err)=>{
-        console.log(err);
-      }
-    })
+     
+    });
+  
   }
-
-  onFileChange(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.profileForm.patchValue({
-        photo: file
-      });
-    }
-  }
-
-  submitForm(): void {
-    const formData = new FormData();
-    formData.append('name', this.profileForm.get('name')?.value);
-    formData.append('email', this.profileForm.get('email')?.value);
-    formData.append('photo', this.profileForm.get('photo')?.value);
-
-    this.http.post('https://api.example.com/user/update', formData)
-      .subscribe(response => {
-        console.log('Profile updated successfully!', response);
-      });
-  }
-
   navigateTo(route: string): void {
     this.router.navigate(['/account-data']); 
 
   }
   
 
-  // this.http.get('https://api.example.com/user')
-    //   .subscribe(data => {
-    //     this.user = data;
-    //     this.profileForm.patchValue({
-    //       name: this.user.name,
-    //       email: this.user.email
-    //     });
-    //   });
+  
 }

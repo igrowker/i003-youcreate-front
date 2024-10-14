@@ -8,11 +8,11 @@
     </button>
   </div>
 
-  <h2 class="title_account">Datos de la cuenta</h2>
+  <h2 class="title_account" i18n>Datos de la cuenta</h2>
 
   <div class="account-info">
 
-    <p><strong>Nombre</strong></p>
+    <p><strong i18n>Nombre</strong></p>
     <p *ngIf="!isEditing">{{ accountData.nombre_completo || 'Sin información' }}</p>
     <input *ngIf="isEditing" [(ngModel)]="accountData.nombre_completo"
       placeholder="Nombre" />
@@ -20,21 +20,21 @@
 
   <div class="account-info">
 
-    <p><strong>Email</strong></p>
+    <p><strong i18n>Email</strong></p>
     <p *ngIf="!isEditing">{{ accountData.email }}</p>
     <input *ngIf="isEditing" [(ngModel)]="accountData.email" placeholder="Email" />
   </div>
 
   <div class="account-info">
 
-    <p><strong>País</strong></p>
+    <p><strong i18n>País</strong></p>
     <p *ngIf="!isEditing">{{ accountData.pais_residencia }}</p>
     <input *ngIf="isEditing" [(ngModel)]="accountData.pais_residencia" placeholder="País" />
   </div>
 
   <div class="account-info">
 
-    <p><strong>Número de teléfono</strong></p>
+    <p><strong i18n>Número de teléfono</strong></p>
     <p *ngIf="!isEditing">{{ accountData.telefono }}</p>
     <input *ngIf="isEditing" [(ngModel)]="accountData.telefono" placeholder="Número de teléfono" />
   </div>
@@ -43,7 +43,7 @@
 
 
   <div class="account-info">
-    <p><strong>Plataforma de contenido</strong></p>
+    <p><strong i18n>Plataforma de contenido</strong></p>
 
     @for (key of objectKeys(accountData.redes_sociales); track $index; let last = $last) {
       @if ($last) {

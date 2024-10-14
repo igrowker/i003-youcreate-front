@@ -7,7 +7,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 import { MatDialog } from '@angular/material/dialog';
 import { TaxService } from '../../../services/tax.service';
 import { TaxObligation } from '../../../core/models/tax-obligation';
-import { retryWhen } from 'rxjs';
+//import { retryWhen } from 'rxjs';
 
 @Component({
   selector: 'app-tax-obligations-component',
@@ -79,8 +79,7 @@ export class TaxObligationsComponentComponent {
     return false;
   }
 
-  //true os false booleano, numero negativo - if(numeroNegativo){return red}else{return yellow}
-
+ 
   setearId(){
     this.obligations.forEach( (tax,index)=>{
       tax.id = index+1;

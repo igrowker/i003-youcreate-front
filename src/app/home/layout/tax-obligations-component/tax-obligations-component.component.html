@@ -1,12 +1,12 @@
 <div class="fiscal-container">
 
   <div class="fiscal-header">
-    <div class="fiscal-header-item">Tipo de impuesto</div>
-    <div class="fiscal-header-item">Monto</div>
-    <div class="fiscal-header-item">Vencimiento</div>
-    <div class="fiscal-header-item">Notificación por email</div>
-    <div class="fiscal-header-item">Estado del pago</div>
-    <div class="fiscal-header-item">Pagar</div>
+    <div class="fiscal-header-item" i18n>Tipo de impuesto</div>
+    <div class="fiscal-header-item" i18n>Monto</div>
+    <div class="fiscal-header-item" i18n>Vencimiento</div>
+    <div class="fiscal-header-item" i18n>Notificación por email</div>
+    <div class="fiscal-header-item" i18n>Estado del pago</div>
+    <div class="fiscal-header-item" i18n>Pagar</div>
   </div>
 
   <div class="card">
@@ -29,7 +29,7 @@
         </div>
         <div class="fiscal-item">
           @if (!obligation.estado_pago) {
-            <button class="pay-btn" (click)="openDialog(obligation)">PAGAR</button>
+            <button class="pay-btn" (click)="openDialog(obligation)" i18n>PAGAR</button>
           }@else {
             <span>Pago confirmado</span>
           }
@@ -38,7 +38,7 @@
 
       </div>
       <div *ngIf="obligations.length === 0" class="no-obligations">
-        <p>No hay obligaciones fiscales disponibles.</p>
+        <p i18n>No hay obligaciones fiscales disponibles.</p>
       </div>
     </div>
 
@@ -46,7 +46,7 @@
 </div>
 
 <div class="fiscal-footer">
-  <button class="footer-btn">Datos impositivos</button>
-  <button class="footer-btn">Declaración de impuestos</button>
-  <button class="footer-btn">Normativas</button>
+  <button class="footer-btn" i18n>Datos impositivos</button>
+  <button class="footer-btn" i18n>Declaración de impuestos</button>
+  <button class="footer-btn" i18n>Normativas</button>
 </div>

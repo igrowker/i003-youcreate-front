@@ -1,6 +1,6 @@
 
   <form [formGroup]="yearForm">
-    <label for="year">Seleccionar Año:</label>
+    <label for="year" i18n>Seleccionar Año:</label>
     <select id="year" formControlName="selectedYear">
       <option *ngFor="let year of years; let i = index; trackBy: trackByIndex" [value]="year">
         {{ year }}
@@ -9,7 +9,7 @@
   </form>
   
   @if (yearEmpty) {
-    <span>No hay ingresos en este año</span>
+    <span i18n>No hay ingresos en este año</span>
   }@else {
     <bar-graphic [data]="dataGraficoPrueba"></bar-graphic>
   }

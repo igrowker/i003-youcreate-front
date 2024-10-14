@@ -6,10 +6,10 @@
             <img src="../../../../assets/logoHeader.png" alt="">
         </div>
 
-        <h2 class="title">Iniciar sesión</h2>
+        <h2 class="title" i18n>Iniciar sesión</h2>
 
         <div class="link-registro">
-          <p class="question">¿No tienes una cuenta?</p> <a href="/auth/register" class="link">Regístrate aquí</a>
+          <p class="question" i18n>¿No tienes una cuenta?</p> <a href="/auth/register" class="link">Regístrate aquí</a>
         </div>
 
         <!--CAMPO EMAIL-->
@@ -17,8 +17,8 @@
             <div class="input-group">
                 <input type="email" formControlName="email" placeholder="Email" />
                 <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                    <small *ngIf="loginForm.get('email')?.errors?.['required']">Email es requerido</small>
-                    <small *ngIf="loginForm.get('email')?.errors?.['email']">Email no valido</small>
+                    <small *ngIf="loginForm.get('email')?.errors?.['required']" i18n>Email es requerido</small>
+                    <small *ngIf="loginForm.get('email')?.errors?.['email']" i18n>Email no valido</small>
                 </div>
             </div>
 
@@ -26,13 +26,13 @@
             <div class="input-group">
                 <input type="password" formControlName="password" placeholder="Password" />
                 <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                    <small *ngIf="loginForm.get('password')?.errors?.['required']">Password es requerido</small>
-                    <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Miimo 8 carácteres</small>
+                    <small *ngIf="loginForm.get('password')?.errors?.['required']" i18n>Password es requerido</small>
+                    <small *ngIf="loginForm.get('password')?.errors?.['minlength']" i18n>Miimo 8 carácteres</small>
                 </div>
             </div>
 
         <!--BOTON DE ACCESO-->
-            <button class="btn primary-btn" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+            <button class="btn primary-btn" type="submit" [disabled]="loginForm.invalid" i18n>Ingresar</button>
         </form>
 
         <!-- <div class="divider">

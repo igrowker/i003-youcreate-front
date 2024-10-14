@@ -3,21 +3,21 @@
   <div class="manage-payments">
 
     @if (!isLoading) {
-      <div class="title">
+      <div class="title" i18n>
         Pagos pendientes
       </div>
 
       <div class="buttons-header">
         <button class="add-button" (click)="dialog.openDialog()">
           <img class="icon" src="assets/icons/add.svg" alt="icon">
-          <span>Agregar Pago</span>
+          <span i18n>Agregar Pago</span>
         </button>
         <register-payments-dialog #dialog (formValues)="setNewPaymentRegistered($event)"/>
       </div>
       <div class="table-wrapper">
         <table class="payment-table">
           <thead class="header-titles">
-            <tr>
+            <tr i18n>
               <th>Fecha</th>
               <th>Nombre y Apellido</th>
               <th>Servicio</th>
@@ -42,7 +42,7 @@
                   </div>
                 </td>
                 <td class="td-button">
-                  <button (click)="openDialog(collaborator)">Pagar</button>
+                  <button (click)="openDialog(collaborator)" i18n>Pagar</button>
                 </td>
               </tr>
             }
@@ -58,14 +58,14 @@
 
     <div class="payment-history">
 
-      <div class="title">
+      <div class="title" i18n>
         Historial de pagos
       </div>
 
       <div class="table-wrapper">
         <table class="history-table">
           <thead class="header-titles">
-            <tr>
+            <tr i18n> 
               <th>Fecha</th>
               <th>Nombre y Apellido</th>
               <th>Servicio</th>

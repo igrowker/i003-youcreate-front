@@ -1,7 +1,7 @@
 <div class="paginator">
   <span class="control-pages">
     <div class="current-page">{{ currentPage }}</div>
-    <div class="total-page"> de {{ totalPages }} páginas</div>
+    <div class="total-page" i18n> de {{ totalPages }} páginas</div>
   </span>
 
   <button class="button-left" (click)="prevPage()" [disabled]="currentPage === 1">

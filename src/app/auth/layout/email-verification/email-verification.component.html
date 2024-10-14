@@ -3,8 +3,8 @@
     <div class="logo">
       <img src="../../../../assets/logoHeader.png" alt="Logo">
     </div>
-    <h2 class="title">Verificación de Seguridad</h2>
-    <p class="message">Hemos enviado un código de verificacón a tu email. Por favor, ingrésalo a continuación para verificar tu cuenta.</p>
+    <h2 class="title" i18n>Verificación de Seguridad</h2>
+    <p class="message" i18n>Hemos enviado un código de verificacón a tu email. Por favor, ingrésalo a continuación para verificar tu cuenta.</p>
     <div class="code-Inputs">
       <input type="text" maxlength="1" [(ngModel)]="code[0]" (input)="moveToNext($event, 1)">
       <input type="text" maxlength="1" [(ngModel)]="code[1]" (input)="moveToNext($event, 2)">
@@ -13,7 +13,7 @@
       <input type="text" maxlength="1" [(ngModel)]="code[4]" (input)="moveToNext($event, 5)">
       <input type="text" maxlength="1" [(ngModel)]="code[5]" (input)="moveToNext($event, 6)">
     </div>
-    <button (click)="verifyCode()" class="verify-btn">Verificar Cuenta</button>
+    <button (click)="verifyCode()" class="verify-btn" i18n>Verificar Cuenta</button>
   </div>
 
   <!--MODAL-->
@@ -23,11 +23,11 @@
         <img src="../../../../assets/logoHeader.png" alt="Logo" />
       </div>
 
-      <h2>¡Verificación Completada!</h2>
+      <h2 i18n>¡Verificación Completada!</h2>
 
       <img src="../../../../assets/check.png" alt="Verificado" class="modal-image" />
-      <p>Tu cuenta ha sido verificada Exitosamente</p>
-      <button (click)="closeModal()" class="continue-btn">Continuar</button>
+      <p i18n>Tu cuenta ha sido verificada Exitosamente</p>
+      <button (click)="closeModal()" class="continue-btn" i18n>Continuar</button>
     </div>
   </div>
 </div>
