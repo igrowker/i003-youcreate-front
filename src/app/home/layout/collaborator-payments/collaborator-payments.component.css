@@ -1,0 +1,168 @@
+.container {
+  font-family: 'Poppins';
+  background-color: #d9d9d9;
+  padding: 15px 40px;
+  min-height: 100vh;
+}
+
+button {
+  border: none;
+  background-color: #393F50;
+  color: #F4FEFF;
+  min-width: 100px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4c5469;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: left;
+  background-color: white;
+}
+
+th {
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: bottom;
+}
+
+td {
+  font-size: 14px;
+}
+
+th, td {
+  padding: 7px 20px;
+  border-bottom: 2px solid #dddddd;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.td-button {
+  text-align: center;
+}
+
+.btn-detail {
+  background-color: #9c9c9c;
+}
+
+.icon {
+  width: 17px;
+  color: #ffffff;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bolder;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 7px;
+  width: 150px;
+  text-align: center;
+}
+
+.buttons-header {
+  background-color: white;
+  height: 52px;
+  border-bottom: 2px solid #dddddd;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 7px 7px 0 0;
+  padding-right: 13px;
+}
+
+.buttons-header button {
+  font-size: 12px;
+}
+
+.buttons-header button:nth-child(1){
+  margin-right: 13px;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header-titles {
+  height: 52px;
+}
+
+.body button{
+  font-size: 13px;
+}
+
+.state-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.payable {
+  background-color: #ffec5c;
+}
+
+.expired {
+  background-color: #FF0C0C;
+}
+
+.td-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/*******************************/
+
+.payment-history {
+  margin-top: 30px;
+}
+
+.history-table {
+  background-color: white;
+  border-radius: 7px 7px 0 0;
+}
+
+.td-history{
+  padding: 15px 20px;
+}
+
+/******************************/
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 193px;
+  right: 0;
+  bottom: 0;
+}
+
+/*******************************/
+.empty-message {
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  color: #504f4f;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+

@@ -1,0 +1,20 @@
+table{
+  background-color: var(--base-white);
+  width: 100%;
+}
+
+tr{
+  height: 3.7vh;
+}
+
+th, td{
+
+  height: 5px;
+
+  font-size:small;
+  padding: 2px 4px;
+}
+
+mat-header-cell, .mat-cell{
+  min-width: 50px
+}

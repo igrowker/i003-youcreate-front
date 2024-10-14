@@ -1,0 +1,40 @@
+
+.payment-table {
+  width: 100%;
+  max-height: 65vh;
+  font-family: 'poppins';
+  font-size: 14px;
+  text-align: left;
+  background-color: #FFFFFF;
+  border-radius: 10px 10px 0 0;
+  color: #1D2820;
+}
+
+.payment-table table{
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.payment-table table thead{
+  position: -webkit-sticky; /* Safari... */
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+th {
+  font-weight: 600;
+  vertical-align: bottom;
+  height: 60px;
+}
+
+
+th, td {
+  padding: 7px 20px;
+}
+
+
+.td-description {
+  display: flex;
+  justify-content: center;
+}

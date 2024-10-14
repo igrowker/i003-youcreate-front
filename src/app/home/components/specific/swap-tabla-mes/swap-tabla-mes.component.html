@@ -1,0 +1,14 @@
+<form [formGroup]="monthForm">
+  <label for="month" i18n>Seleccionar Mes:</label>
+  <select id="month" formControlName="selectedMonth">
+    <option *ngFor="let month of months; let i = index; trackBy: trackByIndex" [value]="i+1">
+      {{ month }}
+    </option>
+  </select>
+</form>
+
+@if (incomes.length) {
+  <app-tabla-mes [incomes]="incomes"></app-tabla-mes>
+}@else {
+  <span i18n>No hay ingresos de este mes</span>
+}

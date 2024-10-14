@@ -1,0 +1,62 @@
+<div class="account-data-container">
+  <div class="button_div">
+
+    <button class="edit-btn" (click)="isEditing ? saveAccount() : toggleEdit()">
+      <img *ngIf="!isEditing" src="assets/icons/edit.svg" alt="Editar">
+      <img *ngIf="isEditing" src="assets/icons/diskette.svg" alt="Guardar">
+      {{ isEditing ? 'Guardar' : 'Editar' }}
+    </button>
+  </div>
+
+  <h2 class="title_account" i18n>Datos de la cuenta</h2>
+
+  <div class="account-info">
+
+    <p><strong i18n>Nombre</strong></p>
+    <p *ngIf="!isEditing">{{ accountData.nombre_completo || 'Sin información' }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.nombre_completo"
+      placeholder="Nombre" />
+  </div>
+
+  <div class="account-info">
+
+    <p><strong i18n>Email</strong></p>
+    <p *ngIf="!isEditing">{{ accountData.email }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.email" placeholder="Email" />
+  </div>
+
+  <div class="account-info">
+
+    <p><strong i18n>País</strong></p>
+    <p *ngIf="!isEditing">{{ accountData.pais_residencia }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.pais_residencia" placeholder="País" />
+  </div>
+
+  <div class="account-info">
+
+    <p><strong i18n>Número de teléfono</strong></p>
+    <p *ngIf="!isEditing">{{ accountData.telefono }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.telefono" placeholder="Número de teléfono" />
+  </div>
+
+
+
+
+  <div class="account-info">
+    <p><strong i18n>Plataforma de contenido</strong></p>
+
+    @for (key of objectKeys(accountData.redes_sociales); track $index; let last = $last) {
+      @if ($last) {
+      <span><strong>{{ key | titlecase }} </strong></span>
+      } @else {
+      <span><strong>{{ key | titlecase }}@if (!isEditing) {
+          <span>, </span>
+          }
+        </strong></span>
+      }
+      <input *ngIf="isEditing" [(ngModel)]="accountData.redes_sociales[key]"
+        placeholder="Red Social" />
+    }
+    <!-- <p *ngIf="!isEditing">{{ accountData.redes_sociales[key].replace("@", "") }}</p> -->
+
+  </div>

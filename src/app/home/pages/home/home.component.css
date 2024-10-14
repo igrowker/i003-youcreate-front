@@ -1,0 +1,43 @@
+main{
+  height: 100%;
+}
+
+.top-bar{
+  min-height: 10%;
+  background-color: var(--rosa-secundario-900);
+}
+
+.row{
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.col{
+    flex: 1;
+  background-color: #d9d9d9;
+  margin: 1vw;
+}
+.col-2 {
+  flex: 0 0 13vw;
+}
+
+
+.content{
+  min-height: 90%;
+  width: auto;
+  background-color: #d9d9d9;
+}
+
+app-navbar{
+  width: 13vw;
+  padding: 0;
+}
+.outlet{
+  display: block;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 85vh;
+}
+

@@ -1,0 +1,95 @@
+@if (isVisible) {
+  <div class="backdrop" (click)="closeDialog()"></div>
+  <div class="dialog">
+    <div class="dialog-header">
+      <h2 class="title" i18n>Registrar ingreso</h2>
+    </div>
+    <div class="dialog-body">
+      <form
+        [formGroup]="registerIncomeForm"
+        (ngSubmit)="submitForm()"
+      >
+        <div class="form-group">
+          <label for="nombre" i18n>¿Quién te pagó?</label>
+          <input
+            formControlName="origen"
+            type="text"
+            id="nombre"
+            placeholder="Nombre y Apellido"
+          />
+          @if (registerIncomeForm.get('origen')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerIncomeForm.get('origen')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group custom-select-container">
+          <label for="category" i18n>Elige una categoria</label>
+          <select
+            formControlName="categoria"
+            id="category"
+            class="custom-select"
+          >
+            <option value="" disabled selected i18n>Categoria</option>
+            @for (method of paymentMethod; track method) {
+              <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
+            }
+          </select>
+          @if (registerIncomeForm.get('catehoria')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerIncomeForm.get('categoria')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="date" i18n>Fecha del pago</label>
+          <input
+            formControlName="fecha"
+            type="date"
+            id="date"
+            placeholder="DD/MM/AAAA"
+          />
+          @if (registerIncomeForm.get('fecha')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerIncomeForm.get('fecha')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="service" i18n>Describción del servicio</label>
+          <input
+            formControlName="descripcion"
+            type="text"
+            id="service"
+            placeholder="Servicio"
+          />
+          @if (registerIncomeForm.get('descripcion')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerIncomeForm.get('descripcion')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="monto" i18n>Ingresa el monto</label>
+          <input
+            formControlName="monto"
+            type="number"
+            id="monto"
+            placeholder="ARS"
+          />
+          @if (registerIncomeForm.get('monto')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerIncomeForm.get('monto')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <button (click)="closeDialog()" [disabled]="registerIncomeForm.invalid" i18n>Guardar</button>
+      </form>
+    </div>
+  </div>
+}

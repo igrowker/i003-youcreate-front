@@ -1,0 +1,12 @@
+<div class="contenedor">
+  <div class="row">
+    <div class="col">
+      <h4 i18n>Ingresos totales de {{mes}}</h4>
+    </div>
+  </div>
+
+
+  <div class="grafico">
+    <app-grafico-ingresos *ngIf="valores?.length" [valores]="valores"></app-grafico-ingresos>
+  </div>
+</div>

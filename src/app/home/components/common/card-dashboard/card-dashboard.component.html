@@ -1,0 +1,13 @@
+<div class="container">
+  <p><b>{{datos.title}}</b></p>
+
+  <div>
+    <p><b>Monto:</b> {{datos.monto | currency:'ARS'}}</p>
+    <p><b>Vence:</b> {{datos.vencimiento}}</p>
+  </div>
+
+  <div>
+    <button class="btn btn-primary" (click)="openDialog('details')" i18n>Detalles</button>
+    <button class="btn btn-secondary" (click)="redirect()" i18n>Pagar</button>
+  </div>
+</div>

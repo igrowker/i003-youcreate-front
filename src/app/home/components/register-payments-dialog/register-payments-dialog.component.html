@@ -1,0 +1,104 @@
+@if (isVisible) {
+  <div class="backdrop" (click)="closeDialog()"></div>
+  <div class="dialog">
+    <div class="dialog-header">
+      <h2 class="title" i18n>Registrar pagos</h2>
+    </div>
+    <div class="dialog-body">
+      <form
+        [formGroup]="registerPaymentsForm"
+        (ngSubmit)="submitForm()"
+      >
+        <div class="form-group">
+          <label for="nombre" i18n>¿A quién le vas a pagar?</label>
+          <div class="name">
+            <input
+              formControlName="nombre"
+              type="text"
+              id="nombre"
+              placeholder="Nombre"
+            />
+
+            <input
+              formControlName="apellido"
+              type="text"
+              id="nombre"
+              placeholder="Apellido"
+            />
+          </div>
+          @if (registerPaymentsForm.get('nombre')?.touched || registerPaymentsForm.get('apellido')?.touched) {
+            <span class="error-message">
+              {{ setErrorName() }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group custom-select-container">
+          <label for="wallet" i18n>Elige una billetera</label>
+          <select
+            formControlName="metodo_pago"
+            id="wallet"
+            class="custom-select"
+          >
+            <option value="" disabled selected i18n>Medio de pago</option>
+            @for (method of paymentMethod; track method) {
+              <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
+            }
+          </select>
+          @if (registerPaymentsForm.get('metodo_pago')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('metodo_pago')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="date" i18n>Fecha de pago</label>
+          <input
+            formControlName="fecha_pago"
+            type="date"
+            id="date"
+            placeholder="DD/MM/AAAA"
+          />
+          @if (registerPaymentsForm.get('fecha_pago')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('fecha_pago')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="service" i18n>Describe el servicio a pagar</label>
+          <input
+            formControlName="descripcion"
+            type="text"
+            id="service"
+            placeholder="Servicio"
+          />
+          @if (registerPaymentsForm.get('descripcion')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('descripcion')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="monto" i18n>Ingresa el monto</label>
+          <input
+            formControlName="monto"
+            type="number"
+            id="monto"
+            placeholder="ARS"
+          />
+          @if (registerPaymentsForm.get('monto')?.touched) {
+            <span class="error-message">
+              {{ setFormErrorMessage(registerPaymentsForm.get('monto')?.errors) }}
+            </span>
+          }
+        </div>
+
+        <button (click)="closeDialog()" [disabled]="registerPaymentsForm.invalid" i18n>Guardar</button>
+      </form>
+    </div>
+  </div>
+}

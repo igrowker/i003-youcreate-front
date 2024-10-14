@@ -1,0 +1,17 @@
+<table mat-table [dataSource]="datos">
+
+  <ng-container matColumnDef="fuente">
+    <th mat-header-cell *matHeaderCellDef i18n>Fuente</th>
+    <td mat-cell *matCellDef="let element">{{element.fuente}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="monto">
+    <th mat-header-cell *matHeaderCellDef>Monto</th>
+    <td mat-cell *matCellDef="let element">{{element.monto | currency:'ARS'}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  
+  <tr mat-row *matRowDef="let rowData; columns: columnas"></tr>
+
+</table>

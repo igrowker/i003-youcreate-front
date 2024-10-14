@@ -1,0 +1,14 @@
+<div class="row">
+  <h2 i18n> Notificaciones de impuestos</h2>
+  @if (valores.length) {
+    @for (item of valores; track $index; let i = $index) {
+      <app-card-dashboard 
+      class="col" [datos]="valores[i]" [padre]="'impuestos'"></app-card-dashboard>
+    }
+  }@else {
+    <div>
+      <span i18n>Sin notificaciones de impuestos</span>
+    </div>
+  }
+  
+</div>

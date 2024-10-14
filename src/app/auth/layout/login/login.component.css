@@ -1,0 +1,124 @@
+/*ESTILOS GENERALES*/
+.login-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3e8ff;
+    font-family: 'Poppins';
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 30vw;
+    text-align: center;
+    margin: auto;
+    font-family: 'Poppins';
+}
+
+.logo img{
+    width: 80px;
+}
+
+.title{
+    font-weight: 600;
+    font-size: 24px;
+    color: #333;
+}
+
+.link-registro{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-registro .question {
+    font-size: 14px;
+    color: black;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.link-registro .link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b2fb3;
+}
+
+/* p a {
+    color: #6b2fb3;
+    text-decoration: none;
+} */
+
+/*ESTILOS DEL INPUT*/
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline: none;
+    border-color: #6b2fb3;
+}
+
+small{
+    color: red;
+}
+
+/*BOTONES*/
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.primary-btn{
+    margin-top: 30px;
+    background-color: #6b2fb3;
+    color: #fff;
+}
+
+/*ESTILOS DE LOS ICONOS DE LOS BOTONES*/
+button img{
+    margin: 10px;
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
+}
+
+/*DIVIDER*/
+.divider{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.divider span{
+    padding: 0 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.divider::before, .divider::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+}

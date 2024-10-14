@@ -1,0 +1,99 @@
+<div class="container">
+
+  <div class="manage-payments">
+
+    @if (!isLoading) {
+      <div class="title" i18n>
+        Pagos pendientes
+      </div>
+
+      <div class="buttons-header">
+        <button class="add-button" (click)="dialog.openDialog()">
+          <img class="icon" src="assets/icons/add.svg" alt="icon">
+          <span i18n>Agregar Pago</span>
+        </button>
+        <register-payments-dialog #dialog (formValues)="setNewPaymentRegistered($event)"/>
+      </div>
+      <div class="table-wrapper">
+        <table class="payment-table">
+          <thead class="header-titles">
+            <tr i18n>
+              <th>Fecha</th>
+              <th>Nombre y Apellido</th>
+              <th>Servicio</th>
+              <th>Monto</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="body">
+            @for (collaborator of collaboratorsData; track $index) {
+              <tr>
+                <td>{{ collaborator.fecha_pago | date:'dd/MM/yyyy'}}</td>
+                <td>{{ collaborator.nombre }}  {{collaborator.apellido}}</td>
+                <td>{{ collaborator.descripcion }}</td>
+                <td>
+                  <span>{{ collaborator.monto | currency:'ARS' }}</span>
+                </td>
+                <td>
+                  <div class="td-state">
+                    {{ this.isDateExpired(collaborator.fecha_pago) ? 'Vencido' : 'Por pagar' }}
+                    <div [ngClass]="getStateColor(collaborator.fecha_pago)" class="state-color"></div>
+                  </div>
+                </td>
+                <td class="td-button">
+                  <button (click)="openDialog(collaborator)" i18n>Pagar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <paginator [dataList]="collaborators" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
+    }
+
+  </div>
+
+  <!-- @if (!isLoading) {
+
+    <div class="payment-history">
+
+      <div class="title" i18n>
+        Historial de pagos
+      </div>
+
+      <div class="table-wrapper">
+        <table class="history-table">
+          <thead class="header-titles">
+            <tr i18n> 
+              <th>Fecha</th>
+              <th>Nombre y Apellido</th>
+              <th>Servicio</th>
+              <th>Monto</th>
+              <th>Medio De Pago</th>
+            </tr>
+          </thead>
+          <tbody class="body">
+            @for (collaborator of paymentHistoryData; track collaborator) {
+              <tr>
+                <td class="td-history">{{ collaborator.fecha_pago | date:'dd/MM/yyyy'}}</td>
+                <td class="td-history">{{ collaborator.nombre }}</td>
+                <td class="td-history">{{ collaborator.descripcion }}</td>
+                <td class="td-history">
+                  <span>{{ currency }} </span>
+                  <span>{{ collaborator.monto | numberWithDots }}</span>
+                </td>
+                <td class="td-history">{{ collaborator.wallet }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <paginator [dataList]="collaboratorsHistory" [rowsPerPage]="rawsPerPage" (pageChange)="onHistoriePageChange($event)"/>
+    </div>
+  }
+
+  @if(isLoading) {
+    <app-spinner class="spinner"/>
+  } -->
+</div>

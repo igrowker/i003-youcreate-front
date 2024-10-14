@@ -1,0 +1,11 @@
+<div class="div_card">
+     <img class="img_dialog" src="../../../../assets/logoHeader.png" alt="">
+    <h1 mat-dialog-title>{{ data.title }}</h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" i18n>Cancelar</button>
+      <button mat-button (click)="confirmarPago()" i18n>Confirmar</button>
+    </div>
+    </div>
