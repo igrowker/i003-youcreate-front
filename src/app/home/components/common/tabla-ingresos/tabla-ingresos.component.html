@@ -1,12 +1,12 @@
 <table mat-table [dataSource]="datos">
 
   <ng-container matColumnDef="fuente">
-    <th mat-header-cell *matHeaderCellDef>Fuente</th>
+    <th mat-header-cell *matHeaderCellDef i18n>Fuente</th>
     <td mat-cell *matCellDef="let element">{{element.fuente}}</td>
   </ng-container>
 
   <ng-container matColumnDef="monto">
-    <th mat-header-cell *matHeaderCellDef>Monto</th>
+    <th mat-header-cell *matHeaderCellDef i18n>Monto</th>
     <td mat-cell *matCellDef="let element">{{element.monto}}</td>
   </ng-container>
 

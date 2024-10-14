@@ -2,7 +2,7 @@
   <div class="backdrop" (click)="closeDialog()"></div>
   <div class="dialog">
     <div class="dialog-header">
-      <h2 class="title">Registrar pagos</h2>
+      <h2 class="title" i18n>Registrar pagos</h2>
     </div>
     <div class="dialog-body">
       <form
@@ -10,7 +10,7 @@
         (ngSubmit)="submitForm()"
       >
         <div class="form-group">
-          <label for="nombre">¿A quién le vas a pagar?</label>
+          <label for="nombre" i18n>¿A quién le vas a pagar?</label>
           <div class="name">
             <input
               formControlName="nombre"
@@ -34,13 +34,13 @@
         </div>
 
         <div class="form-group custom-select-container">
-          <label for="wallet">Elige una billetera</label>
+          <label for="wallet" i18n>Elige una billetera</label>
           <select
             formControlName="metodo_pago"
             id="wallet"
             class="custom-select"
           >
-            <option value="" disabled selected>Medio de pago</option>
+            <option value="" disabled selected i18n>Medio de pago</option>
             @for (method of paymentMethod; track method) {
               <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
             }
@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-group">
-          <label for="date">Fecha de pago</label>
+          <label for="date" i18n>Fecha de pago</label>
           <input
             formControlName="fecha_pago"
             type="date"
@@ -68,7 +68,7 @@
         </div>
 
         <div class="form-group">
-          <label for="service">Describe el servicio a pagar</label>
+          <label for="service" i18n>Describe el servicio a pagar</label>
           <input
             formControlName="descripcion"
             type="text"
@@ -83,7 +83,7 @@
         </div>
 
         <div class="form-group">
-          <label for="monto">Ingresa el monto</label>
+          <label for="monto" i18n>Ingresa el monto</label>
           <input
             formControlName="monto"
             type="number"
@@ -97,7 +97,7 @@
           }
         </div>
 
-        <button (click)="closeDialog()" [disabled]="registerPaymentsForm.invalid">Guardar</button>
+        <button (click)="closeDialog()" [disabled]="registerPaymentsForm.invalid" i18n>Guardar</button>
       </form>
     </div>
   </div>

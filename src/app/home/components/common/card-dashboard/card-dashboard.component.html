@@ -2,12 +2,12 @@
   <p><b>{{datos.title}}</b></p>
 
   <div>
-    <p><b>Monto:</b> {{datos.monto}}</p>
-    <p><b>Vence:</b> {{datos.vencimiento}}</p>
+    <p><b i18n>Monto:</b> {{datos.monto}}</p>
+    <p><b i18n>Vence:</b> {{datos.vencimiento}}</p>
   </div>
 
   <div>
-    <button class="btn btn-primary" (click)="openDialog('details')">Detalles</button>
-    <button class="btn btn-secondary" (click)="redirect()">Pagar</button>
+    <button class="btn btn-primary" (click)="openDialog('details')" i18n>Detalles</button>
+    <button class="btn btn-secondary" (click)="redirect()" i18n>Pagar</button>
   </div>
 </div>

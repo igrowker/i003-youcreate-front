@@ -1,5 +1,5 @@
 <div class="row">
-  <h2> Notificaciones de impuestos</h2>
+  <h2 i18n> Notificaciones de impuestos</h2>
   @if (valores.length) {
     @for (item of valores; track $index; let i = $index) {
       <app-card-dashboard 
@@ -7,7 +7,7 @@
     }
   }@else {
     <div>
-      <span>Sin notificaciones de impuestos</span>
+      <span i18n>Sin notificaciones de impuestos</span>
     </div>
   }
   
