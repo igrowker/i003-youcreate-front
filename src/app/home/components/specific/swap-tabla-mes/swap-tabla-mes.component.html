@@ -7,4 +7,8 @@
   </select>
 </form>
 
-<app-tabla-mes [incomes]="incomes"></app-tabla-mes>
+@if (incomes.length) {
+  <app-tabla-mes [incomes]="incomes"></app-tabla-mes>
+}@else {
+  <span>No hay ingresos de este mes</span>
+}

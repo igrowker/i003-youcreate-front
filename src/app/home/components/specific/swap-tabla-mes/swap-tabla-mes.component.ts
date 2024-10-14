@@ -45,6 +45,7 @@ export class SwapTablaMesComponent{
   }
 
   onMonthChange(selectedMonth: number) {
+    this.incomes = [];
     this.obtenerIngresos(selectedMonth);
   }
 
