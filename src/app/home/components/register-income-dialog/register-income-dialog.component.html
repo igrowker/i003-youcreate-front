@@ -2,7 +2,7 @@
   <div class="backdrop" (click)="closeDialog()"></div>
   <div class="dialog">
     <div class="dialog-header">
-      <h2 class="title">Registrar ingreso</h2>
+      <h2 class="title" i18n>Registrar ingreso</h2>
     </div>
     <div class="dialog-body">
       <form
@@ -10,7 +10,7 @@
         (ngSubmit)="submitForm()"
       >
         <div class="form-group">
-          <label for="nombre">¿Quién te pagó?</label>
+          <label for="nombre" i18n>¿Quién te pagó?</label>
           <input
             formControlName="origen"
             type="text"
@@ -25,13 +25,13 @@
         </div>
 
         <div class="form-group custom-select-container">
-          <label for="category">Elige una categoria</label>
+          <label for="category" i18n>Elige una categoria</label>
           <select
             formControlName="categoria"
             id="category"
             class="custom-select"
           >
-            <option value="" disabled selected>Categoria</option>
+            <option value="" disabled selected i18n>Categoria</option>
             @for (method of paymentMethod; track method) {
               <option class="select-option" [value]="method.toLowerCase()">{{ method | titlecase}}</option>
             }
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group">
-          <label for="date">Fecha del pago</label>
+          <label for="date" i18n>Fecha del pago</label>
           <input
             formControlName="fecha"
             type="date"
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group">
-          <label for="service">Describción del servicio</label>
+          <label for="service" i18n>Describción del servicio</label>
           <input
             formControlName="descripcion"
             type="text"
@@ -74,7 +74,7 @@
         </div>
 
         <div class="form-group">
-          <label for="monto">Ingresa el monto</label>
+          <label for="monto" i18n>Ingresa el monto</label>
           <input
             formControlName="monto"
             type="number"
@@ -88,7 +88,7 @@
           }
         </div>
 
-        <button (click)="closeDialog()" [disabled]="registerIncomeForm.invalid">Guardar</button>
+        <button (click)="closeDialog()" [disabled]="registerIncomeForm.invalid" i18n>Guardar</button>
       </form>
     </div>
   </div>
