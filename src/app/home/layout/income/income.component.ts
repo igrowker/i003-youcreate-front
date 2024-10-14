@@ -16,6 +16,7 @@ import { RegisterIncomeDialogComponent } from '../../components/register-income-
 import { IngresosService } from '../../../services/ingresos.service';
 import { DateService } from '../../../services/date.service';
 import { SwapTablaMesComponent } from "../../components/specific/swap-tabla-mes/swap-tabla-mes.component";
+import { SwapBarGraphicComponent } from "../../components/specific/swap-bar-graphic/swap-bar-graphic.component";
 
 
 @Component({
@@ -30,7 +31,8 @@ import { SwapTablaMesComponent } from "../../components/specific/swap-tabla-mes/
     SpinnerComponent,
     SwapGraphicsComponent,
     RegisterIncomeDialogComponent,
-    SwapTablaMesComponent
+    SwapTablaMesComponent,
+    SwapBarGraphicComponent
 ],
   templateUrl: './income.component.html',
   styleUrl: './income.component.css'
@@ -51,40 +53,8 @@ export class IncomeComponent implements OnInit {
 
   public categoryOptions: string[] = ['categoria 1', 'categoria 2', 'categoria 3'];
   public filterType: string[] = ['Filtrar por mes', 'Filtrar por año', 'Reiniciar filtro'];
-  public months: string[] = [
-    'Enero', 'Febrero', 'Marzo',
-    'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre',
-    'Octubre', 'Noviembre', 'Diciembre'
-  ];
-  public dataGraficoPrueba: IncomeHistory[] = [
-    {
-      year: '2023',
-      data: [95, 68, 50, 21, 66, 75, 60, 46, 60, 15, 97, 1]
-    },
-    {
-      year: '2024',
-      data: [65, 59, 80, 81, 56, 55, 40, 56, 10, 5, 7, 12]
-    },
-    {
-      year: '2021',
-      data: [50, 90, 70, 60, 30, 20, 40, 68, 20, 25, 37, 12]
-    },
-  ];
-  public barStyles = [
-    '#37e7ff',
-    '#D7FAFF',
-    '#AFF5FF',
-    '#87F1FF',
-    '#5FECFF',
-    '#13E3FF',
-    '#00D2EF',
-    '#00B3CB',
-    '#0094A8',
-    '#007484',
-    '#005561',
-    '#053F47'
-  ]
+  
+ 
   public years: string[] = [];
   public incomeList: Income[] = [];
 
@@ -162,34 +132,6 @@ export class IncomeComponent implements OnInit {
     }, 3000)
   }
 
-  //TODO: corregir cuando esten los datos completos
-  filterByMonth(): Income[] {
-
-    if (this.monthToFilter() === '' || this.typeToFilter() === 'Reiniciar filtro') {
-      return this.paginatedData(this.incomeList);
-    }
-
-    const monthIndex = this.months.indexOf(this.monthToFilter()) + 1;
-    const monthString = monthIndex < 10 ? `0${monthIndex}` : monthIndex.toString();
-
-    const dataFiltered = this.incomeList.filter(collaborator => {
-
-      // const incomeMonth = collaborator.fecha?.split('-')[1];
-      // return incomeMonth === monthString;
-    });
-    return this.paginatedData(dataFiltered)
-  }
-
-
-  filterByYear(): number[] {
-    const year = this.yearToFilter() || '2024';
-
-    const dataFiltered: IncomeHistory[] = this.dataGraficoPrueba
-      .filter((history) => {
-        return history.year === year;
-      });
-    return dataFiltered.map(history => history.data).flat();
-  }
 
 
 
@@ -211,10 +153,6 @@ export class IncomeComponent implements OnInit {
 
 
 
-
-  getCurrentMonth() {
-    return this.months[this.dateService.getMesActual()];
-  }
 
   generateYearList() {
     for (let i = 0; i <= 4; i++) {

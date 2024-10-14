@@ -1,12 +1,9 @@
 <form [formGroup]="monthForm">
   <label for="month">Seleccionar Mes:</label>
   <select id="month" formControlName="selectedMonth">
-    @for (month of months; track month) {
-      <option [value]="$index">
-        {{ month }}
-      </option>
-    }
-    
+    <option *ngFor="let month of months; let i = index; trackBy: trackByIndex" [value]="i+1">
+      {{ month }}
+    </option>
   </select>
 </form>
 
