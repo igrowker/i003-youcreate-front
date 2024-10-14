@@ -43,7 +43,7 @@ export class IngresosService {
 
   // * `GET /ingreso-total-en-un-mes/<int:usuario_id>/<int:mes>/<int:anio>/` - Obtener el total de ingresos de un usuario por mes y año
   getTotalDelMes(userId: number, mes: number, anio: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}api/ingresos-total-en-un-mes/${userId}/${mes}/${anio}`);
+    return this.http.get<any>(`${this.apiUrl}api/ingreso-total-en-un-mes/${userId}/${mes}/${anio}`);
   }
 
 

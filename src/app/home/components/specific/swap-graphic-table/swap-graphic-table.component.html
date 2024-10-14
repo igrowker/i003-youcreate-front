@@ -1,0 +1,21 @@
+<form [formGroup]="filterForm">
+  <label for="filter">Filtrar por mes o año:</label>
+  <select id="filter" formControlName="selectedFilter">
+    <option value="year">Año</option>
+    <option value="month">Mes</option>
+  </select>
+</form>
+
+<div class="buttons-right">
+  <button class="add-button" (click)="dialog.openDialog()">
+    <img class="icon" src="assets/icons/add.svg" alt="icon">
+    <span>Agregar ingreso</span>
+  </button>
+  <register-income-dialog #dialog (formValues)="setNewIncomeRegistered($event)"></register-income-dialog>
+</div>
+
+@if (filtro === 'month') {
+<app-swap-tabla-mes></app-swap-tabla-mes>
+}@else {
+<app-swap-bar-graphic></app-swap-bar-graphic>
+}

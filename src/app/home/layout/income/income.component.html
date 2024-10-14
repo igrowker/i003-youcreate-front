@@ -2,130 +2,24 @@
   <div class="dashboard-top">
     <div class="price rectangle">
       <span class="currency">ARS</span>
-      @if(totalIncome() >= 0) {
-        <span class="price-number">${{ totalIncome() | numberWithDots }}</span>
-      }@else {
-        <p>Sin ingresos registrados</p>
-      }
+        <span class="price-number">${{ totalIncome | numberWithDots }}</span>
     </div>
     <div>
       <app-swap-graphics></app-swap-graphics>
     </div>
   </div>
 
+ 
+  <app-swap-graphic-table></app-swap-graphic-table>
+
+
+    
+      
+   
+
+
+    
   
-
-
-  <div>
-    <div class="buttons-filter">
-      @if (isYearsOrMonthsDropdown()) {
-        <btn-dropdown
-          [options]="months"
-          [label]="getCurrentMonth()"
-          type="borderless"
-          [disabled]="typeToFilter() === ''"
-          (selectedValue)="getMonthToFilter($event)"
-        />
-      } @else {
-        <btn-dropdown
-          [options]="years"
-          [label]="currentYear.toString()"
-          type="borderless"
-          (selectedValue)="getYearToFilter($event)"
-          [disabled]="typeToFilter() === ''"
-        />
-      }
-
-      <div class="buttons-right">
-        <button class="add-button" (click)="dialog.openDialog()">
-          <img class="icon" src="assets/icons/add.svg" alt="icon">
-          <span>Agregar ingreso</span>
-        </button>
-        <register-income-dialog #dialog (formValues)="setNewIncomeRegistered($event)"></register-income-dialog>
-
-         <btn-dropdown
-            [options]="filterType"
-            type="filter"
-            label="filtrar datos"
-            (selectedValue)="getTypeToFilter($event)"
-          />
-      </div>
-    </div>
-
-
-    @if (isYearsOrMonthsDropdown()) {
-      <div class="table-container">
-
-        @if (!isLoadingMonth && filterByMonth().length > 0) {
-          <table class="payment-table">
-              <thead class="header-titles">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Fecha</th>
-                  <th>Monto</th>
-                  <th class="th-center">Categoria</th>
-                  <th class="th-center">Descripción</th>
-                </tr>
-              </thead>
-              <tbody class="body">
-
-
-                @for (income of filterByMonth(); track income) {
-                  <tr>
-                    <td>{{ income.origen }}</td>
-                    <td>{{ income.fecha| date:'dd/MM/yyyy' }}</td>
-                    <td>
-                      <span>{{ currency }} </span>
-                      <span>{{ income.monto| numberWithDots }} </span>
-                    </td>
-                    <td>{{income.origen}}</td>
-                    <td>{{income.descripcion}}</td>
-                  </tr>
-                }
-
-
-              </tbody>
-            </table>
-            <paginator [dataList]="incomeList" [rowsPerPage]="rawsPerPage" (pageChange)="onPageChange($event)"/>
-
-
-        }@else if( !isLoadingMonth && filterByMonth().length === 0 ) {
-          <span class="empty-message">Sin ingresos registrados</span>
-        }
-
-        @if (isLoadingMonth) {
-          <app-spinner class="spinner-month"/>
-        }
-      </div>
-
-
-    } @else {
-      <div class="graphicBar-container">
-
-        @if (isLoadingYear) {
-          <app-spinner class="spinner"/>
-        }
-
-        @if(!isLoadingYear) {
-
-          @if(filterByYear().length > 0){
-            <bar-graphic
-              [labels]="months"
-              title="Historial De Ingresos"
-              [data]="filterByYear()"
-              [barStyles]="barStyles"
-            />
-
-
-          }@else {
-            <p class="spinner">No hay información disponible</p>
-          }
-
-        }
-      </div>
-    }
-  </div>
-</div>
 
 
 

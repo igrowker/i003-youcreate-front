@@ -1,0 +1,16 @@
+
+  <form [formGroup]="yearForm">
+    <label for="year">Seleccionar Año:</label>
+    <select id="year" formControlName="selectedYear">
+      <option *ngFor="let year of years; let i = index; trackBy: trackByIndex" [value]="year">
+        {{ year }}
+      </option>
+    </select>
+  </form>
+  
+  @if (yearEmpty) {
+    <span>No hay ingresos en este año</span>
+  }@else {
+    <bar-graphic [data]="dataGraficoPrueba"></bar-graphic>
+  }
+  
