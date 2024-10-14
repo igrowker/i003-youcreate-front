@@ -1,0 +1,28 @@
+<table class="payment-table">
+  <thead class="header-titles">
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th>Monto</th>
+      <th class="th-center">Categoria</th>
+      <th class="th-center">Descripción</th>
+    </tr>
+  </thead>
+  <tbody class="body">
+
+
+    @for (income of incomes; track income) {
+      <tr>
+        <td>{{ income.origen }}</td>
+        <td>{{ income.fecha| date:'dd/MM/yyyy' }}</td>
+        <td>
+          <span>'ARS'</span>
+          <span>{{ income.monto| numberWithDots }} </span>
+        </td>
+        <td>{{income.origen}}</td>
+        <td>{{income.descripcion}}</td>
+      </tr>
+    }
+
+  </tbody>
+</table>

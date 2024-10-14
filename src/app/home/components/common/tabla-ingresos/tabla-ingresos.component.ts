@@ -1,11 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 
-interface Tabla {
-  fuente: string;
-  monto: string;
-}
-
 @Component({
   selector: 'app-tabla-ingresos',
   standalone: true,

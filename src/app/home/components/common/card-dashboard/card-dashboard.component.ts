@@ -22,7 +22,7 @@ export class CardDashboardComponent implements OnInit{
   @Input() datos!:Card;
   @Input() padre!:string;
 
-  constructor(private dialog: MatDialog, private route: Router) {} 
+  constructor(private dialog: MatDialog, private router: Router) {} 
   
   ngOnInit(): void {
     
@@ -33,10 +33,15 @@ export class CardDashboardComponent implements OnInit{
   };
 
   redirect(){
+    console.log("redirect",this.padre);
+
     if( this.padre ==='pagos'){
-      this.route.navigate(["/payments"]);
-    }else if(this.padre === ' impuestos'){
-      this.route.navigate(["/tax-obligations"]);
+      console.log(this.padre);
+      this.router.navigate(["/home/payments"]);
+
+    }else if(this.padre === 'impuestos'){
+      console.log(this.padre);
+      this.router.navigate(["/home/tax-obligations"]);
     }
   }
 

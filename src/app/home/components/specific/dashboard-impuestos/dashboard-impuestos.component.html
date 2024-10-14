@@ -3,7 +3,7 @@
   @if (valores.length) {
     @for (item of valores; track $index; let i = $index) {
       <app-card-dashboard 
-      class="col" [datos]="valores[i]"></app-card-dashboard>
+      class="col" [datos]="valores[i]" [padre]="'impuestos'"></app-card-dashboard>
     }
   }@else {
     <div>

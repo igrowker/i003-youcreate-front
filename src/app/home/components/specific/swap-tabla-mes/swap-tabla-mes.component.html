@@ -1,0 +1,13 @@
+<form [formGroup]="monthForm">
+  <label for="month">Seleccionar Mes:</label>
+  <select id="month" formControlName="selectedMonth">
+    @for (month of months; track month) {
+      <option [value]="$index">
+        {{ month }}
+      </option>
+    }
+    
+  </select>
+</form>
+
+<app-tabla-mes [incomes]="incomes"></app-tabla-mes>

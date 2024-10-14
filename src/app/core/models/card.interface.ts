@@ -1,6 +1,6 @@
 export interface Card{
   title:string;
-  monto:Number;
+  monto:number;
   vencimiento:string;
   details?:string;
 }

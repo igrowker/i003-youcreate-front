@@ -129,12 +129,7 @@ export class TaxObligationsComponentComponent {
       });
   }
 
-
-
-
-
   emailAutomatico(update:any){
-
     update.fecha_vencimiento = update.fecha_vencimiento.toString();
     const updateData = {
       ...update,
