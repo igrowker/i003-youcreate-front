@@ -50,7 +50,8 @@ export class SwapBarGraphicComponent implements OnInit{
   obtenerIngresos(year: number) {
     const requests = []; // Crea un array para almacenar las solicitudes
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 1; i < 13; i++) {
+    
       const request = this.ingresoService.getTotalDelMes(this.userId, i, year);
       requests.push(request); // Agrega cada solicitud al array
     }
@@ -58,8 +59,10 @@ export class SwapBarGraphicComponent implements OnInit{
     // Utiliza forkJoin para esperar a que todas las solicitudes se completen
     forkJoin(requests).subscribe({
       next: (results: number[]) => {
-        this.dataGraficoPrueba = results.map(result =>{
-          return Object.values(result)[0];
+        this.dataGraficoPrueba = new Array(12).fill(0);
+        
+        results.forEach((result,index) =>{
+          this.dataGraficoPrueba[index] =  Object.values(result)[0];
         });
 
         const vacio = this.dataGraficoPrueba.every(value =>value === 0);

@@ -12,7 +12,7 @@ import { create } from 'domain';
 })
 export class BarGraphicComponent implements OnInit, OnChanges {
 
-  @Input({ required: true }) data!: number[] | any[];
+  @Input({ required: true }) data!: number[];
 
   chart!: Chart;
 
@@ -121,15 +121,6 @@ export class BarGraphicComponent implements OnInit, OnChanges {
   private destroyChart():void{
     if(this.chart){
       this.chart.destroy();
-    }
-  }
-
-  private updateChart(): void{
-    if(this.chart){
-      this.chart.data.datasets[0].data = this.data;
-      this.chart.update();
-    }else{
-      this.createChart();
     }
   }
 
