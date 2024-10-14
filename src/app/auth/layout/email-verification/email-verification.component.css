@@ -67,6 +67,7 @@ input{
   border-radius: 5px;
   margin: 0 7px;
   border-color: rgb(167, 166, 166);
+  text-align: center;
 }
 
 .modal {
