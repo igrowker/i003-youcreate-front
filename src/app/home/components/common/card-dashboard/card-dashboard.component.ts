@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 import { MatDialog } from '@angular/material/dialog'; 
 import { Card } from '../../../../core/models/card.interface';
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface CardData {
   paymentStatus: 'paid' | 'pending' | 'overdue';
@@ -19,8 +20,9 @@ interface CardData {
 export class CardDashboardComponent implements OnInit{
   
   @Input() datos!:Card;
+  @Input() padre!:string;
 
-  constructor(private dialog: MatDialog) {} 
+  constructor(private dialog: MatDialog, private router: Router) {} 
   
   ngOnInit(): void {
     
@@ -29,6 +31,19 @@ export class CardDashboardComponent implements OnInit{
   cardData: CardData = {
     paymentStatus: 'pending' 
   };
+
+  redirect(){
+    console.log("redirect",this.padre);
+
+    if( this.padre ==='pagos'){
+      console.log(this.padre);
+      this.router.navigate(["/home/payments"]);
+
+    }else if(this.padre === 'impuestos'){
+      console.log(this.padre);
+      this.router.navigate(["/home/tax-obligations"]);
+    }
+  }
 
   openDialog(action: 'details' | 'pay'): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -42,7 +57,6 @@ export class CardDashboardComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && action === 'pay') {
-      
         //console.log('Pago confirmado para:', this.cardData);
       }
     });

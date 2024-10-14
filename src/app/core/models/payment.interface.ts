@@ -2,7 +2,7 @@ export interface Payment {
   id?: number,
   nombre: string,
   apellido: string;
-  monto: string,
+  monto: number,
   fecha_pago: string,
   descripcion: string,
   metodo_pago: string,
