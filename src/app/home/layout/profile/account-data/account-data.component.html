@@ -1,6 +1,6 @@
 <div class="account-data-container">
   <div class="button_div">
-    <!-- Botón que cambia de 'Editar' a 'Guardar' según el estado -->
+   
     <button class="edit-btn" (click)="isEditing ? saveAccount() : toggleEdit()">
       <img *ngIf="!isEditing" src="assets/icons/edit.svg" alt="Editar">
       <img *ngIf="isEditing" src="assets/icons/diskette.svg" alt="Guardar">
@@ -11,44 +11,44 @@
   <h2 class="title_account">Datos de la cuenta</h2>
 
   <div class="account-info">
-    <!-- Nombre de usuario -->
+ 
     <p><strong>Nombre de usuario</strong></p>
-    <p *ngIf="!isEditing">{{ accountData.username }}</p>
-    <input *ngIf="isEditing" [(ngModel)]="accountData.username" placeholder="Nombre de usuario" />
+    <p *ngIf="!isEditing">{{ accountData.nombre_completo || 'Sin información' }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.nombre_completo" placeholder="Nombre de usuario" />
   </div>
 
-  <div class="account-info">
-    <!-- Email -->
+   <div class="account-info">
+ 
     <p><strong>Email</strong></p>
     <p *ngIf="!isEditing">{{ accountData.email }}</p>
     <input *ngIf="isEditing" [(ngModel)]="accountData.email" placeholder="Email" />
-  </div>
+   </div>
 
-  <div class="account-info">
-    <!-- País -->
+    <div class="account-info">
+  
     <p><strong>País</strong></p>
-    <p *ngIf="!isEditing">{{ accountData.country }}</p>
-    <input *ngIf="isEditing" [(ngModel)]="accountData.country" placeholder="País" />
-  </div>
+    <p *ngIf="!isEditing">{{ accountData.pais_residencia }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.pais_residencia" placeholder="País" />
+    </div>
 
-  <div class="account-info">
-    <!-- Número de teléfono -->
+    <div class="account-info">
+   
     <p><strong>Número de teléfono</strong></p>
-    <p *ngIf="!isEditing">{{ accountData.phone }}</p>
-    <input *ngIf="isEditing" [(ngModel)]="accountData.phone" placeholder="Número de teléfono" />
-  </div>
+    <p *ngIf="!isEditing">{{ accountData.telefono }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="accountData.telefono" placeholder="Número de teléfono" />
+    </div>
 
-  <div class="account-info">
-    <!-- Plataforma de contenido -->
-    <p><strong>Plataforma de contenido</strong></p>
-    <p *ngIf="!isEditing">{{ accountData.platform }}</p>
-    <input *ngIf="isEditing" [(ngModel)]="accountData.platform" placeholder="Plataforma de contenido" />
-  </div>
+  
 
-<!-- <div class="account-info">
-     Condición Fiscal 
-    <p><strong>Condición Fiscal</strong></p>
-    <p *ngIf="!isEditing">{{ accountData.taxStatus }}</p>
-    <input *ngIf="isEditing" [(ngModel)]="accountData.taxStatus" placeholder="Condición Fiscal" />
-  </div>-->
+
+    <div class="account-info">
+      <p><strong>Plataforma de contenido</strong></p>
+     
+      @for (key of objectKeys(accountData.redes_sociales); track $index) {
+        <p>{{key}}</p>
+       
+          <p><strong>{{ key }}</strong></p>
+          <p *ngIf="!isEditing">{{ accountData.redes_sociales[key] }}</p>
+      }
+
 </div>
