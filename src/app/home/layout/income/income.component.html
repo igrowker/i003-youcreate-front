@@ -1,8 +1,7 @@
 <div class="income-container">
   <div class="dashboard-top">
     <div class="price rectangle">
-      <span class="currency">ARS</span>
-        <span class="price-number">${{ totalIncome | numberWithDots }}</span>
+        <span class="price-number">${{ totalIncome | currency:'ARS' }}</span>
     </div>
     <div>
       <app-swap-graphics></app-swap-graphics>

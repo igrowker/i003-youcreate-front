@@ -14,7 +14,7 @@
       <div class="fiscal-row" *ngFor="let obligation of obligations; let i = index">
 
         <div class="fiscal-item">{{ obligation.tipo_impuesto }}</div>
-        <div class="fiscal-item">{{ obligation.monto_a_pagar}}</div>
+        <div class="fiscal-item">{{ obligation.monto_a_pagar | currency:'ARS'}}</div>
         <div class="fiscal-item">{{ obligation.fecha_vencimiento| date:'dd/MM/yyyy' }}</div>
         <div class="fiscal-item">
 

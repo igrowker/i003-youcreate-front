@@ -14,7 +14,7 @@ import { TokenService } from '../../../../core/services/token.service';
   templateUrl: './swap-tabla-mes.component.html',
   styleUrl: './swap-tabla-mes.component.css'
 })
-export class SwapTablaMesComponent{
+export class SwapTablaMesComponent implements OnInit{
   monthForm: FormGroup;
   months: string[] = [
     'Enero', 'Febrero', 'Marzo',
@@ -42,6 +42,11 @@ export class SwapTablaMesComponent{
     this.monthForm.get('selectedMonth')?.valueChanges.subscribe((value) => {
       this.onMonthChange(value);
     });
+  }
+
+  ngOnInit(): void {
+    this.incomes = [];
+    this.obtenerIngresos(this.dateService.getMesActual());
   }
 
   onMonthChange(selectedMonth: number) {

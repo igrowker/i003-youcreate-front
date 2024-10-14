@@ -36,7 +36,14 @@ export class SwapGraphicTableComponent {
   }
 
   setNewIncomeRegistered(formValues:Income){
-    this.ingresosService.postIngreso(formValues);
+    this.ingresosService.postIngreso(formValues).subscribe({
+      next:(data)=>{
+        console.log(data);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
   }
 
 }

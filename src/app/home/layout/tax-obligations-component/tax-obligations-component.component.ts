@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PaginatorService } from '../../../services/paginator.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
@@ -17,6 +17,7 @@ import { retryWhen } from 'rxjs';
     FormsModule,
     PaginatorComponent,
     ConfirmDialogComponent,
+    CurrencyPipe
   ],
   templateUrl: './tax-obligations-component.component.html',
   styleUrl: './tax-obligations-component.component.css',

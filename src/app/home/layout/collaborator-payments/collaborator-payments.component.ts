@@ -29,14 +29,121 @@ import { SpinnerComponent } from '../../../shared/components/spinner/spinner.com
 })
 export class CollaboratorPaymentsComponent {
 
-  collaborators: Payment[] = [];
+  collaborators: Payment[] = []
   collaboratorsHistory: Payment[] = [];
+
+  hardCoded: Payment[] = [
+    {
+      nombre: 'Agostina',
+      apellido:'Tabera',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'PO',
+      metodo_pago:'PayPal'
+    },    
+    {
+      nombre: 'Suelen',
+      apellido:'Ranucci',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrolladora Frontend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Erick',
+      apellido:'Nieto',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Frontend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Randy',
+      apellido:'Charinga',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Frontend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Damián',
+      apellido:'Lambrecht',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Frontend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'André',
+      apellido:'Candeloro',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Backend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Victor',
+      apellido:'Lopez',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Backend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Alejandro',
+      apellido:'Gonzalez',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Backend',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Julian',
+      apellido:'Serio',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'Desarrollador Full Stack',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Victoria',
+      apellido:'Alcano',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'UX / UI',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Valeria',
+      apellido:'Porta',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'UX / UI',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Fabricio',
+      apellido:'Carpentieri',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'QA',
+      metodo_pago:'PayPal'
+    },
+    {
+      nombre: 'Ivan',
+      apellido:'Estrada',
+      monto: 100000,
+      fecha_pago: '12/10/2024',
+      descripcion: 'QA',
+      metodo_pago:'PayPal'
+    },
+  ]
 
   isLoading:boolean = false;
   currency: string = 'ARS';
   currentPage: number = 1;
   currentPageHistorie: number = 1;
-  rawsPerPage: number = 3;
+  rawsPerPage: number = 13;
   colaborador_id: number = 0;
 
   constructor(
@@ -90,7 +197,7 @@ export class CollaboratorPaymentsComponent {
   }
 
   get collaboratorsData() {
-    return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, this.collaborators);
+    return this.paginatorService.paginatedData(this.currentPage, this.rawsPerPage, this.hardCoded);
   }
 
   get paymentHistoryData() {
@@ -120,6 +227,9 @@ export class CollaboratorPaymentsComponent {
   }
 
   adjustMonth(month: string):number {
+    if(!month || typeof month !== 'string'){
+      return 0;
+    }
     const cleanCero = Number(month.replace(/^0/, ''));
     const adjustedMonth = cleanCero - 1;
 
