@@ -6,8 +6,8 @@
   </ng-container>
 
   <ng-container matColumnDef="monto">
-    <th mat-header-cell *matHeaderCellDef i18n>Monto</th>
-    <td mat-cell *matCellDef="let element">{{element.monto}}</td>
+    <th mat-header-cell *matHeaderCellDef>Monto</th>
+    <td mat-cell *matCellDef="let element">{{element.monto | currency:'ARS'}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnas"></tr>

@@ -1,10 +1,11 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-tabla-ingresos',
   standalone: true,
-  imports: [ MatTableModule ],
+  imports: [ MatTableModule, CurrencyPipe],
   templateUrl: './tabla-ingresos.component.html',
   styleUrl: './tabla-ingresos.component.css'
 })

@@ -59,30 +59,22 @@ export class RegisterIncomeDialogComponent implements OnInit{
 
 
   validDateValidator(control: AbstractControl): ValidationErrors | null {
-
     const inputDate = new Date(control.value);
-
     if (isNaN(inputDate.getTime())) {
       return { invalidDate: true };
     }
-
     return null;
   }
 
   setFormErrorMessage(error: ValidationErrors | null | undefined):string {
-
     const formErrorMessages: ErrorType = {
       'required': 'Este campo es requerido',
       'min': 'El monto minimo es 500',
       'invalidDate': 'Fecha Invalida',
     };
-
     const firstErrorKey = error ? Object.keys(error)[0] : null;
-
     const errorMessage = error && firstErrorKey ? formErrorMessages[firstErrorKey] : '';
-
     return  errorMessage;
-
   }
 
 }

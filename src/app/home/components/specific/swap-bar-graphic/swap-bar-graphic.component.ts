@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BarGraphicComponent } from "../../bar-graphic/bar-graphic.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
@@ -14,7 +14,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './swap-bar-graphic.component.html',
   styleUrl: './swap-bar-graphic.component.css'
 })
-export class SwapBarGraphicComponent {
+export class SwapBarGraphicComponent implements OnInit{
 
   public dataGraficoPrueba: number[] = [];
   years = ['2020', '2021', '2022', '2023', '2024'];
@@ -37,6 +37,10 @@ export class SwapBarGraphicComponent {
     this.yearForm.get('selectedYear')?.valueChanges.subscribe((value) => {
       this.onYearChange(value);
     })
+  }
+
+  ngOnInit(): void {
+    this.obtenerIngresos(this.dateService.getAnioActual())
   }
 
   onYearChange(selectedYear: number) {

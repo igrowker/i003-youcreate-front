@@ -16,8 +16,7 @@
         <td>{{ income.origen }}</td>
         <td>{{ income.fecha| date:'dd/MM/yyyy' }}</td>
         <td>
-          <span>'ARS'</span>
-          <span>{{ income.monto| numberWithDots }} </span>
+          <span>{{ income.monto| currency:'ARS' }} </span>
         </td>
         <td>{{income.origen}}</td>
         <td>{{income.descripcion}}</td>

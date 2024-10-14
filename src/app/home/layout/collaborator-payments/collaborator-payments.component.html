@@ -30,11 +30,10 @@
             @for (collaborator of collaboratorsData; track $index) {
               <tr>
                 <td>{{ collaborator.fecha_pago | date:'dd/MM/yyyy'}}</td>
-                <td>{{ collaborator.nombre }}</td>
+                <td>{{ collaborator.nombre }}  {{collaborator.apellido}}</td>
                 <td>{{ collaborator.descripcion }}</td>
                 <td>
-                  <span>{{ currency }} </span>
-                  <span>{{ collaborator.monto | numberWithDots }}</span>
+                  <span>{{ collaborator.monto | currency:'ARS' }}</span>
                 </td>
                 <td>
                   <div class="td-state">
@@ -55,7 +54,7 @@
 
   </div>
 
-  @if (!isLoading) {
+  <!-- @if (!isLoading) {
 
     <div class="payment-history">
 
@@ -96,5 +95,5 @@
 
   @if(isLoading) {
     <app-spinner class="spinner"/>
-  }
+  } -->
 </div>

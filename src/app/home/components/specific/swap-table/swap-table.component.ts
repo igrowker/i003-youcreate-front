@@ -18,8 +18,8 @@ export class SwapTableComponent {
   totalCategoria :{[key:string]:number}  = {
     youtube:0,
     twitch:0,
-    campania:0,
-    colaboradores:0,
+    campañas:0,
+    colaboraciones:0,
     regalos:0,
   }
   public months:string[] = [

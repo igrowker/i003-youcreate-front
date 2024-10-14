@@ -13,26 +13,25 @@ export class DashboardPagosComponent {
   valores : Card[];
 
   constructor() {
-     this.valores = []
-     /*
+     this.valores = [
        {
-         title: 'Pagos 1',
+         title: 'Suelen',
          monto: 14.000,
          vencimiento: '12/10/2024',
-         details: 'Detalle de tarjeta'
+         details: 'Desarrolladora Frontend'
        },
        {
-         title: 'Pagos 2',
+         title: 'Agos',
          monto: 14.000,
          vencimiento: '12/10/2024',
-         details: 'Detalle de tarjeta'
+         details: 'Project Manager'
        },
        {
-         title: 'Pagos 3',
+         title: 'André',
          monto: 14.000,
          vencimiento: '12/10/2024',
-         details: 'Detalle de tarjeta'
+         details: 'Desarrollador Backend'
        }
-     ]*/
+     ]
   }
 }
