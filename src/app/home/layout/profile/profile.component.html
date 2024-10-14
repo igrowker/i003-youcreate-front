@@ -1,13 +1,12 @@
 <div class="profile-container">
 
     <div class="profile_header">
-    <img src="assets/imagePerfilTest.png" alt="Peril image" class="header-image">
-  <!-- <h1>{{ user.name }}</h1>
-    <p>{{ user.email }}</p>--> 
+    <img src="assets/icons/profile-fill.svg" alt="Perfil image" class="header-image">
+   
 <div class="profile_name">
-    <h1 class="profile_name">Daniel Velázquez</h1>
+    <h1 class="profile_name">{{ user.nombreCompleto }}</h1>
     <label for="email" class="profile-email-label"></label>
-    <p id="email" class="profile-email">daniel.velazquez&#64;gmail.com</p>
+    <p id="email" class="profile-email">{{ user.email }}</p>
 </div>
 
 </div >
